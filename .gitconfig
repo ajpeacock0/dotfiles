@@ -1,0 +1,185 @@
+[user]
+	email = ajpeacock0@gmail.com
+	name = Andrew Peacock
+[alias]
+  #### General ####
+
+  # Regular git log
+  lg = log --name-status
+  # Shortcut + verbose
+  fe = fetch -v
+  # Shortcut + enable Perl regex grep
+  g = grep --perl-regexp --line-number
+  # Shortcut + enable Perl regex grep with match whole word only
+  gw = grep --perl-regexp --line-number --word-regexp
+  # Display the files (uniq) which the string matches
+  gu = !"f() { git grep -P \"$@\" | awk -F: {print \"$@\"} | uniq; }; f"
+  # Shortcut for status
+  st = status
+  # Updates submodules Note: Equivelant to "git submodule sync && git submodule update"?
+  updatesub = submodule update --recursive --init
+  # Force rename a file, normally case differences in git name to local name
+  mv = mv -f
+  # Push to origin HEAD with force. TODO: Make this rebor, check to see if you still want to push afterwards to avoid conflicts since last rebase
+  submit = push origin +HEAD
+  # Shortcut
+  ls = ls-files -v
+
+  #### Stash Shortcuts ####
+  s = stash
+  sa = stash apply
+  sc = stash clear
+  sd = stash drop
+  sl = stash list --date=local
+  sp = stash pop
+  sw = stash show -p
+
+  #### Rebase Shortcuts ####
+  rb = rebase
+  rba = rebase --abort
+  rbc = rebase --continue
+  rbi = rebase --interactive
+  rbs = rebase --skip
+
+  #### Cherry Pick Shortcuts ####
+  cp = cherry-pick -x
+  cpa = cherry-pick --abort
+  cpc = cherry-pick --continue
+  cpi = cherry-pick --interactive
+  cps = cherry-pick --skip
+
+  #### Commitments ####
+
+  # Commit modified and deleted file changes. Brings up set text editor for message
+  co = !"git add -u && git commit"
+  # Commit modified and deleted file changes with the given commit message
+  co-m = !"f() { git add -u && git commit -m \"$@\"; }; f"
+  # Commit changes and ammend to last commit
+  co-am = !"git add -u && git commit --amend --no-edit"
+  # Commit changes and ammend to last commit + edit the commit message
+  co-am-ed = !"git add -u && git commit --amend"
+  # Adds all untracked files
+  add-untracked = !"echo -e "a\n*\nq\n" | git add -i"
+  # Undo the last commit, making them uncommited changes
+  rs = reset HEAD~
+  # Discard all non-commited changes
+  discard = checkout -- .
+  # Reset back to the state before the last executed git command
+  undo = reset HEAD@{1}
+  # Ignore local content changes to tracked file
+  ignore-changes = update-index --assume-unchanged
+  # Allow the file to be tracked by git again; aka undo `ignore-changes`
+  track-changes = update-index --no-assume-unchanged
+  # View files marked with --assume-unchanged
+  ignored-files = !"git ls-files -v | grep '^[[:lower:]]'"
+  # Print the number of commits by each author
+  count-commits = shortlog -s -n
+  # Open the last 10 commits to be ReOrdered, deleted, squashed, etc.
+  ro = rebase -i HEAD~10
+  # View what commits have not been checked into master
+  cl-br = !"f() { git log master..\"$@\"; }; f"
+  # Note: Reset, rebase and merge all save your original HEAD pointer to ORIG_HEAD. Thus these commands have been run since the rebase you're trying to undo then you'll have to use the reflog.
+  rs-undo = reset --hard ORIG_HEAD
+
+  #### Conflicts ####
+
+  # list all conflicted files
+  conf-ls = diff --name-only --diff-filter=U
+  # open conflicted files in sublime
+  conf-subl = !"git conf-ls && git conf-ls | xargs "$SUBL_FUNC""
+  # add the conflicted files after you fix them
+  conf-add = !"git conf-ls | xargs git add"
+  # Resolve conflict by discarding local changes
+  conf-ours = !"git conf-ls | xargs git checkout --ours"
+
+  #### Branches ####
+
+  # View all local branches
+  br = branch
+  # View all remote and local branches
+  br-remote = branch -a
+  # Checkout to another branch
+  switch = checkout 
+  # Rename a branch
+  mvbr = branch -m 
+  # Forces a deletion on the branch
+  rmbr = branch -D
+  # Delete a remote branch
+  rmbr-remote = push origin --delete 
+  # Create new branch based off origin/master and checkout into the given name
+  cdbr = !"f() { git checkout -b \"$@\" remotes/origin/master; }; f"
+  # Print the name of the current branch
+  currbr = rev-parse --abbrev-ref HEAD
+  # Fetches origin and rebases for this branch
+  rebbr = !"git fetch origin && git rebase origin/$(git currbr) --stat"
+  # Fetches origin and rebases ontop on master
+  rebor = !"git fetch origin && git rebase origin/master --stat"
+  # This will now checkout to the middle commit between now and the last known good commit. If the build succeeds, use `git bisect good`. If it fails, use ``git bisect bad`
+  bi = !"f() { git bisect start && git bisect bad && git bisect good \"$@\"; }; f"
+  # Resets the current branch to the latest branch while ignoring local changes
+  pull-ignore-local = !"git fetch origin && git reset --hard origin/$(git currbr)"
+  # View last 10 local branches sorted by last commit in descending order
+  brst = for-each-ref --sort=-committerdate --count=10 refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))'
+  # View all local branches sorted by last commit in ascending order
+  brsort = for-each-ref --sort=committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))'
+  # View all remote branches sorted by last commit in ascending order
+  remotebrsort = for-each-ref --sort=committerdate refs/remotes/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))' | tail -10
+  # Tag the branch then delete it, effectively keeping the branch around without it cluttering your list
+  archive-br = !"f() { git tag archive/\"$@\" \"$@\" && git branch -D \"$@\"; }; f"
+  # Restore the archived branch
+  restore-br = !"f() { git checkout -b \"$@\" archive/\"$@\"; }; f"
+
+  #### Given File Change ####
+
+  # Shortcut and improvement for log on a file (beyond file renames)
+  lgf = !"f() { git log --follow \"$@\"; }; f"
+  # view commit log with changes of given file 
+  logf = !"f() { git log --follow -p \"$@\"; }; f"
+  # view commit log with changes of given file in sublime
+  logfsubl = !"f() { git log --follow -p \"$@\" > \"$@\".log && "$SUBL_FUNC" \"$@\".log && rm \"$@\".log; }; f"
+  # view reflog log of given file
+  reflogf = rev-list --all
+
+  #### All File Changes ####
+
+  # Shortcut for `git diff`
+  df = diff
+  # View the changes made in the last commit - df = diff last
+  dl = diff HEAD^ HEAD
+  # view the file changed list in the last commit - cl = see last
+  cl = diff-tree --no-commit-id --name-status -r HEAD^ HEAD
+  # view reflog with time info
+  reflog = reflog --date=iso
+  # view the file changed list in the given commit ID
+  cinfo = diff-tree --no-commit-id --name-status -r 
+  # View a list of all deleted files
+  deleted = log --diff-filter=D --summary | grep delete
+  # List all existing files being tracked by the current branch
+  tracked = !"f() { git ls-tree -r $(git currbr) --name-only; }; f"
+  # Open all tracked files
+  open-tracked = !"f() { $(git tracked) | xargs "$SUBL_FUNC"; }; f"
+  # view the file changes in the given commit ID
+  cdiff = !"f() { git diff \"$@\"^ \"$@\"; }; f"
+  # view all files given author has touched
+  touched = !"f() { git log --no-merges --stat --author=\"$@\" --name-only --pretty=format:"" | sort -u; }; f"
+  # View all the commits I have merged
+  commits = !"f() { git log --author="\"$@\""; }; f"
+  # Perform a "git grep" including the history of the files
+  greph = !"f() { git rev-list --all | xargs git grep \"$@\"; }; f"
+  # Print the unstaged files
+  unstaged-files = !"f() { git diff --name-only; }; f"
+  # Print the staged files
+  staged-files = !"f() { git diff --staged --name-only --diff-filter=ACMRT; }; f"
+  # Untracks the given file
+  untrack = !"f() { git rm -r --cached \"$@\"; }; f"
+  # Adds the worktree with the given directory name off master. Run this in the main repo
+  add-wt = !"f() { git worktree prune && git worktree add ../\"$@\" master; }; f"
+
+  #### Disabled ####
+
+  # Git log graph
+  # lg= log --graph --all --decorate
+  # Delete your local branches that have been merged into master
+  # clear_merged_br () { git branch --merged | egrep -v "(^\*|master|dev)" | xargs git branch -d; }
+  # Check if the given branch has not been altered in over 4 weeks
+  # br-la = log -1 --after='4 weeks ago' -s

@@ -1,0 +1,1 @@
+/home/anpea/.bashrc##

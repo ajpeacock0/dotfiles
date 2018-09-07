@@ -1,0 +1,7 @@
+[[ "$-" != *i* ]] && return
+
+if [ -f "main.bash" ]; then
+  source "main.bash"
+else
+	echo "Failed to find the main.bash file in [$SOURCES] :("
+fi

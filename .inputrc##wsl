@@ -1,0 +1,27 @@
+# the following line is actually
+# equivalent to "\C-?": delete-char
+# Disabled on WSL as this would disable the delete key
+set enable-keypad on
+#"\e[3~": delete-char
+# VT
+"\e[1~": beginning-of-line
+"\e[4~": end-of-line
+# kvt
+"\e[H": beginning-of-line
+"\e[F": end-of-line
+# rxvt and konsole (i.e. the KDE-app...)
+"\e[7~": beginning-of-line
+"\e[8~": end-of-line
+# VT220
+"\eOH": beginning-of-line
+"\eOF": end-of-line
+#### Custom inputrc commands ####
+# Press up-arrow for previous matching command
+"\e[A":history-search-backward # requires the enabled keypad
+# Press down-arrow for next matching command
+"\e[B":history-search-forward # requires the enabled keypad
+"\e[1;5C": forward-word   # ctrl + right 
+"\e[1;5D": backward-word  # ctrl + left  
+"\e[3;5~": kill-word # ctrl + del
+# Readline never rings the bell
+set bell-style none

@@ -1,0 +1,2 @@
+# Opens the directory. If no argument is given, open the current directory
+exp () { if [ $# -eq 1 ]; then open $1; else open .; fi; }
