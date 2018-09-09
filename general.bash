@@ -64,12 +64,6 @@ _execute_func()
 
 #### Utility ####
 
-# Improved ls
-alias ls="ls -FA --color=auto "
-
-# Different ls
-alias ll="ls -lhFA --color=auto "
-
 # Improved grep
 alias grep="grep --color=auto "
 
