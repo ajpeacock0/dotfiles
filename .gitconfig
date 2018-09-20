@@ -1,6 +1,7 @@
 [user]
-	email = ajpeacock0@gmail.com
-	name = Andrew Peacock
+  email = ajpeacock0@gmail.com
+  name = Andrew Peacock
+
 [alias]
   #### General ####
 
@@ -32,7 +33,7 @@
   sd = stash drop
   sl = stash list --date=local
   sp = stash pop
-  sw = stash show -p
+  ss = stash show -p
 
   #### Rebase Shortcuts ####
   rb = rebase
@@ -61,9 +62,9 @@
   # Adds all untracked files
   add-untracked = !"echo -e "a\n*\nq\n" | git add -i"
   # Undo the last commit, making them uncommited changes
-  rs = reset HEAD~
+  reset-h = reset HEAD~
   # Discard all non-commited changes
-  discard = checkout -- .
+  discard = checkout --
   # Reset back to the state before the last executed git command
   undo = reset HEAD@{1}
   # Ignore local content changes to tracked file
@@ -79,7 +80,7 @@
   # View what commits have not been checked into master
   cl-br = !"f() { git log master..\"$@\"; }; f"
   # Note: Reset, rebase and merge all save your original HEAD pointer to ORIG_HEAD. Thus these commands have been run since the rebase you're trying to undo then you'll have to use the reflog.
-  rs-undo = reset --hard ORIG_HEAD
+  undo-re = reset --hard ORIG_HEAD
 
   #### Conflicts ####
 
@@ -98,8 +99,8 @@
   br = branch
   # View all remote and local branches
   br-remote = branch -a
-  # Checkout to another branch
-  switch = checkout 
+  # Checkout to another branch (SWitch)
+  sw = checkout
   # Rename a branch
   mvbr = branch -m 
   # Forces a deletion on the branch
@@ -146,6 +147,8 @@
   df = diff
   # View the changes made in the last commit - df = diff last
   dl = diff HEAD^ HEAD
+  # View the changes made in the commit N from the current - Diff Last with Number
+  dln = !"f() { git diff HEAD~\"$1\" HEAD \"${@:2}\"; }; f"
   # view the file changed list in the last commit - cl = see last
   cl = diff-tree --no-commit-id --name-status -r HEAD^ HEAD
   # view reflog with time info
