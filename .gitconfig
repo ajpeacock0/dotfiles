@@ -1,6 +1,13 @@
 [user]
-  email = ajpeacock0@gmail.com
-  name = Andrew Peacock
+    email = ajpeacock0@gmail.com
+    name = Andrew Peacock
+
+[core]
+    editor = vim 
+    whitespace = trailing-space,space-before-tab
+
+[credential]
+    helper = store
 
 [alias]
   #### General ####
@@ -112,9 +119,9 @@
   # Print the name of the current branch
   currbr = rev-parse --abbrev-ref HEAD
   # Fetches origin and rebases for this branch
-  rebbr = !"git fetch origin && git rebase origin/$(git currbr) --stat"
+  rbbr = !"git fetch origin && git rebase origin/$(git currbr) --stat"
   # Fetches origin and rebases ontop on master
-  rebor = !"git fetch origin && git rebase origin/master --stat"
+  rbor = !"git fetch origin && git rebase origin/master --stat"
   # This will now checkout to the middle commit between now and the last known good commit. If the build succeeds, use `git bisect good`. If it fails, use ``git bisect bad`
   bi = !"f() { git bisect start && git bisect bad && git bisect good \"$@\"; }; f"
   # Resets the current branch to the latest branch while ignoring local changes
@@ -135,7 +142,7 @@
   # Shortcut and improvement for log on a file (beyond file renames)
   lgf = !"f() { git log --follow \"$@\"; }; f"
   # view commit log with changes of given file 
-  logf = !"f() { git log --follow -p \"$@\"; }; f"
+  logf = !"f() { git log --follow -p --full-history -- \"$@\"; }; f"
   # view commit log with changes of given file in sublime
   logfsubl = !"f() { git log --follow -p \"$@\" > \"$@\".log && "$SUBL_FUNC" \"$@\".log && rm \"$@\".log; }; f"
   # view reflog log of given file
@@ -166,7 +173,7 @@
   # view all files given author has touched
   touched = !"f() { git log --no-merges --stat --author=\"$@\" --name-only --pretty=format:"" | sort -u; }; f"
   # View all the commits I have merged
-  commits = !"f() { git log --author="\"$@\""; }; f"
+  commits = !"f() { git log --name-status --author="\"$@\""; }; f"
   # Perform a "git grep" including the history of the files
   greph = !"f() { git rev-list --all | xargs git grep \"$@\"; }; f"
   # Print the unstaged files

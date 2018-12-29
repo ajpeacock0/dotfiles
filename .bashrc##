@@ -1,7 +1,0 @@
-[[ "$-" != *i* ]] && return
-
-if [ -f "$HOME/main.bash" ]; then
-  source "$HOME/main.bash"
-else
-  echo "Failed to find the main.bash file in [$HOME] :("
-fi
