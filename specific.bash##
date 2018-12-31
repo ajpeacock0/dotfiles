@@ -1,5 +1,0 @@
-# Improved ls
-alias ls="ls -FA --color=auto "
-
-# Different ls
-alias ll="ls -lhFA --color=auto "

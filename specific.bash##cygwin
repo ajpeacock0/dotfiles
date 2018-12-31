@@ -1,2 +1,0 @@
-# Opens the directory in Windows or Unix format. If no argument is given, open the current directory
-exp () { if [ $# -eq 1 ]; then cygstart $1; else cygstart .; fi; }
