@@ -210,3 +210,14 @@ PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND$'\n'}history -a; history -c; h
 
 # X-Server config
 export DISPLAY=:0
+
+#### Tools ####
+
+# The default data file location is `~/.z` but since we have 
+# that as our repo location, change the directory name to ".z_data"
+export _Z_DATA="/home/`whoami`/.z_data"
+# We then ensure the file exists, otherwise `z` will complain on first launch
+touch _Z_DATA
+
+# Start the `z` (jump around) tool
+. ~/.z/z.sh
