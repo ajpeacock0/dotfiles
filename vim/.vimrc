@@ -2,9 +2,9 @@ set nocompatible
 
 call plug#begin('~/.vim/plugged')
 
-" ControlP
-"Plug 'ctrlpvim/ctrlp.vim'
-"Plug 'tacahiroy/ctrlp-funky'
+" ControlP (requires fzf installed)
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'tacahiroy/ctrlp-funky'
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 
@@ -35,7 +35,7 @@ call plug#end()
 Plug 'itchyny/lightline.vim'
 
 " Remap leader from '\' to ','
-let mapleader = " "
+let mapleader = ","
 
 " If there is no fzf on this machine, use CtrlP
 if (!executable('fzf'))
