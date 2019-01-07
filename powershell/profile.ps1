@@ -1,20 +1,77 @@
-# Ensure that Get-ChildItemColor is loaded
+#### Version Statement ####
+
+echo "Powershell-Core profile (Updated 01.06.18)"
+
+#### Module Imports ####
+
+# Used to create `ls` alias
 Import-Module Get-ChildItemColor
 
-# Set l and ls alias to use the new Get-ChildItemColor cmdlets
-Set-Alias l Get-ChildItemColor -Option AllScope
+# Syntax coloring, key bindings
+Import-Module PSReadLine
+
+# Ensure posh-git is loaded
+Import-Module posh-git
+
+# A theme engine for Powershell
+Import-Module oh-my-posh
+
+#### Aliases ####
+
+# ll and ls aliases to use the new Get-ChildItemColor cmdlets
+Set-Alias ll Get-ChildItemColor -Option AllScope
 Set-Alias ls Get-ChildItemColorFormatWide -Option AllScope
 
-# Helper function to change directory to my development workspace
-# Change c:\ws to your usual workspace and everytime you type
-# in cws from PowerShell it will take you directly there.
-# function cws { Set-Location c:\ws }
-
-# Helper function to set location to the User Profile directory
+# Set '~' location to the User Profile directory
 function cuserprofile { Set-Location ~ }
 Set-Alias ~ cuserprofile -Option AllScope
 
-# Helper function to show Unicode character
+#### Encoding ####
+
+$OutputEncoding = [Text.Encoding]::UTF8
+[Console]::OutputEncoding = $OutputEncoding
+CHCP 65001 | Out-Null
+
+#### Key Bindings ####
+
+# Emac Style kill
+Set-PSReadLineKeyHandler -Key Ctrl+k -Function KillLine
+Set-PSReadLineKeyHandler -Key Ctrl+u -Function BackwardKillLine
+Set-PSReadLineKeyHandler -Key Alt+d -Function KillWord
+Set-PSReadLineKeyHandler -Key Ctrl+w -Function BackwardKillWord
+Set-PSReadLineKeyHandler -Key Ctrl+l -Function ClearScreen
+
+# Display scroll
+Set-PSReadLineKeyHandler -Key Ctrl+UpArrow -Function ScrollDisplayUpLine
+Set-PSReadLineKeyHandler -Key Ctrl+DownArrow -Function ScrollDisplayDownLine
+
+# Unix style clipboard bindings
+Set-PSReadLineKeyHandler -Key Ctrl+C -Function Copy
+Set-PSReadLineKeyHandler -Key Ctrl+Shift+V -Function Paste
+
+# Emacs style complete (overrides Windows `TabCompleteNext`)
+Set-PSReadlineKeyHandler -Key Tab -Function Complete
+
+#### History ####
+
+# Searches the history with the current command
+Set-PSReadlineKeyHandler -Key UpArrow -Function HistorySearchBackward
+Set-PSReadlineKeyHandler -Key DownArrow -Function HistorySearchForward
+
+# Match unix behaviour of moving the cursor to the end of the line
+Set-PSReadLineOption -HistorySearchCursorMovesToEnd
+
+#### Script Imports ####
+
+# Set syntax colors
+. "${Env:UserProfile}\.powershell\syntax-colors.ps1"
+
+# Import custom functions
+. "${Env:UserProfile}\.powershell\functions.ps1"
+
+#### Functions ####
+
+## Display the given Unicode value as a character. Used to test font support.
 function U
 {
     param
@@ -35,35 +92,7 @@ function U
     throw "Invalid character code $Code"
 }
 
-# Ensure posh-git is loaded - DISABLED FOR NOW
-# Import-Module -Name posh-git
+#### Theme ####
 
-# Ensure oh-my-posh is loaded
-Import-Module -Name oh-my-posh
-
-# Default the prompt to Honukai oh-my-posh theme
+# Change the default the prompt to a oh-my-posh theme
 Set-Theme Honukai
-
-Import-Module PSReadLine
-
-Set-PSReadLineOption -EditMode Emacs
-
-# https://github.com/lzybkr/PSReadLine/blob/577d1444a073a5daa4666bc627af041aa631d093/PSReadLine/SamplePSReadlineProfile.ps1#L19
-# Searching for commands with up/down arrow is really handy.  The
-# option "moves to end" is useful if you want the cursor at the end
-# of the line while cycling through history like it does w/o searching,
-# without that option, the cursor will remain at the position it was
-# when you used up arrow, which can be useful if you forget the exact
-# string you started the search on.
-Set-PSReadLineOption -HistorySearchCursorMovesToEnd
-Set-PSReadlineKeyHandler -Key UpArrow -Function HistorySearchBackward
-Set-PSReadlineKeyHandler -Key DownArrow -Function HistorySearchForward
-
-# In Emacs mode - Tab acts like in bash, but the Windows style completion
-# is still useful sometimes, so bind some keys so we can do both
-Set-PSReadlineKeyHandler -Key Ctrl+Q -Function TabCompleteNext
-Set-PSReadlineKeyHandler -Key Ctrl+Shift+Q -Function TabCompletePrevious
-
-# Clipboard interaction is bound by default in Windows mode, but not Emacs mode.
-# Set-PSReadlineKeyHandler -Key Shift+Ctrl+C -Function Copy
-# Set-PSReadlineKeyHandler -Key Ctrl+V -Function Paste

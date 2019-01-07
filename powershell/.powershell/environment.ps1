@@ -1,0 +1,1 @@
+Export-Variable 'PYTHONIOENCODING' 'utf-8'
