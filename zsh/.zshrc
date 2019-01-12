@@ -74,7 +74,7 @@ source $ZSH/oh-my-zsh.sh
 
 # Include the fzf shortcuts for CTRL-[R/T/C]
 # This needs to be at the end of the file for some reason
-[ -f ~/.fzf/.fzf.zsh ] && source ~/.fzf/.fzf.zsh
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 #### Private functions ####
 
@@ -216,8 +216,8 @@ export DISPLAY=:0
 # The default data file location is `~/.z` but since we have 
 # that as our repo location, change the directory name to ".z_data"
 export _Z_DATA="/home/`whoami`/.z_data"
-# We then ensure the file exists, otherwise `z` will complain on first launch
-touch _Z_DATA
 
 # Start the `z` (jump around) tool
 . ~/.z/z.sh
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
