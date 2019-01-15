@@ -10,3 +10,7 @@ git clone https://github.com/rupa/z.git ~/.z
 # Install the RipGrep tool
 curl -LO https://github.com/BurntSushi/ripgrep/releases/download/0.10.0/ripgrep_0.10.0_amd64.deb
 sudo dpkg -i ripgrep_0.10.0_amd64.deb
+
+# Install `thefuck` tool
+sudo apt install python3-dev python3-pip python3-setuptools
+sudo pip3 install thefuck
