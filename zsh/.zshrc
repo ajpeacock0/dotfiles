@@ -205,7 +205,9 @@ HISTCONTROL=ignoreboth
 PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND$'\n'}history -a; history -c; history -r"
 
 # X-Server config
-export DISPLAY=:0
+# In Ubuntu zsh having DISPLAY set to ":0" disables the clipboard from being accessed.
+# Programs like `vim` and `xclip` cannot access the clipboard.
+# export DISPLAY=:0
 
 #### Tools ####
 
