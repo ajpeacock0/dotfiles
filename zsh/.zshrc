@@ -72,10 +72,6 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-# Include the fzf shortcuts for CTRL-[R/T/C]
-# This needs to be at the end of the file for some reason
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
 #### Private functions ####
 
 _print_array()
@@ -220,4 +216,9 @@ export _Z_DATA="/home/`whoami`/.z_data"
 # Start the `z` (jump around) tool
 . ~/.z/z.sh
 
+# Alias for thefuck
+eval $(thefuck --alias)
+
+# Include the fzf shortcuts for CTRL-[R/T/C]
+# This needs to be at the end of the file for some reason
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
