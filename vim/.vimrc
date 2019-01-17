@@ -3,10 +3,10 @@ set nocompatible
 call plug#begin('~/.vim/plugged')
 
 " ControlP
-"Plug 'ctrlpvim/ctrlp.vim', ntpeters#util#plugEnableIf(!executable('fzf'))
-"Plug 'tacahiroy/ctrlp-funky', ntpeters#util#plugEnableIf(!executable('fzf'))
-"Plug 'junegunn/fzf', ntpeters#util#plugEnableIf(executable('fzf'))
-"Plug 'junegunn/fzf.vim', ntpeters#util#plugEnableIf(executable('fzf'))
+"Plug 'ctrlpvim/ctrlp.vim'
+"Plug 'tacahiroy/ctrlp-funky'
+Plug 'junegunn/fzf'
+Plug 'junegunn/fzf.vim'
 
 " Commenting
 Plug 'scrooloose/nerdcommenter'
@@ -62,7 +62,7 @@ else
 endif
 
 " Visual
-"call ntpeters#util#tryColorscheme('jellybeans')
+colorscheme jellybeans
 
 " Relative line number
 set number                     " Show current line number
@@ -130,3 +130,14 @@ set hlsearch
 set incsearch
 " Unhighlight search terms with leader+space
 nnoremap <leader><space> :noh<cr>
+
+" Set colorscheme options based on detected 256 color support
+if &t_Co == 256
+    " Use 24-bit color if available
+    if has('termguicolors')
+        " Required to set Vim-specific sequences for RGB colors
+        let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+        let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+        set termguicolors
+    endif
+endif
