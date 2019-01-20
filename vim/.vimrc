@@ -29,10 +29,11 @@ Plug 'matze/vim-move'
 " Improved status line (e.g. file named)
 Plug 'itchyny/lightline.vim'
 
+" Toggle surroundings around text
+Plug 'tpope/vim-surround'
+
 " Initialize plugin system
 call plug#end()
-
-Plug 'itchyny/lightline.vim'
 
 " Remap leader from '\' to ','
 let mapleader = ","
