@@ -97,8 +97,12 @@ nnoremap <c-k> :tabc!<cr>
 " Yank from the cursor to the end of the line, to be consistent with C and D.
 nnoremap Y y$
 
-" Sets the default register to use the "* reg.
-set clipboard=unnamed
+" Sets the default register to use the "* reg on Windows.
+if has('win32')
+    set clipboard=unnamed
+else
+    set clipboard=unnamedplus
+endif
 
 set autoindent
 set smartindent
