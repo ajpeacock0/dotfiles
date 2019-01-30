@@ -32,6 +32,9 @@ Plug 'itchyny/lightline.vim'
 " Toggle surroundings around text
 Plug 'tpope/vim-surround'
 
+" Highlight the first char to a word
+Plug 'unblevable/quick-scope'
+
 " Initialize plugin system
 call plug#end()
 
@@ -103,6 +106,9 @@ nnoremap <c-k> :tabc!<cr>
 " Yank from the cursor to the end of the line, to be consistent with C and D.
 nnoremap Y y$
 
+" Unhighlight search terms with leader+space
+nnoremap <leader><space> :noh<cr>
+
 " Sets the default register to use the "* reg on Windows.
 if has('win32')
     set clipboard=unnamed
@@ -152,3 +158,19 @@ if &t_Co == 256
         set termguicolors
     endif
 endif
+
+" Change virtualedit mode
+nmap <leader>vd :set virtualedit=""<cr>
+nmap <leader>va :set virtualedit=all<cr>
+
+" Spell Checker
+nmap <leader>sp :setlocal spell spelllang=en_us<cr>
+nmap <leader>sp :setlocal spell!<cr>
+
+" Set spell checking for certain file extensions.
+autocmd BufRead,BufNewFile *.md set spell spelllang=en_us
+autocmd BufRead,BufNewFile *.txt set spell spelllang=en_us
+
+" Trigger a highlight in the appropriate direction for quick-scope
+"let g:qs_enable=0
+let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
