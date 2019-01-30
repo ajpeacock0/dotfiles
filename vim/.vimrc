@@ -77,6 +77,12 @@ nnoremap <S-j> <S-}>
 nnoremap <S-h> ^
 nnoremap <S-l> $
 
+" Use Ctrl-c as the escape
+nmap <c-c> <esc>
+imap <c-c> <esc>
+vmap <c-c> <esc>
+omap <c-c> <esc>
+
 " Map Ctrl-j to Shift-j; aka line join
 nnoremap <c-j> <S-j>
 
