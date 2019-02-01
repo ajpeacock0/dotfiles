@@ -159,6 +159,19 @@ if &t_Co == 256
     endif
 endif
 
+" Gheto custom autoclose mappings
+inoremap ( ()<left>
+inoremap [ []<left>
+inoremap { {}<left>
+inoremap < <><left>
+inoremap {<CR> {<CR>}<ESC>O
+inoremap {;<CR> {<CR>};<ESC>O
+
+" Keybinding for substitute word with yanked register
+nmap <leader>ss ve"0p
+" Keybinding for paste yanked register
+nmap <leader>p "0p
+
 " Change virtualedit mode
 nmap <leader>vd :set virtualedit=""<cr>
 nmap <leader>va :set virtualedit=all<cr>
