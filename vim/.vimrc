@@ -38,6 +38,12 @@ Plug 'unblevable/quick-scope'
 " Initialize plugin system
 call plug#end()
 
+" Needed in Ubuntu Terminal to send <Alt+j/k> for the `vim-move` plugin
+if !has('win32')
+    execute "set <M-j>=\ej"
+    execute "set <M-k>=\ek"
+endif
+
 " Remap leader from '\' to ','
 let mapleader = ","
 
