@@ -30,8 +30,10 @@
   mv = mv -f
   # Push to origin HEAD with force. TODO: Make this rebor, check to see if you still want to push afterwards to avoid conflicts since last rebase
   submit = push origin +HEAD
-  # Shortcut
+  # Shortcut for ls-files
   ls = ls-files -v
+  # List ignored files
+  ls-ignored = ls-files . --ignored --exclude-standard --others
 
   #### Stash Shortcuts ####
   s = stash
