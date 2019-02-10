@@ -3,7 +3,6 @@ set nocompatible
 call plug#begin('~/.vim/plugged')
 
 " ControlP (requires fzf installed)
-Plug 'ctrlpvim/ctrlp.vim'
 Plug 'tacahiroy/ctrlp-funky'
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
@@ -47,17 +46,6 @@ endif
 " Remap leader from '\' to ','
 let mapleader = ","
 
-" If there is no fzf on this machine, use CtrlP
-if (!executable('fzf'))
-    " Enable CtrlP extensions
-    let g:ctrlp_extensions = ['funky']
-
-    " Fix CommandP by switching the searching tool to something that works and is faster
-    if (executable('fd'))
-        let g:ctrlp_user_command = 'fd --type file'
-    endif
-endif
-
 if (executable('fzf'))
     " Remap CtrlP mappings to FZF
     nnoremap <c-p> :Files<Cr>
@@ -65,6 +53,15 @@ if (executable('fzf'))
     " Search tags with the word under the cursor
     nnoremap <Leader>fU :execute 'Tags ' . expand('<cword>')<Cr>
 else
+    " If there is no fzf on this machine, use CtrlP
+    " Enable CtrlP extensions
+    let g:ctrlp_extensions = ['funky']
+
+    " Fix CommandP by switching the searching tool to something that works and is faster
+    if (executable('fd'))
+        let g:ctrlp_user_command = 'fd --type file'
+    endif
+
     " Keys for CtrlP Funky
     nnoremap <Leader>fu :CtrlPFunky<Cr>
     " narrow the list down with a word under cursor
