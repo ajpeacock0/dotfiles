@@ -95,12 +95,12 @@ nnoremap <c-j> <S-j>
 " Map Ctrl+O to open the NERDTree sidebar
 nmap <silent> <c-o> :NERDTreeToggle<cr>
 
-" Map Ctrl-Tab to go to next tab
-noremap <C-Tab> :<C-U>tabnext<CR>
-inoremap <C-Tab> <C-\><C-N>:tabnext<CR>
-" Map Ctrl-Shift-Tab to go to previous tab
-noremap <C-S-Tab> :<C-U>tabprevious<CR>
-inoremap <C-S-Tab> <C-\><C-N>:tabprevious<CR>
+" Map Ctrl-l to go to next tab
+noremap <C-l> :<C-U>tabnext<CR>
+inoremap <C-l> <C-\><C-N>:tabnext<CR>
+" Map Ctrl-h to go to previous tab
+noremap <C-h> :<C-U>tabprevious<CR>
+inoremap <C-h> <C-\><C-N>:tabprevious<CR>
 " Map Ctrl-n to create a new blank tab
 nnoremap <c-n> :tabnew<cr>
 " Map Ctrl-k to kill/close the current tab
