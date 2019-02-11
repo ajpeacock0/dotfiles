@@ -37,10 +37,12 @@ Plug 'unblevable/quick-scope'
 " Initialize plugin system
 call plug#end()
 
-" Needed in Ubuntu Terminal to send <Alt+j/k> for the `vim-move` plugin
+" Needed in Linux Shell to send <Alt+j/k> for the `vim-move` plugin
 if !has('win32')
     execute "set <M-j>=\ej"
     execute "set <M-k>=\ek"
+    execute "set <M-h>=\eh"
+    execute "set <M-l>=\el"
 endif
 
 " Remap leader from '\' to ','
@@ -101,6 +103,12 @@ inoremap <C-l> <C-\><C-N>:tabnext<CR>
 " Map Ctrl-h to go to previous tab
 noremap <C-h> :<C-U>tabprevious<CR>
 inoremap <C-h> <C-\><C-N>:tabprevious<CR>
+" Map Alt-h to go to move this tab to the left
+noremap <M-h> :<C-U>-tabmove<CR>
+inoremap <M-h> <C-\><C-N>:-tabmove<CR>
+" Map Alt-l to go to move this tab to the right
+noremap <M-l> :<C-U>+tabmove<CR>
+inoremap <M-l> <C-\><C-N>:+tabmove<CR>
 " Map Ctrl-n to create a new blank tab
 nnoremap <c-n> :tabnew<cr>
 " Map Ctrl-k to kill/close the current tab
