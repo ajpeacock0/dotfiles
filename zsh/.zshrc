@@ -204,10 +204,10 @@ HISTCONTROL=ignoreboth
 # Allow "sharing" of history between instances
 PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND$'\n'}history -a; history -c; history -r"
 
-# X-Server config
-# In Ubuntu zsh having DISPLAY set to ":0" disables the clipboard from being accessed.
-# Programs like `vim` and `xclip` cannot access the clipboard.
-# export DISPLAY=:0
+# If this is running inside WSL, config for X-Server.
+if [[ $(uname -r) = *"Microsoft"* ]]; then
+    export DISPLAY=localhost:0.0
+fi
 
 #### Tools ####
 
