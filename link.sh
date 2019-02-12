@@ -15,7 +15,7 @@ ln -f -s $SCRIPTPATH/.inputrc ~/.inputrc
 # Download a shared tmux config
 git clone https://github.com/gpakosz/.tmux.git ~/.tmux
 # Link the included .tmux.conf
-ln -f -s ~/.tmux.conf ~/.tmux.conf
+ln -f -s ~/.tmux/.tmux.conf ~/.tmux.conf
 # Link my local tmux.conf overrides and additions
 ln -f -s $SCRIPTPATH/.tmux.conf.local ~/.tmux.conf.local
 
