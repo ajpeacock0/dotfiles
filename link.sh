@@ -11,3 +11,4 @@ ln -f -s $SCRIPTPATH/vim/.vimrc ~/.vimrc
 ln -f -s $SCRIPTPATH/zsh/.zshrc ~/.zshrc
 ln -f -s $SCRIPTPATH/.gitconfig ~/.gitconfig
 ln -f -s $SCRIPTPATH/.inputrc ~/.inputrc
+ln -f -s $SCRIPTPATH/.tmux.conf.local ~/.tmux.conf.local
