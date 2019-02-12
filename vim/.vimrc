@@ -191,10 +191,6 @@ nmap <leader>va :set virtualedit=all<cr>
 nmap <leader>sp :setlocal spell spelllang=en_us<cr>
 nmap <leader>sp :setlocal spell!<cr>
 
-" Set spell checking for certain file extensions.
-autocmd BufRead,BufNewFile *.md set spell spelllang=en_us
-autocmd BufRead,BufNewFile *.txt set spell spelllang=en_us
-
 " Trigger a highlight in the appropriate direction for quick-scope
 "let g:qs_enable=0
 let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
