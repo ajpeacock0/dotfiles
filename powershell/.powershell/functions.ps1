@@ -4,3 +4,4 @@ $scriptDirectory = (Split-Path -parent $MyInvocation.MyCommand.Definition)
 . $scriptDirectory\functions\Show-Colors.ps1
 . $scriptDirectory\functions\Export-Variable.ps1
 . $scriptDirectory\functions\Make-Link.ps1
+. $scriptDirectory\functions\Invoke-XLaunch.ps1
