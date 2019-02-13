@@ -16,5 +16,6 @@ curl -LO https://github.com/sharkdp/fd/releases/download/v7.2.0/fd_7.2.0_amd64.d
 sudo dpkg -i fd_7.2.0_amd64.deb
 
 # Install `thefuck` tool
+sudo apt-get update
 sudo apt install python3-dev python3-pip python3-setuptools
 sudo pip3 install thefuck
