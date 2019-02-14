@@ -223,4 +223,9 @@ eval $(thefuck --alias)
 
 # Include the fzf shortcuts for CTRL-[R/T/C]
 # This needs to be at the end of the file for some reason
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+test -e "${HOME}/.fzf.zsh" && source ~/.fzf.zsh
+
+# Use fd for fzf, if available
+if fd_loc="$(type -p fd)" && [[ -n $fd_loc ]]; then
+    export FZF_DEFAULT_COMMAND='fd --type file'
+fi
