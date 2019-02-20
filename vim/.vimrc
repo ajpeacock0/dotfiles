@@ -194,3 +194,19 @@ nmap <leader>sp :setlocal spell!<cr>
 " Trigger a highlight in the appropriate direction for quick-scope
 "let g:qs_enable=0
 let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
+
+" Convert camal case to Java constant style
+function! JavaUpperCase()
+    :s/\(\u\)/_\1/g
+    :s/.*/\U&/g
+endfunction
+
+" Convert Java constant style to camal case
+function! JavaLowerCase()
+    :s/.*/\L&/g
+    :s/_\(\l\)/\U\1/g
+endfunction
+
+" Map java constant case functions to keys
+nmap <leader>ju :call JavaUpperCase()<Cr>
+nmap <leader>jl :call JavaLowerCase()<Cr>
