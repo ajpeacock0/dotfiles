@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Install curl
+sudo apt-get install curl
+
 # Download and install the fzf tool
 git clone --depth 1 http://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install
