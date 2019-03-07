@@ -152,6 +152,12 @@ set guioptions=Mk
 " Make the backspace + delete work like in most other programs
 set backspace=indent,eol,start
 
+" Show a real status line
+set laststatus=2
+
+" Hide the default mode indicator (using lightline instead)
+set noshowmode
+
 " Highlight all search matches
 set hlsearch
 " Highlight all search matches while searching
