@@ -96,3 +96,12 @@ function U
 
 # Change the default the prompt to a oh-my-posh theme
 Set-Theme Honukai
+
+#### Include local variables ####
+
+# Include a `vars.ps1` file if it exists
+$varsPath="${Env:UserProfile}\vars.ps1"
+if (Test-Path $varsPath)
+{
+    . $varsPath
+}
