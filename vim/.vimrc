@@ -158,6 +158,10 @@ set guifont+=Consolas:h11
 " Disable menus and preserve window sizing
 set guioptions=Mk
 
+" Set the default search to use smartcase
+set ignorecase
+set smartcase
+
 " Make the backspace + delete work like in most other programs
 set backspace=indent,eol,start
 
