@@ -34,6 +34,9 @@ Plug 'tpope/vim-surround'
 " Highlight the first char to a word
 Plug 'unblevable/quick-scope'
 
+" Improved Rainbow Parenthesis
+Plug 'luochen1990/rainbow'
+
 " Initialize plugin system
 call plug#end()
 
@@ -72,6 +75,12 @@ endif
 
 " Visual
 colorscheme jellybeans
+
+" Tell vim-whitespace to strip whitespace on save
+let g:strip_whitespace_on_save = 1
+
+" Enable Rainbow Parenthesis
+let g:rainbow_active = 1
 
 " Relative line number
 set number                     " Show current line number
