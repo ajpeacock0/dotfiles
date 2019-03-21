@@ -201,6 +201,10 @@ inoremap {;<CR> {<CR>};<ESC>O
 nmap <leader>ss ve"0p
 " Keybinding for paste yanked register
 nmap <leader>p "0p
+" Keybinding for paste yanked register behind
+nmap <leader>P "0P
+" Keybinding for paste yanked register when in visual mode
+vmap <leader>p "0p
 
 " Change virtualedit mode
 nmap <leader>vd :set virtualedit=""<cr>
