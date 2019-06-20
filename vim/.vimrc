@@ -1,5 +1,7 @@
 set nocompatible
 
+let g:has_async = v:version >= 800 || has('nvim')
+
 call plug#begin('~/.vim/plugged')
 
 " ControlP (requires fzf installed)
@@ -36,6 +38,20 @@ Plug 'unblevable/quick-scope'
 
 " Improved Rainbow Parenthesis
 Plug 'luochen1990/rainbow'
+
+" Git features 
+Plug 'tpope/vim-fugitive'
+
+" CTags manager
+Plug 'ludovicchabant/vim-gutentags'
+
+" Show information about files in a git repo
+Plug 'airblade/vim-gitgutter'
+
+" Asynchronous Lint Engine
+if g:has_async
+    Plug 'w0rp/ale'
+endif
 
 " Initialize plugin system
 call plug#end()
@@ -81,6 +97,11 @@ let g:strip_whitespace_on_save = 1
 
 " Enable Rainbow Parenthesis
 let g:rainbow_active = 1
+
+" Run linter only after I save the file, not continuously
+"let g:ale_lint_on_enter = 0
+" Do not run the linters immediatley after file open
+"let g:ale_lint_on_text_changed = 'never'
 
 " Relative line number
 set number                     " Show current line number
@@ -214,6 +235,9 @@ nmap <leader>va :set virtualedit=all<cr>
 nmap <leader>sp :setlocal spell spelllang=en_us<cr>
 nmap <leader>sp :setlocal spell!<cr>
 
+" RipGrep with the word under the cursor
+nnoremap <leader>rg :execute 'Rg ' . expand('<cword>')<Cr>
+
 " Edit vimr configuration file
 nnoremap <leader>ve :e $MYVIMRC<CR>
 " Reload vimr configuration file
@@ -246,3 +270,56 @@ endfunction
 " Map java constant case functions to keys
 nmap <leader>ju :call JavaUpperCase()<Cr>
 nmap <leader>jl :call JavaLowerCase()<Cr>
+
+" Get null output stream path based on platform
+function! DevNullPath()
+    if has('win32')
+        return 'NUL'
+    else
+        return '/dev/null'
+    endif
+endfunction
+
+" Creates the given directory if it doesn't exist
+function! EnsureDirectory(path)
+    let a:expandedPath = expand(a:path)
+    let a:devNull = DevNullPath()
+    if empty(glob(a:expandedPath))
+        :silent execute '!mkdir -p ' . a:expandedPath . ' > ' . a:devNull . ' 2>&1'
+    endif
+endfunction
+
+" Enable persistent undo, and put undo files in their own directory to prevent
+" pollution of project directories
+if has('persistent_undo')
+    call EnsureDirectory('~/.vim/undo')
+    " Remove current directory and home directory, then add .vim/undo as main
+    " dir and current dir as backup dir
+    set undodir-=.
+    set undodir-=~/
+    set undodir+=.
+    set undodir^=~/.vim/undo//
+    set undofile
+endif
+
+" Move swap files and backup files to their own directory to prevent pollution
+call EnsureDirectory('~/.vim/backup')
+" Remove current directory and home directory, then add .vim/backup as main dir
+" and current dir as backup dir
+set backupdir-=.
+set backupdir-=~/
+set backupdir+=.
+set backupdir^=~/.vim/backup//
+" Enable standard backups if not built with 'writebackup'
+if !has('writebackup')
+    set backup
+endif
+
+call EnsureDirectory('~/.vim/swap')
+" Remove current directory and home directory, then add .vim/swap as main
+" dir and current dir as backup dir
+set directory-=.
+set directory-=~/
+set directory+=.
+set directory^=~/.vim/swap//
+set swapfile
