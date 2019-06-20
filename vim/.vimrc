@@ -224,6 +224,14 @@ function! JavaUpperCase()
     :s/.*/\U&/g
 endfunction
 
+" Add argument (can be negative, default 1) to global variable i.
+" Return value of i before the change.
+function Inc(...)
+  let result = g:i
+    let g:i += a:0 > 0 ? a:1 : 1
+      return result
+endfunction
+
 " Convert Java constant style to camal case
 function! JavaLowerCase()
     :s/.*/\L&/g
