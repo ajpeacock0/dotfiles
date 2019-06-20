@@ -214,6 +214,11 @@ nmap <leader>va :set virtualedit=all<cr>
 nmap <leader>sp :setlocal spell spelllang=en_us<cr>
 nmap <leader>sp :setlocal spell!<cr>
 
+" Edit vimr configuration file
+nnoremap <leader>ve :e $MYVIMRC<CR>
+" Reload vimr configuration file
+nnoremap <leader>vr :source $MYVIMRC<CR>
+
 " Trigger a highlight in the appropriate direction for quick-scope
 "let g:qs_enable=0
 let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
