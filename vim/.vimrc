@@ -70,9 +70,9 @@ let mapleader = ","
 if (executable('fzf'))
     " Remap CtrlP mappings to FZF
     nnoremap <c-p> :Files<Cr>
-    nnoremap <Leader>fu :Tags<Cr>
+    nnoremap <Leader>ct :Tags<Cr>
     " Search tags with the word under the cursor
-    nnoremap <Leader>fU :execute 'Tags ' . expand('<cword>')<Cr>
+    nnoremap <Leader>cc :execute 'Tags ' . expand('<cword>')<Cr>
 else
     " If there is no fzf on this machine, use CtrlP
     " Enable CtrlP extensions
@@ -238,10 +238,22 @@ nmap <leader>sp :setlocal spell!<cr>
 " RipGrep with the word under the cursor
 nnoremap <leader>rg :execute 'Rg ' . expand('<cword>')<Cr>
 
+" Pull word under cursor into LHS of a substitute (find and replace)
+nnoremap <leader>rr :%s#\<<C-r>=expand("<cword>")<CR>\>#
+" Same thing, but global within the line and don't match whole word
+nnoremap <leader>rw :%s/<C-r>=expand("<cword>")<CR>//g
+
+" Alias for Buffers
+nnoremap <leader>b :Buffers<Cr>
+
 " Edit vimr configuration file
 nnoremap <leader>ve :e $MYVIMRC<CR>
 " Reload vimr configuration file
 nnoremap <leader>vr :source $MYVIMRC<CR>
+
+" Faster scrolling
+nnoremap <C-e> 5<C-e>
+nnoremap <C-y> 5<C-y>
 
 " Trigger a highlight in the appropriate direction for quick-scope
 "let g:qs_enable=0
@@ -260,6 +272,9 @@ function! Inc(...)
     let g:i += a:0 > 0 ? a:1 : 1
       return result
 endfunction
+
+" Pull word under cursor into LHS of a increasing number addition
+nnoremap <leader>inc :let i = 1<Cr> :%s/\(<C-r>=expand("<cword>")<CR>\)/\=submatch(1) . Inc()/g
 
 " Convert Java constant style to camal case
 function! JavaLowerCase()
