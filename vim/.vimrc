@@ -255,6 +255,10 @@ nnoremap <leader>vr :source $MYVIMRC<CR>
 nnoremap <C-e> 5<C-e>
 nnoremap <C-y> 5<C-y>
 
+" Clean up pasted in text, replacing large whitespace with newlines and
+" removing line numbers
+nnoremap <leader><C-v> :%s/ \{5,\}/\r/g<CR> :%s/^[0-9]\+ *//g<CR>
+
 " Trigger a highlight in the appropriate direction for quick-scope
 "let g:qs_enable=0
 let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
