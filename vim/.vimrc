@@ -50,7 +50,8 @@ Plug 'airblade/vim-gitgutter'
 
 " Asynchronous Lint Engine
 if g:has_async
-    Plug 'w0rp/ale'
+    " Disabled due to speed issues. TODO: Investigate and resolve
+    "Plug 'w0rp/ale'
 endif
 
 " Initialize plugin system
@@ -99,9 +100,9 @@ let g:strip_whitespace_on_save = 1
 let g:rainbow_active = 1
 
 " Run linter only after I save the file, not continuously
-let g:ale_lint_on_enter = 0
+"let g:ale_lint_on_enter = 0
 " Do not run the linters immediatley after file open
-let g:ale_lint_on_text_changed = 'never'
+"let g:ale_lint_on_text_changed = 'never'
 
 " Relative line number
 set number                     " Show current line number
@@ -243,7 +244,10 @@ nnoremap <leader>rr :%s#\<<C-r>=expand("<cword>")<CR>\>#
 " Same thing, but global within the line and don't match whole word
 nnoremap <leader>rw :%s/<C-r>=expand("<cword>")<CR>//g
 
-" Alias for Buffers
+" Alias for :w
+nnoremap <leader>w :w<Cr>
+
+" Alias for :Buffers
 nnoremap <leader>b :Buffers<Cr>
 
 " Edit vimr configuration file
@@ -289,6 +293,9 @@ endfunction
 " Map java constant case functions to keys
 nmap <leader>ju :call JavaUpperCase()<Cr>
 nmap <leader>jl :call JavaLowerCase()<Cr>
+
+" generate datebases in my cache directory, prevent gtags files polluting my project
+let g:gutentags_cache_dir = expand('~/.cache/tags')
 
 " Get null output stream path based on platform
 function! DevNullPath()
