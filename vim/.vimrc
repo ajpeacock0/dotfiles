@@ -211,6 +211,10 @@ if &t_Co == 256
     endif
 endif
 
+" Set search to very-magic
+nnoremap / /\v
+cnoremap %s/ %s/\v
+
 " Gheto custom autoclose mappings
 inoremap ( ()<left>
 inoremap [ []<left>
