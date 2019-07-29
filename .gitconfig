@@ -64,10 +64,10 @@
   co = !"git add -u && git commit"
   # Commit modified and deleted file changes with the given commit message
   co-m = !"f() { git add -u && git commit -m \"$@\"; }; f"
-  # Commit changes and ammend to last commit
-  co-am = !"git add -u && git commit --amend --no-edit"
+  # Commit changes and ammend to last commit, resetting the date of the commit
+  co-am = !"git add -u && git commit --amend --no-edit --date=now"
   # Commit changes and ammend to last commit + edit the commit message
-  co-am-ed = !"git add -u && git commit --amend"
+  co-am-ed = !"git add -u && git commit --amend --date=now"
   # Adds all untracked files
   add-untracked = !"echo -e "a\n*\nq\n" | git add -i"
   # Undo the last commit, making them uncommited changes
