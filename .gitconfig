@@ -86,6 +86,8 @@
   count-commits = shortlog -s -n
   # Open the last 10 commits to be ReOrdered, deleted, squashed, etc.
   ro = rebase -i HEAD~10
+  # Open the last N commits to be ReOrdered, deleted, squashed, etc.
+  ron = !"f() { git rebase -i HEAD~$1; }; f"
   # View what commits have not been checked into master
   cl-br = !"f() { git log master..\"$@\"; }; f"
   # Note: Reset, rebase and merge all save your original HEAD pointer to ORIG_HEAD. Thus these commands have been run since the rebase you're trying to undo then you'll have to use the reflog.

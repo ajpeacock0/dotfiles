@@ -254,6 +254,12 @@ nnoremap <leader>w :w<Cr>
 " Alias for :Buffers
 nnoremap <leader>b :Buffers<Cr>
 
+" Alias for :e! (force reload buffer)
+nnoremap <leader>e :e!<Cr>
+
+" Alias for :A (switching source/header with a.vim)
+nnoremap <leader>a :A<Cr>
+
 " Edit vimr configuration file
 nnoremap <leader>ve :e $MYVIMRC<CR>
 " Reload vimr configuration file
@@ -262,6 +268,10 @@ nnoremap <leader>vr :source $MYVIMRC<CR>
 " Faster scrolling
 nnoremap <C-e> 5<C-e>
 nnoremap <C-y> 5<C-y>
+
+" Map Ctrl+[/] to increment/decrement
+nnoremap <C-[> <C-x>
+nnoremap <C-]> <C-a>
 
 " Clean up pasted in text, replacing large whitespace with newlines and
 " removing line numbers
