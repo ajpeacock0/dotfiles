@@ -211,6 +211,9 @@ if &t_Co == 256
     endif
 endif
 
+" Ensure Powershell uses correct colors
+set termguicolors
+
 " Set search to very-magic
 nnoremap / /\v
 cnoremap %s/ %s/\v
