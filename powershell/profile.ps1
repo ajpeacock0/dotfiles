@@ -1,6 +1,6 @@
 #### Version Statement ####
 
-echo "Powershell-Core profile (Updated 01.06.18)"
+echo "Powershell-Core profile (Updated 09.19.18)"
 
 #### Module Imports ####
 
@@ -68,6 +68,9 @@ Set-PSReadLineOption -HistorySearchCursorMovesToEnd
 
 # Import custom functions
 . "${Env:UserProfile}\.powershell\functions.ps1"
+
+# Import Enviornment vars
+. "${Env:UserProfile}\.powershell\environment.ps1"
 
 #### Functions ####
 
