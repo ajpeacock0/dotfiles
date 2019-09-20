@@ -5,3 +5,5 @@ $scriptDirectory = (Split-Path -parent $MyInvocation.MyCommand.Definition)
 . $scriptDirectory\functions\Export-Variable.ps1
 . $scriptDirectory\functions\Make-Link.ps1
 . $scriptDirectory\functions\Invoke-XLaunch.ps1
+. $scriptDirectory\functions\Add-Path.ps1
+. $scriptDirectory\functions\Remove-Path.ps1
