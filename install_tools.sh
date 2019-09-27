@@ -22,3 +22,7 @@ sudo dpkg -i fd_7.2.0_amd64.deb
 sudo apt-get update
 sudo apt install python3-dev python3-pip python3-setuptools
 sudo pip3 install thefuck
+
+# Install GO and the path-extractor
+sudo apt-get install golang
+go get github.com/edi9999/path-extractor/path-extractor
