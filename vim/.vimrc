@@ -71,6 +71,7 @@ let mapleader = ","
 if (executable('fzf'))
     " Remap CtrlP mappings to FZF
     nnoremap <c-p> :Files<Cr>
+    nnoremap <c-o> :call fzf#run({'sink': 'tabedit', 'options': '--multi'})<Cr>
     nnoremap <Leader>ct :Tags<Cr>
     " Search tags with the word under the cursor
     nnoremap <Leader>cc :execute 'Tags ' . expand('<cword>')<Cr>
@@ -124,9 +125,6 @@ omap <c-c> <esc>
 
 " Map Ctrl-j to Shift-j; aka line join
 nnoremap <c-j> <S-j>
-
-" Map Ctrl+O to open the NERDTree sidebar
-nmap <silent> <c-o> :NERDTreeToggle<cr>
 
 " Map Ctrl-l to go to next tab
 noremap <C-l> :<C-U>tabnext<CR>
@@ -269,12 +267,12 @@ nnoremap <leader>ve :e $MYVIMRC<CR>
 nnoremap <leader>vr :source $MYVIMRC<CR>
 
 " Faster scrolling
-nnoremap <C-e> 5<C-e>
-nnoremap <C-y> 5<C-y>
+nnoremap <C-d> 5<C-e>
+nnoremap <C-u> 5<C-y>
 
-" Map Ctrl+[/] to increment/decrement
-nnoremap <C-[> <C-x>
-nnoremap <C-]> <C-a>
+" Map Ctrl+z/x to decrement/increment
+nnoremap <C-z> <C-x>
+nnoremap <C-x> <C-a>
 
 " Clean up pasted in text, replacing large whitespace with newlines and
 " removing line numbers

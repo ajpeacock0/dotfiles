@@ -8,6 +8,10 @@
 
 # Path to your oh-my-zsh installation.
 export ZSH="/home/`whoami`/.oh-my-zsh"
+# Go Path
+export GOPATH="/home/`whoami`/go"
+
+export PATH=$GOPATH/bin:$PATH
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -50,12 +54,7 @@ source $ZSH/oh-my-zsh.sh
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
+export EDITOR='vim'
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -220,6 +219,9 @@ export _Z_DATA="/home/`whoami`/.z_data"
 
 # Alias for thefuck
 eval $(thefuck --alias)
+
+alias pe="path-extractor"
+alias -g PE='| pe | fzf | read filename; [ ! -z $filename ] && $EDITOR $filename'
 
 # Include the fzf shortcuts for CTRL-[R/T/C]
 # This needs to be at the end of the file for some reason
