@@ -74,7 +74,7 @@ if (executable('fzf'))
     nnoremap <c-o> :call fzf#run({'sink': 'tabedit', 'options': '--multi'})<Cr>
     nnoremap <Leader>ct :Tags<Cr>
     " Search tags with the word under the cursor
-    nnoremap <Leader>cc :execute 'Tags ' . expand('<cword>')<Cr>
+    nnoremap <Leader>cw :execute 'Tags ' . expand('<cword>')<Cr>
 else
     " If there is no fzf on this machine, use CtrlP
     " Enable CtrlP extensions
