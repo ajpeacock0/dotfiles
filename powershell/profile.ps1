@@ -34,6 +34,18 @@ CHCP 65001 | Out-Null
 
 #### Key Bindings ####
 
+# Emac Style - TODO: Fix these not working
+# Set-PSReadLineKeyHandler -Key Ctrl+k -Function KillLine
+# Set-PSReadLineKeyHandler -Key Ctrl+u -Function BackwardKillLine
+# Set-PSReadLineKeyHandler -Key Alt+d -Function KillWord
+# Set-PSReadLineKeyHandler -Key Ctrl+w -Function BackwardKillWord
+# Set-PSReadLineKeyHandler -Key Ctrl+l -Function ClearScreen
+
+# Allow tab complete
+Set-PSReadlineKeyHandler "Tab" MenuComplete
+# Emacs style complete (overrides Windows `TabCompleteNext`)
+#Set-PSReadlineKeyHandler -Key Tab -Function Complete
+
 # Display scroll
 Set-PSReadLineKeyHandler -Key Ctrl+UpArrow -Function ScrollDisplayUpLine
 Set-PSReadLineKeyHandler -Key Ctrl+DownArrow -Function ScrollDisplayDownLine
@@ -41,9 +53,6 @@ Set-PSReadLineKeyHandler -Key Ctrl+DownArrow -Function ScrollDisplayDownLine
 # Unix style clipboard bindings
 Set-PSReadLineKeyHandler -Key Ctrl+C -Function Copy
 Set-PSReadLineKeyHandler -Key Ctrl+Shift+V -Function Paste
-
-# Emacs style complete (overrides Windows `TabCompleteNext`)
-Set-PSReadlineKeyHandler -Key Tab -Function Complete
 
 # Set Readline options
 $PSReadLineOptions = @{
