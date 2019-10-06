@@ -141,7 +141,9 @@ inoremap <M-l> <C-\><C-N>:+tabmove<CR>
 " Map Ctrl-n to create a new blank tab
 nnoremap <c-n> :tabnew<cr>
 " Map Ctrl-k to kill/close the current tab
-nnoremap <c-k> :tabc!<cr>
+nnoremap <c-k> :tabc<cr>
+" Map Ctrl-f Ctrl-k to force kill/close the current tab
+nnoremap <c-f><c-k> :tabc!<cr>
 
 " Yank from the cursor to the end of the line, to be consistent with C and D.
 nnoremap Y y$
