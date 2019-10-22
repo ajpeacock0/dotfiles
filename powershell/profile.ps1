@@ -34,13 +34,6 @@ CHCP 65001 | Out-Null
 
 #### Key Bindings ####
 
-# Emac Style kill
-Set-PSReadLineKeyHandler -Key Ctrl+k -Function KillLine
-Set-PSReadLineKeyHandler -Key Ctrl+u -Function BackwardKillLine
-Set-PSReadLineKeyHandler -Key Alt+d -Function KillWord
-Set-PSReadLineKeyHandler -Key Ctrl+w -Function BackwardKillWord
-Set-PSReadLineKeyHandler -Key Ctrl+l -Function ClearScreen
-
 # Display scroll
 Set-PSReadLineKeyHandler -Key Ctrl+UpArrow -Function ScrollDisplayUpLine
 Set-PSReadLineKeyHandler -Key Ctrl+DownArrow -Function ScrollDisplayDownLine
@@ -62,6 +55,12 @@ $PSReadLineOptions = @{
     ViModeIndicator = "Cursor"
 }
 Set-PSReadLineOption @PSReadLineOptions
+
+# Set `Ctrl+c` to toggle the Vi mode
+Set-PSReadlineKeyHandler -Chord Ctrl+c -Function ViCommandMode -ViMode Insert
+Set-PSReadlineKeyHandler -Chord Ctrl+c -Function ViInsertMode -ViMode Command
+
+Set-PSReadlineKeyHandler -Chord Ctrl+k -Function Abort -ViMode Insert
 
 #### History ####
 
