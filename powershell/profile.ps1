@@ -1,6 +1,6 @@
 #### Version Statement ####
 
-echo "Powershell-Core profile (Updated 09.19.18)"
+echo "Powershell-Core profile (Updated 10.22.18)"
 
 #### Module Imports ####
 
@@ -52,14 +52,22 @@ Set-PSReadLineKeyHandler -Key Ctrl+Shift+V -Function Paste
 # Emacs style complete (overrides Windows `TabCompleteNext`)
 Set-PSReadlineKeyHandler -Key Tab -Function Complete
 
+# Set Readline options
+$PSReadLineOptions = @{
+    # Enable Vi mode when escaped shell
+    EditMode = "Vi"
+    HistoryNoDuplicates = $true
+    # Match unix behaviour of moving the cursor to the end of the line
+    HistorySearchCursorMovesToEnd = $true
+    ViModeIndicator = "Cursor"
+}
+Set-PSReadLineOption @PSReadLineOptions
+
 #### History ####
 
 # Searches the history with the current command
 Set-PSReadlineKeyHandler -Key UpArrow -Function HistorySearchBackward
 Set-PSReadlineKeyHandler -Key DownArrow -Function HistorySearchForward
-
-# Match unix behaviour of moving the cursor to the end of the line
-Set-PSReadLineOption -HistorySearchCursorMovesToEnd
 
 #### Script Imports ####
 
