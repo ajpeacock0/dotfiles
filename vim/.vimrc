@@ -2,6 +2,14 @@ set nocompatible
 
 let g:has_async = v:version >= 800 || has('nvim')
 
+" Use with Plug to conditionally load plugins
+" This allows the plugin to be registered even if not used, to prevent
+" potential removal
+function! PlugEnableIf(condition, ...)
+    let opts = get(a:000, 0, {})
+    return a:condition ? opts : extend(opts, { 'on': [], 'for': [] })
+endfunction
+
 call plug#begin('~/.vim/plugged')
 
 " ControlP (requires fzf installed)
@@ -43,16 +51,13 @@ Plug 'luochen1990/rainbow'
 Plug 'tpope/vim-fugitive'
 
 " CTags manager
-Plug 'ludovicchabant/vim-gutentags'
+Plug 'ludovicchabant/vim-gutentags', PlugEnableIf(executable('ctags'))
 
 " Show information about files in a git repo
 Plug 'airblade/vim-gitgutter'
 
 " Asynchronous Lint Engine
-if g:has_async
-    " Disabled due to speed issues. TODO: Investigate and resolve
-    "Plug 'w0rp/ale'
-endif
+" Plug 'w0rp/ale', PlugEnableIf(g:has_async) (Disabled due to speed issues. TODO: Investigate and resolve)
 
 " Initialize plugin system
 call plug#end()
