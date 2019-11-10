@@ -1,6 +1,6 @@
 #### Version Statement ####
 
-echo "Powershell-Core profile (Updated 10.22.18)"
+echo "Powershell-Core profile (Updated 11.10.18)"
 
 #### Module Imports ####
 
@@ -32,27 +32,7 @@ $OutputEncoding = [Text.Encoding]::UTF8
 [Console]::OutputEncoding = $OutputEncoding
 CHCP 65001 | Out-Null
 
-#### Key Bindings ####
-
-# Emac Style - TODO: Fix these not working
-# Set-PSReadLineKeyHandler -Key Ctrl+k -Function KillLine
-# Set-PSReadLineKeyHandler -Key Ctrl+u -Function BackwardKillLine
-# Set-PSReadLineKeyHandler -Key Alt+d -Function KillWord
-# Set-PSReadLineKeyHandler -Key Ctrl+w -Function BackwardKillWord
-# Set-PSReadLineKeyHandler -Key Ctrl+l -Function ClearScreen
-
-# Allow tab complete
-Set-PSReadlineKeyHandler "Tab" MenuComplete
-# Emacs style complete (overrides Windows `TabCompleteNext`)
-#Set-PSReadlineKeyHandler -Key Tab -Function Complete
-
-# Display scroll
-Set-PSReadLineKeyHandler -Key Ctrl+UpArrow -Function ScrollDisplayUpLine
-Set-PSReadLineKeyHandler -Key Ctrl+DownArrow -Function ScrollDisplayDownLine
-
-# Unix style clipboard bindings
-Set-PSReadLineKeyHandler -Key Ctrl+C -Function Copy
-Set-PSReadLineKeyHandler -Key Ctrl+Shift+V -Function Paste
+##### Vi Mode Key Bindings ####
 
 # Set Readline options
 $PSReadLineOptions = @{
@@ -63,13 +43,42 @@ $PSReadLineOptions = @{
     HistorySearchCursorMovesToEnd = $true
     ViModeIndicator = "Cursor"
 }
+
+# Set and override all PS readline options
 Set-PSReadLineOption @PSReadLineOptions
 
 # Set `Ctrl+c` to toggle the Vi mode
 Set-PSReadlineKeyHandler -Chord Ctrl+c -Function ViCommandMode -ViMode Insert
 Set-PSReadlineKeyHandler -Chord Ctrl+c -Function ViInsertMode -ViMode Command
 
+# TODO: Explain this
 Set-PSReadlineKeyHandler -Chord Ctrl+k -Function Abort -ViMode Insert
+
+# Set history navigation to set with current command
+Set-PSReadLineKeyHandler -Key UpArrow -Function HistorySearchBackward -ViMode Command
+Set-PSReadLineKeyHandler -Key k -Function HistorySearchBackward -ViMode Command
+Set-PSReadLineKeyHandler -Key DownArrow -Function HistorySearchForward -ViMode Command
+Set-PSReadLineKeyHandler -Key j -Function HistorySearchForward -ViMode Command
+
+#### Key Bindings ####
+
+# Emac Style kill
+Set-PSReadLineKeyHandler -Key Ctrl+k -Function KillLine
+Set-PSReadLineKeyHandler -Key Ctrl+u -Function BackwardKillLine
+Set-PSReadLineKeyHandler -Key Alt+d -Function KillWord
+Set-PSReadLineKeyHandler -Key Ctrl+w -Function BackwardKillWord
+Set-PSReadLineKeyHandler -Key Ctrl+l -Function ClearScreen
+
+# Allow tab complete
+Set-PSReadlineKeyHandler "Tab" MenuComplete
+
+# Display scroll
+Set-PSReadLineKeyHandler -Key Ctrl+UpArrow -Function ScrollDisplayUpLine
+Set-PSReadLineKeyHandler -Key Ctrl+DownArrow -Function ScrollDisplayDownLine
+
+# Unix style clipboard bindings
+Set-PSReadLineKeyHandler -Key Ctrl+C -Function Copy
+Set-PSReadLineKeyHandler -Key Ctrl+Shift+V -Function Paste
 
 #### History ####
 
