@@ -255,6 +255,8 @@ nnoremap <leader>rg :execute 'Rg ' . expand('<cword>')<Cr>
 nnoremap <leader>rr :%s#\<<C-r>=expand("<cword>")<CR>\>#
 " Same thing, but global within the line and don't match whole word
 nnoremap <leader>rw :%s/<C-r>=expand("<cword>")<CR>//g
+" RePlace word
+nnoremap <leader>rp :%s/<C-r>=expand("<cword>")<CR>/<C-r>=expand("<cword>")<CR>/g
 
 " Alias for :w
 nnoremap <leader>w :w<Cr>
@@ -288,6 +290,13 @@ nnoremap <leader><C-v> :%s/ \{5,\}/\r/g<CR> :%s/^[0-9]\+ *//g<CR>
 " Trigger a highlight in the appropriate direction for quick-scope
 "let g:qs_enable=0
 let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
+
+function! MarkdownBookmark()
+    :s/.*/\L&/g
+    :s/\ /-/g
+endfunction
+
+nmap <leader>mb :call MarkdownBookmark()<Cr>
 
 " Convert camal case to Java constant style
 function! JavaUpperCase()
