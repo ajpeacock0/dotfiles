@@ -47,7 +47,7 @@ Plug 'unblevable/quick-scope'
 " Improved Rainbow Parenthesis
 Plug 'luochen1990/rainbow'
 
-" Git features 
+" Git features
 Plug 'tpope/vim-fugitive'
 
 " CTags manager
@@ -55,6 +55,13 @@ Plug 'ludovicchabant/vim-gutentags', PlugEnableIf(executable('ctags'))
 
 " Show information about files in a git repo
 Plug 'airblade/vim-gitgutter'
+
+" Markdown syntax highlighting
+Plug 'godlygeek/tabular'
+Plug 'plasticboy/vim-markdown'
+
+" EOL whitespace removal
+Plug 'ntpeters/vim-better-whitespace'
 
 " Asynchronous Lint Engine
 " Plug 'w0rp/ale', PlugEnableIf(g:has_async) (Disabled due to speed issues. TODO: Investigate and resolve)
@@ -117,10 +124,14 @@ set relativenumber             " Show relative line numbers
 " Shift+dir to jump paragraphs
 nnoremap <S-k> <S-{>
 nnoremap <S-j> <S-}>
+vnoremap <S-k> <S-{>
+vnoremap <S-j> <S-}>
 
 " Shift+dir to jump to begin/end of line
 nnoremap <S-h> ^
 nnoremap <S-l> $
+vnoremap <S-h> ^
+vnoremap <S-l> $
 
 " Use Ctrl-c as the escape
 nmap <c-c> <esc>
@@ -130,6 +141,7 @@ omap <c-c> <esc>
 
 " Map Ctrl-j to Shift-j; aka line join
 nnoremap <c-j> <S-j>
+vnoremap <c-j> <S-j>
 
 " Map Ctrl-l to go to next tab
 noremap <C-l> :<C-U>tabnext<CR>
@@ -205,6 +217,9 @@ set incsearch
 " Unhighlight search terms with leader+space
 nnoremap <leader><space> :noh<cr>
 
+" Strip Whitespace
+nmap <leader>sw :StripWhitespace<cr>
+
 " Set colorscheme options based on detected 256 color support
 if &t_Co == 256
     " Use 24-bit color if available
@@ -218,6 +233,11 @@ endif
 
 " Ensure Powershell uses correct colors
 set termguicolors
+
+" Vim Markdown settings
+let g:vim_markdown_folding_disabled = 0
+let g:vim_markdown_fenced_languages = ['csharp=cs']
+set conceallevel=0
 
 " Set search to very-magic
 nnoremap / /\v
@@ -247,6 +267,9 @@ nmap <leader>va :set virtualedit=all<cr>
 " Spell Checker
 nmap <leader>sp :setlocal spell spelllang=en_us<cr>
 nmap <leader>sp :setlocal spell!<cr>
+
+" Prepare RipGrep with an empty argument without execution
+nnoremap <leader>re :Rg
 
 " RipGrep with the word under the cursor
 nnoremap <leader>rg :execute 'Rg ' . expand('<cword>')<Cr>
