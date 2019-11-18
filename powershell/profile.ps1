@@ -123,7 +123,7 @@ function U
 #### Theme ####
 
 # Change the default the prompt to a oh-my-posh theme
-Set-Theme Honukai
+Set-Theme Paradox
 
 #### Include local variables ####
 
