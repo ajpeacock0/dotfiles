@@ -242,7 +242,8 @@ endif
 set termguicolors
 
 " Vim Markdown settings
-let g:vim_markdown_folding_disabled = 0
+let g:vim_markdown_folding_disabled = 1
+set nofoldenable
 let g:vim_markdown_fenced_languages = ['csharp=cs']
 set conceallevel=0
 
