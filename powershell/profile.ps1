@@ -1,6 +1,6 @@
 #### Version Statement ####
 
-echo "Powershell-Core profile (Updated 11.10.18)"
+echo "Powershell-Core profile (Updated 11.19.18)"
 
 #### Module Imports ####
 
@@ -47,9 +47,9 @@ $PSReadLineOptions = @{
 # Set and override all PS readline options
 Set-PSReadLineOption @PSReadLineOptions
 
-# Set `Ctrl+c` to toggle the Vi mode
-Set-PSReadlineKeyHandler -Chord Ctrl+c -Function ViCommandMode -ViMode Insert
-Set-PSReadlineKeyHandler -Chord Ctrl+c -Function ViInsertMode -ViMode Command
+# Set `Ctrl+x` to toggle the Vi mode
+Set-PSReadlineKeyHandler -Chord Ctrl+x -Function ViCommandMode -ViMode Insert
+Set-PSReadlineKeyHandler -Chord Ctrl+x -Function ViInsertMode -ViMode Command
 
 # TODO: Explain this
 Set-PSReadlineKeyHandler -Chord Ctrl+k -Function Abort -ViMode Insert

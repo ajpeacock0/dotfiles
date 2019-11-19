@@ -3,9 +3,6 @@
 
 #### ZSH Specific ####
 
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
-
 # Path to your oh-my-zsh installation.
 export ZSH="/home/`whoami`/.oh-my-zsh"
 # Go Path
@@ -43,33 +40,116 @@ HIST_STAMPS="mm/dd/yyyy"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
   git
+  history-substring-search
 )
 
 source $ZSH/oh-my-zsh.sh
 
-# User configuration
-
-# export MANPATH="/usr/local/man:$MANPATH"
-
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
+#### Config #####
 
 export EDITOR='vim'
 
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
+export HISTORY_SUBSTRING_SEARCH_ENSURE_UNIQUE=1
 
-# ssh
-# export SSH_KEY_PATH="~/.ssh/rsa_id"
+# Readline never rings the bell
+set bell-style none
 
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
+#### zsh-vimto ####
+
+# Vim mode
+bindkey -v
+
+# Don't take 0.4s to change modes
+export KEYTIMEOUT=1
+
+# Save previous RPROMPT to restore when vim status not displayed
+RPROMPT_PREVIOUS=$RPROMPT
+
+# Default color settings
+#if [ -z "$VIMTO_COLOR_NORMAL_TEXT" ]; then VIMTO_COLOR_NORMAL_TEXT=black; fi
+#if [ -z "$VIMTO_COLOR_NORMAL_BACKGROUND" ]; then VIMTO_COLOR_NORMAL_BACKGROUND=white; fi
+
+function zle-keymap-select zle-line-init {
+    # If it's not tmux then can use normal sequences
+    if [[ -z "${TMUX}" ]]; then
+        local vicmd_seq="\e[2 q"
+        local viins_seq="\e[0 q"
+    else
+        # In tmux, escape sequences to pass to terminal need to be
+        # surrounded in a DSC sequence and double-escaped:
+        # ESC P tmux; {text} ESC \
+        # <http://linsam.homelinux.com/tmux/tmuxcodes.pdf>
+        local vicmd_seq="\ePtmux;\e\e[2 q\e\\"
+        local viins_seq="\ePtmux;\e\e[0 q\e\\"
+    fi
+
+    # Command mode
+    if [ $KEYMAP = vicmd ]; then
+        echo -ne $vicmd_seq
+        RPROMPT_PREVIOUS=$RPROMPT
+        RPROMPT=$'%K{$VIMTO_COLOR_NORMAL_BACKGROUND} %F{$VIMTO_COLOR_NORMAL_TEXT}NORMAL%f %k'
+    # Insert mode
+    else
+        # Disable changing the cursor
+        #echo -ne $viins_seq
+        RPROMPT=$RPROMPT_PREVIOUS
+    fi
+    zle reset-prompt
+}
+
+function accept-line-clear-rprompt {
+    export RPROMPT=$RPROMPT_PREVIOUS
+    zle reset-prompt
+    zle accept-line
+}
+
+zle -N accept-line-clear-rprompt
+## Hook enter being pressed whilst in cmd mode
+bindkey -M vicmd "^M" accept-line-clear-rprompt
+
+## Change appearance
+#zle -N zle-keymap-select  # When vi mode changes
+#zle -N zle-line-init
+
+# When a new line starts
+# Fix backspace not working after returning from cmd mode
+bindkey '^?' backward-delete-char
+bindkey '^h' backward-delete-char
+
+## Need to initially clear RPROMPT for it to work on first prompt
+export RPROMPT=$RPROMPT_PREVIOUS
+
+#### Vi Insert Mode Bindings ####
+
+# Switch to command mode
+bindkey -v "\C-X" vi-cmd-mode
+
+set enable-keypad on
+
+# Press up-arrow for previous matching command
+bindkey -v "\e[A" history-substring-search-up # requires the enabled keypad
+# Press down-arrow for next matching command
+bindkey -v "\e[B" history-substring-search-down # requires the enabled keypad
+
+# Emacs style non-vi conflicting keys
+bindkey -v "\e[1;5C" forward-word   # ctrl + right
+bindkey -v "\e[1;5D" backward-word  # ctrl + left
+bindkey -v "\e[3;5~" kill-word # ctrl + del
+
+#### Vi Command Mode Bindings ####
+
+# Switch back to insert mode
+bindkey -a "\C-X" vi-add-next
+
+# Press up-arrow for previous matching command
+bindkey -a '^[[A' history-substring-search-up
+# Press down-arrow for next matching command
+bindkey -a '^[[B' history-substring-search-down
+
+# Press Vi up (k) for previous matching command
+bindkey -M vicmd 'k' history-substring-search-up
+## Press Vi down (j) for next matching command
+bindkey -M vicmd 'j' history-substring-search-down
 
 #### Private functions ####
 
@@ -93,7 +173,7 @@ _execute()
     if [ $# -eq 3 ] && [ ${keys[$3]+exists} ]
     then
         "$1" "${keys[$3]}" && return 0
-    else 
+    else
         # TODO: only display keys prefixed with given string
         _print_array keys && return 1
     fi
@@ -107,7 +187,7 @@ _execute_notify()
     if [ $# -eq 3 ] && [ ${keys[$3]+exists} ]
     then
         "$1" "${keys[$3]}"; echo "Sending Notification"; _send_notification "Execution complete" "${keys[$3]}\nTime: $START_TIME -$(date +"%r")" && return 0
-    else 
+    else
         # TODO: only display keys prefixed with given string
         _print_array keys && return 1
     fi
@@ -210,7 +290,7 @@ fi
 
 #### Tools ####
 
-# The default data file location is `~/.z` but since we have 
+# The default data file location is `~/.z` but since we have
 # that as our repo location, change the directory name to ".z_data"
 export _Z_DATA="/home/`whoami`/.z_data"
 
