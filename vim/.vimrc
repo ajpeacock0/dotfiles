@@ -11,10 +11,11 @@ function! PlugEnableIf(condition, ...)
 endfunction
 
 " Ensure VimPlug is installed
-if empty(glob('~/.vim/autoload/plug.vim'))
+" This is disabled on Windows since curl doesn't use '~'
+if !has('win32') && empty(glob('~/.vim/autoload/plug.vim'))
     silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
 call plug#begin('~/.vim/plugged')
