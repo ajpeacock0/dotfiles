@@ -319,5 +319,8 @@ if fd_loc="$(type -p fd)" && [[ -n $fd_loc ]]; then
     export FZF_DEFAULT_COMMAND='fd --type file'
 fi
 
+# Local variables
+[[ ! -f ~/.vars.zsh ]] || source ~/.vars.zsh
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

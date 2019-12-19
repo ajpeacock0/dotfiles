@@ -10,6 +10,19 @@ function! PlugEnableIf(condition, ...)
     return a:condition ? opts : extend(opts, { 'on': [], 'for': [] })
 endfunction
 
+" Checks whether a given Python module is installed
+function! HasPythonModule(name)
+    let l:hasModule = 0
+    if has('pythonx')
+pythonx << moduleCheck
+import vim, pkgutil
+if pkgutil.find_loader(vim.eval("a:name")):
+    vim.command("let l:hasModule = 1")
+moduleCheck
+    endif
+    return l:hasModule
+endfunction
+
 " Ensure VimPlug is installed
 " This is disabled on Windows since curl doesn't use '~'
 if !has('win32') && empty(glob('~/.vim/autoload/plug.vim'))
@@ -19,6 +32,14 @@ if !has('win32') && empty(glob('~/.vim/autoload/plug.vim'))
 endif
 
 call plug#begin('~/.vim/plugged')
+
+" Autocompletion Plugin and depencencies
+Plug 'ncm2/ncm2', PlugEnableIf(HasPythonModule('neovim'))
+Plug 'roxma/nvim-yarp', PlugEnableIf(HasPythonModule('neovim'))
+Plug 'roxma/vim-hug-neovim-rpc', PlugEnableIf(HasPythonModule('neovim'))
+
+" Completion Sources
+Plug 'ncm2/ncm2-bufword', PlugEnableIf(HasPythonModule('neovim'))
 
 " ControlP (requires fzf installed)
 Plug 'tacahiroy/ctrlp-funky'
@@ -113,6 +134,10 @@ endif
 
 " Visual
 colorscheme jellybeans
+
+" Enable ncm2 for all buffers
+autocmd BufEnter * call ncm2#enable_for_buffer()
+set completeopt=noinsert,menuone,noselect
 
 " Tell vim-whitespace to strip whitespace on save
 let g:strip_whitespace_on_save = 1
