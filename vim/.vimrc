@@ -142,6 +142,9 @@ if HasPythonModule('neovim')
     set completeopt=noinsert,menuone,noselect
 endif
 
+" Add Ctrl+j/k for when completion menu is showing
+inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
+inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-k>"
 
 " Tell vim-whitespace to strip whitespace on save
 let g:strip_whitespace_on_save = 1
