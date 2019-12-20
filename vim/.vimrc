@@ -195,18 +195,29 @@ inoremap <C-l> <C-\><C-N>:tabnext<CR>
 " Map Ctrl-h to go to previous tab
 noremap <C-h> :<C-U>tabprevious<CR>
 inoremap <C-h> <C-\><C-N>:tabprevious<CR>
+
 " Map Alt-h to go to move this tab to the left
 noremap <M-h> :<C-U>-tabmove<CR>
 inoremap <M-h> <C-\><C-N>:-tabmove<CR>
 " Map Alt-l to go to move this tab to the right
 noremap <M-l> :<C-U>+tabmove<CR>
 inoremap <M-l> <C-\><C-N>:+tabmove<CR>
+
 " Map Ctrl-n to create a new blank tab
 nnoremap <c-n> :tabnew<cr>
+
 " Map Ctrl-k to kill/close the current tab
 nnoremap <c-k> :tabc<cr>
 " Map Ctrl-f Ctrl-k to force kill/close the current tab
 nnoremap <c-f><c-k> :tabc!<cr>
+
+" Map Ctrl-q to quit
+nnoremap <c-q> :q<cr>
+" Map Ctrl-f Ctrl-q to force quit
+nnoremap <c-f><c-q> :q!<cr>
+
+" Map Ctrl-w to write
+nnoremap <c-w> :w<Cr>
 
 " Yank from the cursor to the end of the line, to be consistent with C and D.
 nnoremap Y y$
@@ -327,9 +338,6 @@ nnoremap <leader>rr :%s#\<<C-r>=expand("<cword>")<CR>\>#
 nnoremap <leader>rw :%s/<C-r>=expand("<cword>")<CR>//g
 " RePlace word
 nnoremap <leader>rp :%s/<C-r>=expand("<cword>")<CR>/<C-r>=expand("<cword>")<CR>/g
-
-" Alias for :w
-nnoremap <leader>w :w<Cr>
 
 " Alias for :Buffers
 nnoremap <leader>b :Buffers<Cr>
