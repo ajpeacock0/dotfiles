@@ -353,6 +353,10 @@ nnoremap <C-u> 5<C-y>
 nnoremap <C-z> <C-x>
 nnoremap <C-x> <C-a>
 
+" Shortcut for Yes/No for enabling paste mode
+nnoremap <leader>py :set paste<Cr>
+nnoremap <leader>pn :set nopaste<Cr>
+
 " Clean up pasted in text, replacing large whitespace with newlines and
 " removing line numbers
 nnoremap <leader><C-v> :%s/ \{5,\}/\r/g<CR> :%s/^[0-9]\+ *//g<CR>
