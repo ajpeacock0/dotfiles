@@ -134,9 +134,9 @@ bindkey -v "\C-X" vi-cmd-mode
 set enable-keypad on
 
 # Press up-arrow for previous matching command
-bindkey -v "\e[A" history-substring-search-up # requires the enabled keypad
+bindkey -v "\e[A" history-search-backward # requires the enabled keypad
 # Press down-arrow for next matching command
-bindkey -v "\e[B" history-substring-search-down # requires the enabled keypad
+bindkey -v "\e[B" history-search-forward # requires the enabled keypad
 
 # Emacs style non-vi conflicting keys
 bindkey -v "\e[1;5C" forward-word   # ctrl + right
@@ -154,9 +154,9 @@ bindkey -a '^[[A' history-substring-search-up
 bindkey -a '^[[B' history-substring-search-down
 
 # Press Vi up (k) for previous matching command
-bindkey -M vicmd 'k' history-substring-search-up
+bindkey -M vicmd 'k' history-search-backward
 ## Press Vi down (j) for next matching command
-bindkey -M vicmd 'j' history-substring-search-down
+bindkey -M vicmd 'j' history-search-forward
 
 #### Private functions ####
 
