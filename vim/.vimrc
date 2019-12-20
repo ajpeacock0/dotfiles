@@ -40,6 +40,8 @@ Plug 'roxma/vim-hug-neovim-rpc', PlugEnableIf(HasPythonModule('neovim'))
 
 " Completion Sources
 Plug 'ncm2/ncm2-bufword', PlugEnableIf(HasPythonModule('neovim'))
+Plug 'Shougo/neco-vim', PlugEnableIf(HasPythonModule('neovim'))
+Plug 'ncm2/ncm2-vim', PlugEnableIf(HasPythonModule('neovim'))
 
 " ControlP (requires fzf installed)
 Plug 'tacahiroy/ctrlp-funky'
@@ -142,9 +144,13 @@ if HasPythonModule('neovim')
     set completeopt=noinsert,menuone,noselect
 endif
 
-" Add Ctrl+j/k for when completion menu is showing
+" Add Ctrl+j/k for when popup menu is showing
 inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
 inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-k>"
+
+" Add Tab and Shift-Tab for when popup menu is showing
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
 " Tell vim-whitespace to strip whitespace on save
 let g:strip_whitespace_on_save = 1
