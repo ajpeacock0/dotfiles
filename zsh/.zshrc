@@ -316,6 +316,9 @@ eval $(thefuck --alias)
 alias pe="path-extractor"
 alias -g PE='| pe | fzf | read filename; [ ! -z $filename ] && $EDITOR $filename'
 
+# Open all git conflicts using Vim
+alias gfix='vim +/HEAD `git diff --name-only | uniq`'
+
 # Include the fzf shortcuts for CTRL-[R/T/C]
 # This needs to be at the end of the file for some reason
 test -e "${HOME}/.fzf.zsh" && source ~/.fzf.zsh
