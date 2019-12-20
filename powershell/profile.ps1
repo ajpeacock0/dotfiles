@@ -69,6 +69,10 @@ Set-PSReadLineKeyHandler -Key k -Function HistorySearchBackward -ViMode Command
 Set-PSReadLineKeyHandler -Key DownArrow -Function HistorySearchForward -ViMode Command
 Set-PSReadLineKeyHandler -Key j -Function HistorySearchForward -ViMode Command
 
+# Shift+dir to move cursor to begin/end of line
+Set-PSReadLineKeyHandler -Key H -Function BeginningOfLine -ViMode Command
+Set-PSReadLineKeyHandler -Key L -Function EndOfLine -ViMode Command
+
 #### Key Bindings ####
 
 # Emac Style kill
