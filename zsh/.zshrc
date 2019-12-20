@@ -52,6 +52,8 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 
+# Note: `man zshzle` to read the zshrc documentation
+
 #### Config #####
 
 export EDITOR='vim'
@@ -155,8 +157,12 @@ bindkey -a '^[[B' history-substring-search-down
 
 # Press Vi up (k) for previous matching command
 bindkey -M vicmd 'k' history-search-backward
-## Press Vi down (j) for next matching command
+# Press Vi down (j) for next matching command
 bindkey -M vicmd 'j' history-search-forward
+
+# Shift+h/l to move cursor to begin or end on line
+bindkey -M vicmd "H" vi-beginning-of-line
+bindkey -M vicmd "L" vi-end-of-line
 
 #### Private functions ####
 
