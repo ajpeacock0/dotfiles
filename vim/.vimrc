@@ -135,9 +135,13 @@ endif
 " Visual
 colorscheme jellybeans
 
-" Enable ncm2 for all buffers
-autocmd BufEnter * call ncm2#enable_for_buffer()
-set completeopt=noinsert,menuone,noselect
+" Enable ncm2 for all buffers. If the python module check
+" for neovim failed, ensure `pip3 install --user pynvim`
+if HasPythonModule('neovim')
+    autocmd BufEnter * call ncm2#enable_for_buffer()
+    set completeopt=noinsert,menuone,noselect
+endif
+
 
 " Tell vim-whitespace to strip whitespace on save
 let g:strip_whitespace_on_save = 1
