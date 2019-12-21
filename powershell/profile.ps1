@@ -1,6 +1,6 @@
 #### Version Statement ####
 
-echo "Powershell-Core profile (Updated 11.19.18)"
+echo "Powershell-Core profile (Updated 12.20.19)"
 
 #### Module Imports ####
 
@@ -15,6 +15,11 @@ Import-Module posh-git
 
 # A theme engine for Powershell
 Import-Module oh-my-posh
+
+# Disable the default ReverseHistorySearch
+Remove-PSReadlineKeyHandler 'Ctrl+r'
+# Powershell wrapper for FZF
+Import-Module PSFzf -SkipEditionCheck
 
 #### Aliases ####
 
@@ -50,6 +55,10 @@ Set-PSReadLineOption @PSReadLineOptions
 # Set `Ctrl+x` to toggle the Vi mode
 Set-PSReadlineKeyHandler -Chord Ctrl+x -Function ViCommandMode -ViMode Insert
 Set-PSReadlineKeyHandler -Chord Ctrl+x -Function ViInsertMode -ViMode Command
+
+# Custom `ReverseSearchHistory` which uses previous session history
+Set-PSReadlineKeyHandler -Chord Ctrl+r -ScriptBlock { cat (Get-PSReadlineOption).HistorySavePath | Invoke-Fzf -NoSort -ReverseInput -Exact | Invoke-Expression } -ViMode Insert
+#Set-PSReadlineKeyHandler -Chord Ctrl+r -ScriptBlock { Invoke-FuzzyHistory } -ViMode Insert
 
 # TODO: Explain this
 Set-PSReadlineKeyHandler -Chord Ctrl+k -Function Abort -ViMode Insert

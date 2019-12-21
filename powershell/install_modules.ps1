@@ -9,3 +9,6 @@ Install-Module posh-git
 
 # A theme engine for Powershell
 Install-Module oh-my-posh
+
+# Powershell wrapper for fzf
+Install-Module PSFzf
