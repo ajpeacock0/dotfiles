@@ -211,10 +211,10 @@ nnoremap <c-k> :tabc<cr>
 " Map Ctrl-f Ctrl-k to force kill/close the current tab
 nnoremap <c-f><c-k> :tabc!<cr>
 
-" Map Ctrl-q to quit
-nnoremap <c-q> :q<cr>
-" Map Ctrl-f Ctrl-q to force quit
-nnoremap <c-f><c-q> :q!<cr>
+" Map Leader q to quit
+nnoremap <leader>q :q<cr>
+" Map Leader fq to force quit
+nnoremap <leader>fq :q!<cr>
 
 " Map Ctrl-w to write
 nnoremap <c-w> :w<Cr>
