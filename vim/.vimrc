@@ -216,8 +216,8 @@ nnoremap <leader>q :q<cr>
 " Map Leader fq to force quit
 nnoremap <leader>fq :q!<cr>
 
-" Map Ctrl-w to write
-nnoremap <c-w> :w<Cr>
+" Map Leader w to write
+nnoremap <leader>w :w<Cr>
 
 " Yank from the cursor to the end of the line, to be consistent with C and D.
 nnoremap Y y$
