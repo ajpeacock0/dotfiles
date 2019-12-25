@@ -326,6 +326,9 @@ nmap <leader>va :set virtualedit=all<cr>
 nmap <leader>sp :setlocal spell spelllang=en_us<cr>
 nmap <leader>sp :setlocal spell!<cr>
 
+" Spell Complete
+nmap <leader>sc z=
+
 " Prepare RipGrep with an empty argument without execution
 nnoremap <leader>re :Rg
 
