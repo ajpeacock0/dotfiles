@@ -310,7 +310,7 @@ inoremap {<CR> {<CR>}<ESC>O
 inoremap {;<CR> {<CR>};<ESC>O
 
 " Keybinding for substitute word with yanked register
-nmap <leader>ss ve"0p
+nmap <leader>pe ve"0p
 " Keybinding for paste yanked register
 nmap <leader>p "0p
 " Keybinding for paste yanked register behind
@@ -322,12 +322,29 @@ vmap <leader>p "0p
 nmap <leader>vd :set virtualedit=""<cr>
 nmap <leader>va :set virtualedit=all<cr>
 
-" Spell Checker
+" Toggle SPell checker
 nmap <leader>sp :setlocal spell spelllang=en_us<cr>
 nmap <leader>sp :setlocal spell!<cr>
 
-" Spell Complete
-nmap <leader>sc z=
+" Spell Complete using the most likely suggestion
+nmap <leader>sc 1z=
+
+" Spell Previous
+nmap <leader>sz [s
+" Spell Next
+nmap <leader>sx ]s
+
+function! FzfSpellSink(word)
+  exe 'normal! "_ciw'.a:word
+endfunction
+
+function! FzfSpell()
+  let suggestions = spellsuggest(expand("<cword>"))
+  return fzf#run({'source': suggestions, 'sink': function("FzfSpellSink"), 'down': 10 })
+endfunction
+
+" Spell Suggest using fzf
+nmap <leader>ss :call FzfSpell()<CR>
 
 " Prepare RipGrep with an empty argument without execution
 nnoremap <leader>re :Rg
