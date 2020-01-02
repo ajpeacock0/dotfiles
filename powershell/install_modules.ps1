@@ -2,7 +2,7 @@
 Install-Module PSReadLine
 
 # Adds colors to the output of Get-ChildItem; used by ls alias
-Install-Module Get-ChildItemColor
+Install-Module -AllowClobber Get-ChildItemColor
 
 # Ensure posh-git is loaded
 Install-Module posh-git
