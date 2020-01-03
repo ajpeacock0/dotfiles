@@ -1,7 +1,7 @@
 # Install the latest vim from scoop
 # Along with the tools fd and fzf for
 # file searching
-scoop install vim fd fzf
+scoop install vim fd fzf git
 
 # Install Vim-Plug
 md ~\vimfiles\autoload

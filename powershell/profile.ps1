@@ -1,6 +1,6 @@
 #### Version Statement ####
 
-echo "Powershell-Core profile (Updated 12.20.19)"
+echo "Powershell-Core profile (Updated 01.03.20)"
 
 #### Module Imports ####
 
@@ -111,6 +111,17 @@ Set-PSReadlineKeyHandler -Key DownArrow -Function HistorySearchForward
 . "${Env:UserProfile}\.powershell\environment.ps1"
 
 #### Functions ####
+
+function gfix
+{
+    $result = git conf-ls
+    if ($result)
+    {
+        vim +/HEAD
+    } else {
+        echo "No conflicts to resolve"
+    }
+}
 
 ## Display the given Unicode value as a character. Used to test font support.
 function U
