@@ -28,8 +28,12 @@ Set-Alias ll Get-ChildItemColor -Option AllScope
 Set-Alias ls Get-ChildItemColorFormatWide -Option AllScope
 
 # Set '~' location to the User Profile directory
-function cuserprofile { Set-Location ~ }
-Set-Alias ~ cuserprofile -Option AllScope
+function cusorprofile { Set-Location ~ }
+Set-Alias ~ cusorprofile -Option AllScope
+
+# Set '..' location to the User Profile directory
+function moveup1 { cd .. }
+Set-Alias .. moveup1 -Option AllScope
 
 #### Encoding ####
 
