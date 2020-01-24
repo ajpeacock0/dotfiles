@@ -242,6 +242,8 @@ set shiftwidth=4
 set softtabstop=4
 " Convert tabs to spaces
 set expandtab
+" Set the textwidth for Markdown files
+au FileType markdown setlocal textwidth=100
 
 map <F2> :let @+ = expand("%")<cr>
 
