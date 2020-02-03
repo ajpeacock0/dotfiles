@@ -30,15 +30,18 @@ Creates symlinks for all linux dotfiles and tool configurations.
 
 ## Powershell scripts
 
+These setup scripts were written for Powershell-Core, and so may not run successfully on standard
+Powershell.
+
 ### `powershell/install_modules.ps1`
 
 Installs the Powershell Modules referenced by my PowerShell profile.
 
 ### `powershell/link.ps1`
 
-Create symlinks for Windows powershell config and profile.
+**This must be done with admin permissions.** 
 
-This must be done with admin permissions. 
+Create symlinks for Windows powershell config and profile.
 
 ### `link.ps1`
 
@@ -50,4 +53,4 @@ This must be done with admin permissions.
 
 ### `vim/link.ps1`
 
-This must be done with admin permissions. 
+**This must be done with admin permissions.** 

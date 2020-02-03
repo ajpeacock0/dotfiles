@@ -1,3 +1,5 @@
+# TODO: Ensure this is running on Powershell core
+
 # Syntax coloring, key bindings
 Install-Module PSReadLine
 

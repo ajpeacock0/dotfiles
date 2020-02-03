@@ -7,3 +7,4 @@ $scriptDirectory = (Split-Path -parent $MyInvocation.MyCommand.Definition)
 . $scriptDirectory\functions\Invoke-XLaunch.ps1
 . $scriptDirectory\functions\Add-Path.ps1
 . $scriptDirectory\functions\Remove-Path.ps1
+. $scriptDirectory\functions\Delete-Item.ps1

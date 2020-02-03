@@ -53,6 +53,7 @@ Plug 'scrooloose/nerdcommenter'
 
 " Theme Plugin
 Plug 'nanotech/jellybeans.vim'
+Plug 'morhetz/gruvbox'
 
 " Side windows displaying buffers
 Plug 'jeetsukumaran/vim-buffergator'
@@ -136,6 +137,7 @@ endif
 
 " Visual
 colorscheme jellybeans
+"colorscheme gruvbox
 
 " Enable ncm2 for all buffers. If the python module check
 " for neovim failed, ensure `pip3 install --user pynvim`
@@ -435,9 +437,9 @@ let g:gutentags_cache_dir = expand('~/.cache/tags')
 " Get null output stream path based on platform
 function! DevNullPath()
     if has('win32')
-        return 'NUL'
+	return 'NUL'
     else
-        return '/dev/null'
+	return '/dev/null'
     endif
 endfunction
 
@@ -446,7 +448,7 @@ function! EnsureDirectory(path)
     let a:expandedPath = expand(a:path)
     let a:devNull = DevNullPath()
     if empty(glob(a:expandedPath))
-        :silent execute '!mkdir -p ' . a:expandedPath . ' > ' . a:devNull . ' 2>&1'
+	:silent execute '!mkdir -p ' . a:expandedPath . ' > ' . a:devNull . ' 2>&1'
     endif
 endfunction
 
