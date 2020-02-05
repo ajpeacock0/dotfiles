@@ -338,6 +338,10 @@ nmap <leader>sz [s
 " Spell Next
 nmap <leader>sx ]s
 
+" Center screen after a Next
+nmap n nzz
+nmap N Nzz
+
 function! FzfSpellSink(word)
   exe 'normal! "_ciw'.a:word
 endfunction
