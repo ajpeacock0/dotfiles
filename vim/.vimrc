@@ -95,6 +95,9 @@ Plug 'plasticboy/vim-markdown'
 " EOL whitespace removal
 Plug 'ntpeters/vim-better-whitespace'
 
+" Formatting Markdown tables
+Plug 'dhruvasagar/vim-table-mode'
+
 " Asynchronous Lint Engine
 " Plug 'w0rp/ale', PlugEnableIf(g:has_async) (Disabled due to speed issues. TODO: Investigate and resolve)
 
@@ -301,6 +304,9 @@ set nofoldenable
 let g:vim_markdown_fenced_languages = ['csharp=cs']
 set conceallevel=0
 
+" Make vim-table-mode use markdown compatable corner seperators
+let g:table_mode_corner='|'
+
 " Set search to very-magic
 nnoremap / /\v
 cnoremap %s/ %s/\v
@@ -337,6 +343,9 @@ nmap <leader>sc 1z=
 nmap <leader>sz [s
 " Spell Next
 nmap <leader>sx ]s
+
+" Jump to exact spot in last modification line
+nnoremap <C-m> `.
 
 " Center screen after a Next
 nmap n nzz
