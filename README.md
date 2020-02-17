@@ -45,9 +45,18 @@ Create symlinks for Windows powershell config and profile.
 
 ### `link.ps1`
 
+**This must be done with admin permissions.** 
+
 Create symlinks for any Powershell dotfiles in the home directory.
 
-This must be done with admin permissions. 
+For the Windows Terminal `profiles.json`, there are 2 options to run PowerShellCore
+- `"source": "Windows.Terminal.PowershellCore"`
+- `"commandline": "%PWSH%"` 
+This is after you run `export` to your `pwsh.exe` path, e.g.
+```
+export PWSH %ProgramFiles%\PowerShell\6\pwsh.exe
+```
+For increased flexibility across multiple machines, I use the "commandline" argument. 
 
 ### `vim/install.ps1`
 
