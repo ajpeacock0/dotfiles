@@ -247,6 +247,10 @@ set shiftwidth=4
 set softtabstop=4
 " Convert tabs to spaces
 set expandtab
+
+" Change all the existing tab characters to match the current tab settings
+nmap <leader>tab :retab<cr>
+
 " Set the textwidth for Markdown files
 au FileType markdown setlocal textwidth=100
 
