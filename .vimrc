@@ -2,6 +2,10 @@ set nocompatible
 
 let g:has_async = v:version >= 800 || has('nvim')
 
+" |------------------------|
+" | Begin Plugin Functions |
+" |------------------------|
+
 " Use with Plug to conditionally load plugins
 " This allows the plugin to be registered even if not used, to prevent
 " potential removal
@@ -22,6 +26,14 @@ moduleCheck
     endif
     return l:hasModule
 endfunction
+
+" |------------------------|
+" | End Plugin Functions |
+" |------------------------|
+
+" |-------------------|
+" | Begin Plugin List |
+" |-------------------|
 
 " Ensure VimPlug is installed
 " This is disabled on Windows since curl doesn't use '~'
@@ -98,11 +110,26 @@ Plug 'ntpeters/vim-better-whitespace'
 " Formatting Markdown tables
 Plug 'dhruvasagar/vim-table-mode'
 
-" Asynchronous Lint Engine
-" Plug 'w0rp/ale', PlugEnableIf(g:has_async) (Disabled due to speed issues. TODO: Investigate and resolve)
-
 " Initialize plugin system
 call plug#end()
+
+" Enable ncm2 for all buffers. If the python module check
+" for neovim failed, ensure `pip3 install --user pynvim`
+if HasPythonModule('neovim')
+    autocmd BufEnter * call ncm2#enable_for_buffer()
+    set completeopt=noinsert,menuone,noselect
+endif
+
+" Make the backspace + delete work like in most other programs
+set backspace=indent,eol,start
+
+" |-----------------|
+" | End Plugin List |
+" |-----------------|
+
+" |-----------------------|
+" | Begin Plugin Settings |
+" |-----------------------|
 
 " Needed in Linux Shell to send <Alt+j/k> for the `vim-move` plugin
 if !has('win32')
@@ -111,9 +138,6 @@ if !has('win32')
     execute "set <M-h>=\eh"
     execute "set <M-l>=\el"
 endif
-
-" Remap leader from '\' to ','
-let mapleader = ","
 
 if (executable('fzf'))
     " Remap CtrlP mappings to FZF
@@ -138,24 +162,8 @@ else
     nnoremap <Leader>fU :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
 endif
 
-" Visual
-colorscheme jellybeans
-"colorscheme gruvbox
-
-" Enable ncm2 for all buffers. If the python module check
-" for neovim failed, ensure `pip3 install --user pynvim`
-if HasPythonModule('neovim')
-    autocmd BufEnter * call ncm2#enable_for_buffer()
-    set completeopt=noinsert,menuone,noselect
-endif
-
-" Add Ctrl+j/k for when popup menu is showing
-inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
-inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-k>"
-
-" Add Tab and Shift-Tab for when popup menu is showing
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+" Make vim-table-mode use markdown compatable corner seperators
+let g:table_mode_corner='|'
 
 " Tell vim-whitespace to strip whitespace on save
 let g:strip_whitespace_on_save = 1
@@ -163,98 +171,40 @@ let g:strip_whitespace_on_save = 1
 " Enable Rainbow Parenthesis
 let g:rainbow_active = 1
 
-" Run linter only after I save the file, not continuously
-"let g:ale_lint_on_enter = 0
-" Do not run the linters immediatley after file open
-"let g:ale_lint_on_text_changed = 'never'
+" Set the textwidth for Markdown files
+au FileType markdown setlocal textwidth=100
+
+" Vim Markdown settings
+let g:vim_markdown_folding_disabled = 1
+set nofoldenable
+let g:vim_markdown_fenced_languages = ['csharp=cs']
+set conceallevel=0
+
+" Trigger a highlight in the appropriate direction for quick-scope
+"let g:qs_enable=0
+let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
+
+" |---------------------|
+" | End Plugin Settings |
+" |---------------------|
+
+" |--------------------|
+" | Begin GUI Settings |
+" |--------------------|
+
+" Show a real status line
+set laststatus=2
+
+" Hide the default mode indicator (using lightline instead)
+set noshowmode
+
+" Visual
+colorscheme jellybeans
+"colorscheme gruvbox
 
 " Relative line number
 set number                     " Show current line number
 set relativenumber             " Show relative line numbers
-
-" Shift+dir to jump paragraphs
-nnoremap <S-k> <S-{>
-nnoremap <S-j> <S-}>
-vnoremap <S-k> <S-{>
-vnoremap <S-j> <S-}>
-
-" Shift+dir to jump to begin/end of line
-nnoremap <S-h> ^
-nnoremap <S-l> $
-vnoremap <S-h> ^
-vnoremap <S-l> $
-
-" Use Ctrl-c as the escape
-nmap <c-c> <esc>
-imap <c-c> <esc>
-vmap <c-c> <esc>
-omap <c-c> <esc>
-
-" Map Ctrl-j to Shift-j; aka line join
-nnoremap <c-j> <S-j>
-vnoremap <c-j> <S-j>
-
-" Map Ctrl-l to go to next tab
-noremap <C-l> :<C-U>tabnext<CR>
-inoremap <C-l> <C-\><C-N>:tabnext<CR>
-" Map Ctrl-h to go to previous tab
-noremap <C-h> :<C-U>tabprevious<CR>
-inoremap <C-h> <C-\><C-N>:tabprevious<CR>
-
-" Map Alt-h to go to move this tab to the left
-noremap <M-h> :<C-U>-tabmove<CR>
-inoremap <M-h> <C-\><C-N>:-tabmove<CR>
-" Map Alt-l to go to move this tab to the right
-noremap <M-l> :<C-U>+tabmove<CR>
-inoremap <M-l> <C-\><C-N>:+tabmove<CR>
-
-" Map Ctrl-n to create a new blank tab
-nnoremap <c-n> :tabnew<cr>
-
-" Map Ctrl-k to kill/close the current tab
-nnoremap <c-k> :tabc<cr>
-" Map Ctrl-f Ctrl-k to force kill/close the current tab
-nnoremap <c-f><c-k> :tabc!<cr>
-
-" Map Leader q to quit
-nnoremap <leader>q :q<cr>
-" Map Leader fq to force quit
-nnoremap <leader>fq :q!<cr>
-
-" Map Leader w to write
-nnoremap <leader>w :w<Cr>
-
-" Yank from the cursor to the end of the line, to be consistent with C and D.
-nnoremap Y y$
-
-" Unhighlight search terms with leader+space
-nnoremap <leader><space> :noh<cr>
-
-" Sets the default register to use the "* reg on Windows.
-if has('win32')
-    set clipboard=unnamed
-else
-    set clipboard=unnamedplus
-endif
-
-set autoindent
-set smartindent
-" Tab width in spaces
-set tabstop=4
-" Size of indent in spaces
-set shiftwidth=4
-" Make spaces feel like real tabs
-set softtabstop=4
-" Convert tabs to spaces
-set expandtab
-
-" Change all the existing tab characters to match the current tab settings
-nmap <leader>tab :retab<cr>
-
-" Set the textwidth for Markdown files
-au FileType markdown setlocal textwidth=100
-
-map <F2> :let @+ = expand("%")<cr>
 
 set guifont=FuraCode_NF:h11
 set guifont+=Fira_Code:h11
@@ -264,30 +214,6 @@ set guifont+=Consolas:h11
 " For flag explanation, read http://vimdoc.sourceforge.net/htmldoc/options.html#'guioptions'
 " Disable menus and preserve window sizing
 set guioptions=Mk
-
-" Set the default search to use smartcase
-set ignorecase
-set smartcase
-
-" Make the backspace + delete work like in most other programs
-set backspace=indent,eol,start
-
-" Show a real status line
-set laststatus=2
-
-" Hide the default mode indicator (using lightline instead)
-set noshowmode
-
-" Highlight all search matches
-set hlsearch
-" Highlight all search matches while searching
-set incsearch
-" Unhighlight search terms with leader+space
-nnoremap <leader><space> :noh<cr>
-
-" Strip Whitespace
-nmap <leader>sw :StripWhitespace<cr>
-
 " Set colorscheme options based on detected 256 color support
 if &t_Co == 256
     " Use 24-bit color if available
@@ -302,18 +228,100 @@ endif
 " Ensure Powershell uses correct colors
 set termguicolors
 
-" Vim Markdown settings
-let g:vim_markdown_folding_disabled = 1
-set nofoldenable
-let g:vim_markdown_fenced_languages = ['csharp=cs']
-set conceallevel=0
+" |------------------|
+" | End GUI Settings |
+" |------------------|
 
-" Make vim-table-mode use markdown compatable corner seperators
-let g:table_mode_corner='|'
+" |------------------------|
+" | Begin General Mappings |
+" |------------------------|
 
-" Set search to very-magic
-nnoremap / /\v
-cnoremap %s/ %s/\v
+" Remap leader from '\' to ','
+let mapleader = ","
+
+" Use Ctrl-c as the escape
+nmap <c-c> <esc>
+imap <c-c> <esc>
+vmap <c-c> <esc>
+omap <c-c> <esc>
+
+" Map [leader-f] leader-q to [force] quit
+nnoremap <leader>q :q<cr>
+nnoremap <leader>fq :q!<cr>
+
+" Map Leader w to write
+nnoremap <leader>w :w<Cr>
+
+" Change virtualedit mode
+nmap <leader>vd :set virtualedit=""<cr>
+nmap <leader>va :set virtualedit=all<cr>
+
+" Alias for :Buffers
+nnoremap <leader>b :Buffers<Cr>
+
+" Alias for :e! (force reload buffer)
+nnoremap <leader>e :e!<Cr>
+
+" Alias for :A (switching source/header with a.vim)
+nnoremap <leader>a :A<Cr>
+
+" Add Ctrl+j/k for when popup menu is showing
+inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
+inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-k>"
+
+" Add Tab and Shift-Tab for when popup menu is showing
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+" Edit vimr configuration file
+nnoremap <leader>ve :e $MYVIMRC<CR>
+" Reload vimr configuration file
+nnoremap <leader>vr :source $MYVIMRC<CR>
+
+" Shortcut for Yes/No for enabling paste mode
+nnoremap <leader>py :set paste<Cr>
+nnoremap <leader>pn :set nopaste<Cr>
+
+" |----------------------|
+" | End General Mappings |
+" |----------------------|
+
+" |----------------------------------|
+" | Begin Line Modification Settings |
+" |----------------------------------|
+
+set autoindent
+set smartindent
+
+" Tab width in spaces
+set tabstop=4
+
+" Size of indent in spaces
+set shiftwidth=4
+
+" Make spaces feel like real tabs
+set softtabstop=4
+
+" Convert tabs to spaces
+set expandtab
+
+" |----------------------------------|
+" | End Line Modification Settings |
+" |----------------------------------|
+
+" |----------------------------------|
+" | Begin Line Modification Mappings |
+" |----------------------------------|
+
+" Map Ctrl-j to Shift-j; aka line join
+nnoremap <c-j> <S-j>
+vnoremap <c-j> <S-j>
+
+" Strip Whitespace
+nmap <leader>sw :StripWhitespace<cr>
+
+" Change all the existing tab characters to match the current tab settings
+nmap <leader>tab :retab<cr>
 
 " Gheto custom autoclose mappings
 inoremap ( ()<left>
@@ -322,6 +330,97 @@ inoremap { {}<left>
 inoremap < <><left>
 inoremap {<CR> {<CR>}<ESC>O
 inoremap {;<CR> {<CR>};<ESC>O
+
+" Map Ctrl+z/x to decrement/increment
+nnoremap <C-z> <C-x>
+nnoremap <C-x> <C-a>
+
+" |----------------------------------|
+" | End Line Modification Mappings |
+" |----------------------------------|
+
+" |--------------------|
+" | Begin Tab Mappings |
+" |--------------------|
+
+" Map Ctrl-l to go to next tab
+noremap <C-l> :<C-U>tabnext<CR>
+inoremap <C-l> <C-\><C-N>:tabnext<CR>
+
+" Map Ctrl-h to go to previous tab
+noremap <C-h> :<C-U>tabprevious<CR>
+inoremap <C-h> <C-\><C-N>:tabprevious<CR>
+
+" Map Alt-h to go to move this tab to the left
+noremap <M-h> :<C-U>-tabmove<CR>
+inoremap <M-h> <C-\><C-N>:-tabmove<CR>
+
+" Map Alt-l to go to move this tab to the right
+noremap <M-l> :<C-U>+tabmove<CR>
+inoremap <M-l> <C-\><C-N>:+tabmove<CR>
+
+" Map Ctrl-n to create a new blank tab
+nnoremap <c-n> :tabnew<cr>
+
+" Map [Ctrl-f] Ctrl-k to [force] kill/close the current tab
+nnoremap <c-k> :tabc<cr>
+nnoremap <c-f><c-k> :tabc!<cr>
+
+" |--------------------|
+" | End Tab Mappings |
+" |--------------------|
+
+" |---------------------------|
+" | Begin Navigation Mappings |
+" |---------------------------|
+
+" Shift+dir to jump paragraphs
+nnoremap <S-k> <S-{>
+nnoremap <S-j> <S-}>
+vnoremap <S-k> <S-{>
+vnoremap <S-j> <S-}>
+
+" Shift+dir to jump to begin/end of line
+nnoremap <S-h> ^
+nnoremap <S-l> $
+vnoremap <S-h> ^
+vnoremap <S-l> $
+
+" Jump to exact spot in last modification line
+nnoremap <C-m> `.
+
+" Center screen after a Next
+nmap n nzz
+nmap N Nzz
+
+" Faster scrolling
+nnoremap <C-d> 5<C-e>
+nnoremap <C-u> 5<C-y>
+
+" |-------------------------|
+" | End Navigation Mappings |
+" |-------------------------|
+
+" |----------------------------------|
+" | Begin Clipboard/Yanking Settings |
+" |----------------------------------|
+
+" Sets the default register to use the "* reg on Windows.
+if has('win32')
+    set clipboard=unnamed
+else
+    set clipboard=unnamedplus
+endif
+
+" |--------------------------------|
+" | End Clipboard/Yanking Settings |
+" |--------------------------------|
+
+" |----------------------------|
+" | Begin Clipboard/Yanking Mappings |
+" |----------------------------|
+
+map <F2> :let @+ = expand("%")<cr>
 
 " Keybinding for substitute word with yanked register
 nmap <leader>pe ve"0p
@@ -332,40 +431,40 @@ nmap <leader>P "0P
 " Keybinding for paste yanked register when in visual mode
 vmap <leader>p "0p
 
-" Change virtualedit mode
-nmap <leader>vd :set virtualedit=""<cr>
-nmap <leader>va :set virtualedit=all<cr>
+" Yank from the cursor to the end of the line, to be consistent with C and D.
+nnoremap Y y$
 
-" Toggle SPell checker
-nmap <leader>sp :setlocal spell spelllang=en_us<cr>
-nmap <leader>sp :setlocal spell!<cr>
+" |----------------------------|
+" | End Clipboard/Yanking Mappings |
+" |----------------------------|
 
-" Spell Complete using the most likely suggestion
-nmap <leader>sc 1z=
+" |-----------------------------------|
+" | Begin Search and Replace Settings |
+" |-----------------------------------|
 
-" Spell Previous
-nmap <leader>sz [s
-" Spell Next
-nmap <leader>sx ]s
+" Set the default search to use smartcase
+set ignorecase
+set smartcase
 
-" Jump to exact spot in last modification line
-nnoremap <C-m> `.
+" Highlight all search matches
+set hlsearch
+" Highlight all search matches while searching
+set incsearch
 
-" Center screen after a Next
-nmap n nzz
-nmap N Nzz
+" |---------------------------------|
+" | End Search and Replace Settings |
+" |---------------------------------|
 
-function! FzfSpellSink(word)
-  exe 'normal! "_ciw'.a:word
-endfunction
+" |-----------------------------------|
+" | Begin Search and Replace Mappings |
+" |-----------------------------------|
 
-function! FzfSpell()
-  let suggestions = spellsuggest(expand("<cword>"))
-  return fzf#run({'source': suggestions, 'sink': function("FzfSpellSink"), 'down': 10 })
-endfunction
+" Unhighlight search terms with leader+space
+nnoremap <leader><space> :noh<cr>
 
-" Spell Suggest using fzf
-nmap <leader>ss :call FzfSpell()<CR>
+" Set search to very-magic
+nnoremap / /\v
+cnoremap %s/ %s/\v
 
 " Prepare RipGrep with an empty argument without execution
 nnoremap <leader>re :Rg
@@ -380,39 +479,45 @@ nnoremap <leader>rw :%s/<C-r>=expand("<cword>")<CR>//g
 " RePlace word
 nnoremap <leader>rp :%s/<C-r>=expand("<cword>")<CR>/<C-r>=expand("<cword>")<CR>/g
 
-" Alias for :Buffers
-nnoremap <leader>b :Buffers<Cr>
+" |-----------------------------|
+" | End Search and Replace Mappings |
+" |-----------------------------|
 
-" Alias for :e! (force reload buffer)
-nnoremap <leader>e :e!<Cr>
+" |-------------------------|
+" | Begin Spelling Mappings |
+" |-------------------------|
 
-" Alias for :A (switching source/header with a.vim)
-nnoremap <leader>a :A<Cr>
+" Toggle SPell checker
+nmap <leader>sp :setlocal spell spelllang=en_us<cr>
+nmap <leader>sp :setlocal spell!<cr>
 
-" Edit vimr configuration file
-nnoremap <leader>ve :e $MYVIMRC<CR>
-" Reload vimr configuration file
-nnoremap <leader>vr :source $MYVIMRC<CR>
+" Spell Complete using the most likely suggestion
+nmap <leader>sc 1z=
 
-" Faster scrolling
-nnoremap <C-d> 5<C-e>
-nnoremap <C-u> 5<C-y>
+" Spell Previous
+nmap <leader>sz [s
+" Spell Next
+nmap <leader>sx ]s
 
-" Map Ctrl+z/x to decrement/increment
-nnoremap <C-z> <C-x>
-nnoremap <C-x> <C-a>
+function! FzfSpellSink(word)
+  exe 'normal! "_ciw'.a:word
+endfunction
 
-" Shortcut for Yes/No for enabling paste mode
-nnoremap <leader>py :set paste<Cr>
-nnoremap <leader>pn :set nopaste<Cr>
+function! FzfSpell()
+  let suggestions = spellsuggest(expand("<cword>"))
+  return fzf#run({'source': suggestions, 'sink': function("FzfSpellSink"), 'down': 10 })
+endfunction
 
-" Clean up pasted in text, replacing large whitespace with newlines and
-" removing line numbers
-nnoremap <leader><C-v> :%s/ \{5,\}/\r/g<CR> :%s/^[0-9]\+ *//g<CR>
+" Spell Suggest using fzf
+nmap <leader>ss :call FzfSpell()<CR>
 
-" Trigger a highlight in the appropriate direction for quick-scope
-"let g:qs_enable=0
-let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
+" |-------------------|
+" | End Spelling Mappings |
+" |-------------------|
+
+" |------------------------|
+" | Begin Custom Functions |
+" |------------------------|
 
 function! MarkdownBookmark()
     :s/.*/\L&/g
@@ -447,6 +552,14 @@ endfunction
 " Map java constant case functions to keys
 nmap <leader>ju :call JavaUpperCase()<Cr>
 nmap <leader>jl :call JavaLowerCase()<Cr>
+
+" |------------------|
+" | End Custom Functions |
+" |------------------|
+
+" |------------------------------------------|
+" | Begin Tag, swap and backup file settings |
+" |------------------------------------------|
 
 " generate datebases in my cache directory, prevent gtags files polluting my project
 let g:gutentags_cache_dir = expand('~/.cache/tags')
@@ -503,3 +616,8 @@ set directory-=~/
 set directory+=.
 set directory^=~/.vim/swap//
 set swapfile
+
+" |------------------------------------------|
+" | End Tag, swap and backup file settings |
+" |------------------------------------------|
+
