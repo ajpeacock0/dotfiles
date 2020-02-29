@@ -7,9 +7,9 @@ popd > /dev/null
 
 # Create the symlinks to the dot files
 echo "Creating symlinks from $SCRIPTPATH to ~"
-ln -f -s $SCRIPTPATH/vim/.vimrc ~/.vimrc
-ln -f -s $SCRIPTPATH/zsh/.zshrc ~/.zshrc
-ln -f -s $SCRIPTPATH/zsh/.p10k.zsh ~/.p10k.zsh
+ln -f -s $SCRIPTPATH/.vimrc ~/.vimrc
+ln -f -s $SCRIPTPATH/.zshrc ~/.zshrc
+ln -f -s $SCRIPTPATH/.p10k.zsh ~/.p10k.zsh
 ln -f -s $SCRIPTPATH/.gitconfig ~/.gitconfig
 ln -f -s $SCRIPTPATH/.inputrc ~/.inputrc
 

@@ -26,3 +26,20 @@ sudo pip3 install thefuck
 # Install GO and the path-extractor
 sudo apt-get install golang
 go get github.com/edi9999/path-extractor/path-extractor
+
+# Download the Vim plugin manager
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
+# Install the gnome Vim version which has clipboard support
+sudo apt-get install vim-gnome
+
+# Install zsh
+sudo apt-get install -y zsh
+
+# Change the shell to zsh and install "oh-my-zsh"
+chsh -s $(which zsh)
+sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
+
+# Downloaded ZSH theme
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k
