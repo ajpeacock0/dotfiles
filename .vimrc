@@ -200,7 +200,6 @@ set noshowmode
 
 " Visual
 colorscheme jellybeans
-"colorscheme gruvbox
 
 " Relative line number
 set number                     " Show current line number
@@ -225,8 +224,11 @@ if &t_Co == 256
     endif
 endif
 
-" Ensure Powershell uses correct colors
-set termguicolors
+" Note: `set termguicolors` fixes Powershell colors, but causes significant UI glitches
+if &t_Co == 16
+    " TODO: Set a improved 16 color supported theme
+endif
+
 
 " |------------------|
 " | End GUI Settings |
