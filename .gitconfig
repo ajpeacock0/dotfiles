@@ -28,8 +28,8 @@
   updatesub = submodule update --recursive --init
   # Force rename a file, normally case differences in git name to local name
   mv = mv -f
-  # Push to origin HEAD with force. TODO: Make this rebor, check to see if you still want to push afterwards to avoid conflicts since last rebase
-  submit = push origin +HEAD
+  # Push to origin HEAD with force.
+  submit = !"git fetch origin && git rebase origin/master --stat && git push origin +HEAD"
   # Shortcut for ls-files
   ls = ls-files -v
   # List ignored files
