@@ -205,7 +205,7 @@ colorscheme jellybeans
 set number                     " Show current line number
 set relativenumber             " Show relative line numbers
 
-set guifont=FuraCode_NF:h11
+set guifont+=FuraCode_NF:h11
 set guifont+=Fira_Code:h11
 set guifont+=Consolas:h11
 
