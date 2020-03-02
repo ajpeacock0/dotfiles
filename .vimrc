@@ -307,9 +307,9 @@ set softtabstop=4
 " Convert tabs to spaces
 set expandtab
 
-" |----------------------------------|
+" |--------------------------------|
 " | End Line Modification Settings |
-" |----------------------------------|
+" |--------------------------------|
 
 " |----------------------------------|
 " | Begin Line Modification Mappings |
@@ -337,9 +337,9 @@ inoremap {;<CR> {<CR>};<ESC>O
 nnoremap <C-z> <C-x>
 nnoremap <C-x> <C-a>
 
-" |----------------------------------|
+" |--------------------------------|
 " | End Line Modification Mappings |
-" |----------------------------------|
+" |--------------------------------|
 
 " |--------------------|
 " | Begin Tab Mappings |
@@ -368,9 +368,9 @@ nnoremap <c-n> :tabnew<cr>
 nnoremap <c-k> :tabc<cr>
 nnoremap <c-f><c-k> :tabc!<cr>
 
-" |--------------------|
+" |------------------|
 " | End Tab Mappings |
-" |--------------------|
+" |------------------|
 
 " |---------------------------|
 " | Begin Navigation Mappings |
@@ -387,9 +387,6 @@ nnoremap <S-h> ^
 nnoremap <S-l> $
 vnoremap <S-h> ^
 vnoremap <S-l> $
-
-" Jump to exact spot in last modification line
-nnoremap <C-m> `.
 
 " Center screen after a Next
 nmap n nzz
@@ -418,9 +415,9 @@ endif
 " | End Clipboard/Yanking Settings |
 " |--------------------------------|
 
-" |----------------------------|
+" |----------------------------------|
 " | Begin Clipboard/Yanking Mappings |
-" |----------------------------|
+" |----------------------------------|
 
 " Yank the Name of the current file
 nmap <leader>yn :let @+ = expand("%")<cr>
@@ -437,9 +434,9 @@ vmap <leader>p "0p
 " Yank from the cursor to the end of the line, to be consistent with C and D.
 nnoremap Y y$
 
-" |----------------------------|
+" |--------------------------------|
 " | End Clipboard/Yanking Mappings |
-" |----------------------------|
+" |--------------------------------|
 
 " |-----------------------------------|
 " | Begin Search and Replace Settings |
@@ -482,9 +479,9 @@ nnoremap <leader>rw :%s/<C-r>=expand("<cword>")<CR>//g
 " RePlace word
 nnoremap <leader>rp :%s/<C-r>=expand("<cword>")<CR>/<C-r>=expand("<cword>")<CR>/g
 
-" |-----------------------------|
+" |---------------------------------|
 " | End Search and Replace Mappings |
-" |-----------------------------|
+" |---------------------------------|
 
 " |-------------------------|
 " | Begin Spelling Mappings |
@@ -514,9 +511,9 @@ endfunction
 " Spell Suggest using fzf
 nmap <leader>ss :call FzfSpell()<CR>
 
-" |-------------------|
+" |-----------------------|
 " | End Spelling Mappings |
-" |-------------------|
+" |-----------------------|
 
 " |------------------------|
 " | Begin Custom Functions |
@@ -556,9 +553,9 @@ endfunction
 nmap <leader>ju :call JavaUpperCase()<Cr>
 nmap <leader>jl :call JavaLowerCase()<Cr>
 
-" |------------------|
+" |----------------------|
 " | End Custom Functions |
-" |------------------|
+" |----------------------|
 
 " |------------------------------------------|
 " | Begin Tag, swap and backup file settings |
