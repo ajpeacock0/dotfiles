@@ -422,7 +422,8 @@ endif
 " | Begin Clipboard/Yanking Mappings |
 " |----------------------------|
 
-map <F2> :let @+ = expand("%")<cr>
+" Yank the Name of the current file
+nmap <leader>yn :let @+ = expand("%")<cr>
 
 " Keybinding for substitute word with yanked register
 nmap <leader>pe ve"0p
