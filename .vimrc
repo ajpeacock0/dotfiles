@@ -396,6 +396,13 @@ nmap N Nzz
 nnoremap <C-d> 5<C-e>
 nnoremap <C-u> 5<C-y>
 
+" Shortcut to the position where the last change was made.
+nmap <leader>mm `.
+" Shortcut to the first character of the previously changed or YANKED text
+nmap <leader>my `[
+" Shortcut to the position where the cursor was the last time when INSERT mode was stopped.
+nmap <leader>mi `^
+
 " |-------------------------|
 " | End Navigation Mappings |
 " |-------------------------|
