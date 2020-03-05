@@ -15,7 +15,10 @@ ln "${Env:UserProfile}\git_repos\dotfiles\.gitconfig" "${Env:UserProfile}\.gitco
 # Link the Windows Terminal Profiles. TODO: Change assumed "git_repos\dotfiles" path to use scriptDirectory
 # DO NOT remove the previous `profiles.json` as this is only meant to be a starting point, not kept in sync
 # due to differences in machine configuration, similar a .ssh config.
-cp "${Env:UserProfile}\git_repos\dotfiles\profiles.json" "$Env:LocalAppData\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\profiles.json"
+$WindowsTerminalProfiles = "$Env:LocalAppData\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\profiles.json"
+if (-Not (Test-Path -Path $WindowsTerminalProfiles)){
+    cp "${Env:UserProfile}\git_repos\dotfiles\profiles.json" $WindowsTerminalProfiles
+}
 
 ## Vim Section
 
