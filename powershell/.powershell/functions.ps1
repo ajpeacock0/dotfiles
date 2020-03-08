@@ -8,3 +8,4 @@ $scriptDirectory = (Split-Path -parent $MyInvocation.MyCommand.Definition)
 . $scriptDirectory\functions\Add-Path.ps1
 . $scriptDirectory\functions\Remove-Path.ps1
 . $scriptDirectory\functions\Delete-Item.ps1
+. $scriptDirectory\functions\Where-Item.ps1
