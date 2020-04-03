@@ -292,6 +292,10 @@ nnoremap <leader>pn :set nopaste<Cr>
 " | Begin Line Modification Settings |
 " |----------------------------------|
 
+" Display tabs as characters
+set list
+set listchars=tab:>-
+
 set autoindent
 set smartindent
 
@@ -323,7 +327,7 @@ vnoremap <c-j> <S-j>
 nmap <leader>sw :StripWhitespace<cr>
 
 " Change all the existing tab characters to match the current tab settings
-nmap <leader>tab :retab<cr>
+nmap <leader>tab :set et<cr> :ret!<cr>
 
 " Gheto custom autoclose mappings
 inoremap ( ()<left>
