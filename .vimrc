@@ -329,6 +329,9 @@ nmap <leader>sw :StripWhitespace<cr>
 " Change all the existing tab characters to match the current tab settings
 nmap <leader>tab :set et<cr> :ret!<cr>
 
+" From the current line to EOF, insert new line for each match of the cursor WORD
+nnoremap <leader>o :.,$g/<C-r>=expand("<cWORD>")<CR>/normal o
+
 " Gheto custom autoclose mappings
 inoremap ( ()<left>
 inoremap [ []<left>
