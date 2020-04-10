@@ -284,6 +284,10 @@ nnoremap <leader>vr :source $MYVIMRC<CR>
 nnoremap <leader>py :set paste<Cr>
 nnoremap <leader>pn :set nopaste<Cr>
 
+" Shortcut for Yes/No for enabling diff mode
+nnoremap <leader>dy :windo diffthis<Cr>
+nnoremap <leader>dn :windo diffoff<Cr>
+
 " |----------------------|
 " | End General Mappings |
 " |----------------------|
