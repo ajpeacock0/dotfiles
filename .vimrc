@@ -503,6 +503,13 @@ nnoremap <leader>rw :%s/<C-r>=expand("<cword>")<CR>//g
 " RePlace word
 nnoremap <leader>rp :%s/<C-r>=expand("<cword>")<CR>/<C-r>=expand("<cword>")<CR>/g
 
+" Pull word under cursor into LHS of a substitute (find and replace) in all tabs
+nnoremap <leader>trr :tabdo %s#\<<C-r>=expand("<cword>")<CR>\>#
+" Same thing, but global within the line and don't match whole word in all tabs
+nnoremap <leader>trw :tabdo %s/<C-r>=expand("<cword>")<CR>//g
+" RePlace word in all tabs
+nnoremap <leader>trp :tabdo %s/<C-r>=expand("<cword>")<CR>/<C-r>=expand("<cword>")<CR>/g
+
 " |---------------------------------|
 " | End Search and Replace Mappings |
 " |---------------------------------|
