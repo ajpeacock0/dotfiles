@@ -195,6 +195,12 @@ let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 " Show a real status line
 set laststatus=2
 
+" Always show the tabline
+set showtabline=2
+
+" Increase the number of tabs open at startup
+set tabpagemax=15
+
 " Hide the default mode indicator (using lightline instead)
 set noshowmode
 
