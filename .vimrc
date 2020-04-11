@@ -82,6 +82,9 @@ Plug 'matze/vim-move'
 " Improved status line (e.g. file named)
 Plug 'itchyny/lightline.vim'
 
+" Tmux statusline generator
+Plug 'edkolev/tmuxline.vim'
+
 " Toggle surroundings around text
 Plug 'tpope/vim-surround'
 
@@ -235,6 +238,9 @@ if &t_Co == 16
     " TODO: Set a improved 16 color supported theme
 endif
 
+if executable('tmux') && filereadable(expand('~/.zshrc')) && $TMUX !=# ''
+  let g:tmuxline_preset = 'tmux'
+endif
 
 " |------------------|
 " | End GUI Settings |
