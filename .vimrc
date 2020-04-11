@@ -145,7 +145,10 @@ endif
 if (executable('fzf'))
     " Remap CtrlP mappings to FZF
     nnoremap <c-p> :Files<Cr>
+    " Run Fzf and open buffer in new tab
     nnoremap <c-o> :call fzf#run({'sink': 'tabedit', 'options': '--multi'})<Cr>
+    " Run Fzf using git ls-files (useful for finding hidden, but not ignored, files)
+    nnoremap <c-g> :call fzf#run({'source': 'git ls-files', 'sink': 'e'})<Cr>
     nnoremap <Leader>ct :Tags<Cr>
     " Search tags with the word under the cursor
     nnoremap <Leader>cw :execute 'Tags ' . expand('<cword>')<Cr>
