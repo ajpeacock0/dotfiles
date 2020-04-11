@@ -302,6 +302,12 @@ bind C-n new-session
 # kill session
 bind C-k kill-session
 
+# choose sessions
+bind C-p choose-tree
+
+# choose client
+bind C-P choose-client
+
 # find session
 bind C-f command-prompt -p find-session 'switch-client -t %%'
 
@@ -318,6 +324,9 @@ bind -r M-h swap-window -t -1
 bind -r M-l swap-window -t +1
 
 ## Pane Bindings
+
+# Unbind the previous close with prompt
+unbind x
 
 # kill pane
 bind c kill-pane
