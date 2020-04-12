@@ -306,7 +306,7 @@ bind C-k kill-session
 bind C-p choose-tree
 
 # choose client
-bind C-P choose-client
+bind M-p choose-client
 
 # find session
 bind C-f command-prompt -p find-session 'switch-client -t %%'
