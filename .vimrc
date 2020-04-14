@@ -178,7 +178,7 @@ let g:strip_whitespace_on_save = 1
 let g:rainbow_active = 1
 
 " Set the textwidth for Markdown files
-au FileType markdown setlocal textwidth=100
+au FileType markdown setlocal textwidth=110
 
 " Vim Markdown settings
 let g:vim_markdown_folding_disabled = 1
