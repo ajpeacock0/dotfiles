@@ -172,7 +172,7 @@ endif
 let g:table_mode_corner='|'
 
 " Tell vim-whitespace to strip whitespace on save
-let g:strip_whitespace_on_save = 1
+let g:strip_whitespace_on_save = 0
 
 " Enable Rainbow Parenthesis
 let g:rainbow_active = 1
