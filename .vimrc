@@ -210,6 +210,9 @@ set tabpagemax=15
 " Hide the default mode indicator (using lightline instead)
 set noshowmode
 
+" Open new splits to the bottom or right side
+set splitbelow splitright
+
 " Visual
 colorscheme jellybeans
 
