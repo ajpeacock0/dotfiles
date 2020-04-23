@@ -538,9 +538,9 @@ nmap <leader>sp :setlocal spell!<cr>
 nmap <leader>sc 1z=
 
 " Spell Previous
-nmap <leader>sz [s
+nmap <leader>sn [s
 " Spell Next
-nmap <leader>sx ]s
+nmap <leader>sm ]s
 
 function! FzfSpellSink(word)
   exe 'normal! "_ciw'.a:word
