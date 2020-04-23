@@ -397,6 +397,10 @@ nnoremap <c-n> :tabnew<cr>
 nnoremap <c-k> :tabc<cr>
 nnoremap <c-f><c-k> :tabc!<cr>
 
+" Map Ctrl+w and angle brackets to move window splits (matching Tmux)
+nmap <C-w>< <C-w><S-H>
+nmap <C-w>> <C-w><S-L>
+
 " |------------------|
 " | End Tab Mappings |
 " |------------------|
