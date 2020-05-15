@@ -1,7 +1,7 @@
 {
     "$schema": "https://aka.ms/terminal-profiles-schema",
 
-    "defaultProfile": "{75f5008f-ca1a-492c-81f9-a2d7caab6306}",
+    "defaultProfile": "{2c4de342-38b7-51cf-b940-2309a097f518}",
 
     "profiles":
     {
@@ -14,7 +14,7 @@
             "cursorShape": "vintage",
             "startingDirectory" : "%USERPROFILE%",
             "fontFace": "FuraCode NF",
-            "fontSize": 11,
+            "fontSize": 12,
             "hidden": false
         },
         "list":
