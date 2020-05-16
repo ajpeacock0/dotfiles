@@ -7,6 +7,10 @@ scoop install vim fd fzf ripgrep git sudo
 scoop bucket add nerd-font
 sudo scoop install FiraCode-NF
 
+# Install XLaunch from extras vcxsrv
+scoop bucket add extras
+scoop install vcxsrv
+
 # Install Vim-Plug
 md ~\vimfiles\autoload
 $uri = 'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
