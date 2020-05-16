@@ -12,17 +12,10 @@ My dotfile repo contains configuration files for
 
 These are ordered in recommended calling order.
 
-### `zsh/install.sh`
-
-Installs `zsh` + `oh-my-zsh` and changes the default shell to zsh. You might need to log out to have the default shell change take affect.
-
 ### `install_tools.sh`
 
-Downloads and installs tools I can't have a Unix shell without.
-
-### `vim/install.sh`
-
-Installs a plugin manager and my perfered Vim version.
+Downloads and installs tools I can't have a Unix shell without. Installs `zsh` + `oh-my-zsh` and changes the
+default shell to zsh. You might need to log out to have the default shell change take affect.
 
 ### `link.sh`
 
@@ -32,6 +25,10 @@ Creates symlinks for all linux dotfiles and tool configurations.
 
 These setup scripts were written for Powershell-Core, and so may not run successfully on standard
 Powershell.
+
+### `install_tools.ps1`
+
+Downloads and installs tools I can't have a Powershell shell without, as well as downloads Vim plugin manager.
 
 ### `powershell/install_modules.ps1`
 
@@ -57,9 +54,3 @@ This is after you run `export` to your `pwsh.exe` path, e.g.
 export PWSH %ProgramFiles%\PowerShell\6\pwsh.exe
 ```
 For increased flexibility across multiple machines, I use the "commandline" argument. 
-
-### `vim/install.ps1`
-
-### `vim/link.ps1`
-
-**This must be done with admin permissions.** 
