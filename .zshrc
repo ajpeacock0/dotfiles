@@ -328,6 +328,8 @@ if fd_loc="$(type -p fd)" && [[ -n $fd_loc ]]; then
     export FZF_DEFAULT_COMMAND='fd --type file'
 fi
 
+export FZF_DEFAULT_OPTS='--no-mouse'
+
 # Local variables
 [[ ! -f ~/.vars.zsh ]] || source ~/.vars.zsh
 
