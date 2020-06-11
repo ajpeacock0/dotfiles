@@ -74,6 +74,8 @@
   add-untracked = !"echo -e "a\n*\nq\n" | git add -i"
   # Undo the last commit, making them uncommited changes
   reset-h = reset HEAD~
+  # Set the file to the commit before the last one
+  uncommit = !"f() { git sw HEAD~1 \"$@\" && git reset \"$@\"; }; f"
   # Discard all non-commited changes
   discard = checkout --
   # Reset back to the state before the last executed git command
