@@ -113,6 +113,10 @@ Plug 'ntpeters/vim-better-whitespace'
 " Formatting Markdown tables
 Plug 'dhruvasagar/vim-table-mode'
 
+" Omni-completion TypeScript (Disabled since it creates files which cannot be
+" deleted when run in Windows repos)
+Plug 'quramy/tsuquyomi'
+
 " Initialize plugin system
 call plug#end()
 
@@ -189,6 +193,10 @@ set conceallevel=0
 " Trigger a highlight in the appropriate direction for quick-scope
 "let g:qs_enable=0
 let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
+
+" Stop Typescript errors being shown on buffer save
+let g:tsuquyomi_disable_quickfix = 1
+autocmd FileType typescript setlocal completeopt+=menu,preview
 
 " |---------------------|
 " | End Plugin Settings |
