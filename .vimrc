@@ -401,6 +401,11 @@ nnoremap <c-f><c-k> :tabc!<cr>
 nmap <C-w>< <C-w><S-H>
 nmap <C-w>> <C-w><S-L>
 
+" Shortcut to open empty vertical buffer
+nmap <leader>vn :vnew<cr>
+" Shortcut to open empty horizontal buffer
+nmap <leader>sn :new<cr>
+
 " |------------------|
 " | End Tab Mappings |
 " |------------------|
@@ -542,9 +547,9 @@ nmap <leader>sp :setlocal spell!<cr>
 nmap <leader>sc 1z=
 
 " Spell Previous
-nmap <leader>sn [s
+nmap <leader>sa [s
 " Spell Next
-nmap <leader>sm ]s
+nmap <leader>sd ]s
 
 function! FzfSpellSink(word)
   exe 'normal! "_ciw'.a:word
