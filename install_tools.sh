@@ -34,6 +34,9 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 # Install the gnome Vim version which has clipboard support
 sudo apt-get install vim-gnome
 
+# Download a diff tool for git
+git clone https://github.com/so-fancy/diff-so-fancy.git ~/.diff-so-fancy
+
 # Install zsh
 sudo apt-get install -y zsh
 

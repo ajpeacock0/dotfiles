@@ -316,6 +316,12 @@ eval $(thefuck --alias)
 alias pe="path-extractor"
 alias -g PE='| pe | fzf | read filename; [ ! -z $filename ] && $EDITOR $filename'
 
+# Add "diff-so-fancy" to PATH
+export PATH=$PATH:~/.diff-so-fancy
+
+# Alias for using git with diff-so-fancy. Not a git alias due to Windows issues
+alias gdf='git df | diff-so-fancy'
+
 # Open all git conflicts using Vim
 alias gfix='vim +/HEAD `git diff --name-only | uniq`'
 
