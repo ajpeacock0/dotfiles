@@ -28,6 +28,7 @@ deleteitem "${Env:UserProfile}\scoop\apps\vim\current\_vimrc"
 deleteitem "${Env:UserProfile}\.gvimrc"
 deleteitem "${Env:UserProfile}\.vimrc"
 deleteitem "${Env:UserProfile}\.vim"
+deleteitem "${Env:UserProfile}\AppData\Local\nvim\init.vim"
 
 # Link the .gitconfig to home. TODO: Change assumed "git_repos\dotfiles" path to use scriptDirectory
 ln "${Env:UserProfile}\git_repos\dotfiles\.vimrc" "${Env:UserProfile}\.vimrc"
@@ -38,3 +39,7 @@ ln "${Env:UserProfile}\git_repos\dotfiles\.gvimrc" "${Env:UserProfile}\.gvimrc" 
 
 # Link the Windows vimfiles to Unix style location
 ln "${Env:UserProfile}\vimfiles" "${Env:UserProfile}\.vim"
+
+# Link the init.vim to nvim AppData. TODO: Change assumed "git_repos\dotfiles" path to use scriptDirectory
+ln "${Env:UserProfile}\git_repos\dotfiles\init.vim" "${Env:UserProfile}\AppData\Local\nvim\init.vim"
+
