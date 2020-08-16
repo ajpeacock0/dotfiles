@@ -2,14 +2,6 @@
 " | Begin Plugin List |
 " |-------------------|
 
-" Ensure VimPlug is installed
-" This is disabled on Windows since curl doesn't use '~'
-if !has('win32') && empty(glob('~/.vim/autoload/plug.vim'))
-    silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-endif
-
 call plug#begin('~/AppData/Local/nvim/plugged')
 
 " Autocompletion Plugin and depencencies
