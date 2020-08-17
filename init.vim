@@ -1,3 +1,5 @@
+set nocompatible
+
 " |-------------------|
 " | Begin Plugin List |
 " |-------------------|
@@ -24,6 +26,7 @@ Plug 'scrooloose/nerdcommenter'
 
 " Theme Plugin
 Plug 'nanotech/jellybeans.vim'
+Plug 'w0ng/vim-hybrid'
 Plug 'morhetz/gruvbox'
 
 " Side windows displaying buffers
@@ -174,6 +177,7 @@ set noshowmode
 set splitbelow splitright
 
 " Visual
+set background=dark
 colorscheme jellybeans
 
 " Relative line number
@@ -199,14 +203,12 @@ if &t_Co == 256
     endif
 endif
 
-" Note: `set termguicolors` fixes Powershell colors, but causes significant UI glitches
-if &t_Co == 16
-    " TODO: Set a improved 16 color supported theme
-endif
-
 if executable('tmux') && filereadable(expand('~/.zshrc')) && $TMUX !=# ''
   let g:tmuxline_preset = 'tmux'
 endif
+
+" Disable automatic setting of the cursor
+set guicursor=
 
 " |------------------|
 " | End GUI Settings |
