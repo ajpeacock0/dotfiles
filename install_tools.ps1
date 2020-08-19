@@ -1,7 +1,7 @@
 # Install the latest vim from scoop
 # Along with the tools fd and fzf for
 # file searching
-scoop install vim fd fzf ripgrep git sudo
+scoop install vim neovim fd fzf ripgrep git sudo
 
 # Install FiraCode from NerdFont
 scoop bucket add nerd-font
@@ -9,7 +9,7 @@ sudo scoop install FiraCode-NF
 
 # Install XLaunch from extras vcxsrv
 scoop bucket add extras
-scoop install vcxsrv
+scoop install vcxsrv extras/vcredist2015
 
 # Install Vim-Plug
 md ~\vimfiles\autoload
