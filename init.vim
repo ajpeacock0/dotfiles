@@ -342,7 +342,9 @@ inoremap <C-l> <C-\><C-N>:tabnext<CR>
 
 " Map Ctrl-h to go to previous tab
 noremap <C-h> :<C-U>tabprevious<CR>
-inoremap <C-h> <C-\><C-N>:tabprevious<CR>
+" Disabled due to: https://github.com/microsoft/terminal/issues/5957
+" Backspace and CTRL+h share the same keycode
+"inoremap <C-h> <C-\><C-N>:tabprevious<CR>
 
 " Map Alt-h to go to move this tab to the left
 noremap <M-h> :<C-U>-tabmove<CR>
