@@ -31,7 +31,7 @@
   # Push to origin HEAD with force.
   submit = !"git fetch origin && git rebase origin/master --stat && git push origin +HEAD"
   # Push to origin HEAD with force with no rebase
-  submit-norb = !"git fetch origin && git rebase origin/master --stat && git push origin +HEAD"
+  submit-norb = !"git fetch origin && git push origin +HEAD"
   # Shortcut for ls-files
   ls = ls-files -v
   # List ignored files
