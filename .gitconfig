@@ -45,6 +45,8 @@
   sl = stash list --date=local
   sp = stash pop
   ss = stash show -p
+  # stash file
+  sf = stash push
 
   #### Rebase Shortcuts ####
   rb = rebase
