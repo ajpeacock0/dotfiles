@@ -21,6 +21,9 @@ Remove-PSReadlineKeyHandler 'Ctrl+r'
 # Powershell wrapper for FZF
 Import-Module PSFzf -SkipEditionCheck
 
+# Ensure zlocation is loaded
+Import-Module ZLocation
+
 #### Aliases ####
 
 # ll and ls aliases to use the new Get-ChildItemColor cmdlets
