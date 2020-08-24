@@ -76,6 +76,9 @@ Plug 'dhruvasagar/vim-table-mode'
 " deleted when run in Windows repos)
 Plug 'quramy/tsuquyomi'
 
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'deoplete-plugins/deoplete-jedi'
+
 " Initialize plugin system
 call plug#end()
 
@@ -152,6 +155,8 @@ let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 " Stop Typescript errors being shown on buffer save
 let g:tsuquyomi_disable_quickfix = 1
 autocmd FileType typescript setlocal completeopt+=menu,preview
+
+let g:deoplete#enable_at_startup = 1
 
 " |---------------------|
 " | End Plugin Settings |
