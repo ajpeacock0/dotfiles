@@ -1,7 +1,7 @@
 # Install the latest vim from scoop
 # Along with the tools fd and fzf for
 # file searching
-scoop install vim neovim fd fzf ripgrep git sudo
+scoop install vim neovim fd fzf ripgrep git sudo python
 
 # Install FiraCode from NerdFont
 scoop bucket add nerd-fonts
