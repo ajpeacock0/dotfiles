@@ -3,6 +3,9 @@
 # file searching
 scoop install vim neovim fd fzf ripgrep git sudo python
 
+# pynvim is needed for Vim to use Python
+python3 -m pip install --user --upgrade pynvim
+
 # Install FiraCode from NerdFont
 scoop bucket add nerd-fonts
 sudo scoop install FiraCode-NF
