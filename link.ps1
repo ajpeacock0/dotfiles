@@ -1,8 +1,7 @@
 # Powershell Link Script
 
 # Include Powershell functions, needed for the `ln` alias
-# You must first run the link.ps1 script for powershell
-. ~\.powershell\functions.ps1
+. powershell\.powershell\functions.ps1
 
 ## Git Section
 
