@@ -23,12 +23,25 @@ Creates symlinks for all linux dotfiles and tool configurations.
 
 ## Powershell scripts
 
-These setup scripts were written for Powershell-Core, and so may not run successfully on standard
-Powershell.
+You will first need to install `scoop`:
+
+```
+$ Set-ExecutionPolicy RemoteSigned -scope CurrentUser
+$ iwr -useb get.scoop.sh | iex
+```
+
+These setup scripts were written for Powershell-Core, and so may not run successfully on standard Powershell.
+I recommend installing Powershell-Core and switching to it before running the install scripts.
+
+```
+$ scoop install pwsh
+```
+
+From here you can install `git` using `scoop` and clone this repo.
 
 ### `install_tools.ps1`
 
-Downloads and installs tools I can't have a Powershell shell without, as well as downloads Vim plugin manager.
+Downloads and installs tools I can't have a Powershell shell without, as well as Vim plugin managers.
 
 ### `powershell/install_modules.ps1`
 
