@@ -30,8 +30,6 @@ Import-Module ZLocation
 Set-Alias ll Get-ChildItemColor -Option AllScope
 Set-Alias ls Get-ChildItemColorFormatWide -Option AllScope
 
-function Join-Files { Get-ChildItem -File | % { echo $_.Name; cat $_.Name >> joined_files } }
-
 # Set '~' location to the User Profile directory
 function cusorprofile { Set-Location ~ }
 Set-Alias ~ cusorprofile -Option AllScope
@@ -152,6 +150,9 @@ function U
 
     throw "Invalid character code $Code"
 }
+
+# Concatenates all files in the current directory into a joined file
+function Join-Files { Get-ChildItem -File | % { echo $_.Name; cat $_.Name >> joined_files } }
 
 #### Theme ####
 
