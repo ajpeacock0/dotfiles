@@ -1,6 +1,12 @@
 #### Version Statement ####
 
-echo "Powershell-Core profile (Updated 01.03.20)"
+echo "Powershell-Core profile (Updated 10.13.20)"
+
+#### Theme ####
+
+# Change the default the prompt to a oh-my-posh theme
+# Note this must be before ZLocation import, due to it's importing of oh-my-posh
+Set-Theme Paradox
 
 #### Module Imports ####
 
@@ -130,7 +136,7 @@ function gfix
     }
 }
 
-## Display the given Unicode value as a character. Used to test font support.
+# Display the given Unicode value as a character. Used to test font support.
 function U
 {
     param
@@ -153,11 +159,6 @@ function U
 
 # Concatenates all files in the current directory into a joined file
 function Join-Files { Get-ChildItem -File | % { echo $_.Name; cat $_.Name >> joined_files } }
-
-#### Theme ####
-
-# Change the default the prompt to a oh-my-posh theme
-Set-Theme Paradox
 
 #### Include local variables ####
 
