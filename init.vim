@@ -265,6 +265,9 @@ nnoremap <leader>ve :e $MYVIMRC<CR>
 " Reload vimr configuration file
 nnoremap <leader>vr :source $MYVIMRC<CR>
 
+" Shortcut for Vertical Explore
+nnoremap <leader>vx :Vex<CR>
+
 " Shortcut for Yes/No for enabling paste mode
 nnoremap <leader>py :set paste<Cr>
 nnoremap <leader>pn :set nopaste<Cr>
