@@ -24,6 +24,9 @@ Plug 'junegunn/fzf.vim'
 " Commenting
 Plug 'scrooloose/nerdcommenter'
 
+" NERDtree
+Plug 'preservim/nerdtree'
+
 " Theme Plugin
 Plug 'nanotech/jellybeans.vim'
 Plug 'w0ng/vim-hybrid'
@@ -157,6 +160,16 @@ let g:tsuquyomi_disable_quickfix = 1
 autocmd FileType typescript setlocal completeopt+=menu,preview
 
 let g:deoplete#enable_at_startup = 1
+
+" netrw Settings
+let g:netrw_banner = 0
+" open files in a new tab
+let g:netrw_browse_split = 3
+
+" nerdTree Toggle
+nnoremap <C-t> :NERDTreeToggle<CR>
+" Close vim if the only window left open is a NERDTree
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 " |---------------------|
 " | End Plugin Settings |
@@ -478,10 +491,6 @@ set incsearch
 
 " Unhighlight search terms with leader+space
 nnoremap <leader><space> :noh<cr>
-
-" Set search to very-magic
-nnoremap / /\v
-cnoremap %s/ %s/\v
 
 " Prepare RipGrep with an empty argument without execution
 nnoremap <leader>re :Rg
