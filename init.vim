@@ -228,6 +228,9 @@ endif
 " Disable automatic setting of the cursor
 set guicursor=
 
+" Check if any buffers were changed outside of Vim when changing focus
+au FocusGained,BufEnter * :checktime
+
 " |------------------|
 " | End GUI Settings |
 " |------------------|
