@@ -27,11 +27,11 @@ $uri = 'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 # Include Powershell functions, needed for the `touch` alias
 . powershell\.powershell\functions.ps1
 
-# Install Vim-Plug for NeoVim
+# Create config file for NeoVim
 md ~\AppData\Local\nvim
 touch ~\AppData\Local\nvim\init.vim
 
-# Install plugin-manager vim-plug
+# Install Vim-Plug for NeoVim
 md ~\AppData\Local\nvim\autoload
 $uri = 'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 (New-Object Net.WebClient).DownloadFile(

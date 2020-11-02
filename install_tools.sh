@@ -34,6 +34,19 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 # Install the gnome Vim version which has clipboard support
 sudo apt-get install vim-gnome
 
+# Download NeoVim
+curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
+chmod u+x nvim.appimage
+sudo mv nvim.appimage /usr/bin/nvim
+
+# Create config file for NeoVim
+md ~/.config/nvim
+touch ~/.config/nvim/init.vim
+
+# Download the NeoVim plugin manager
+curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
 # Download a diff tool for git
 git clone https://github.com/so-fancy/diff-so-fancy.git ~/.diff-so-fancy
 
