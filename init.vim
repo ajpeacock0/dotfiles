@@ -99,14 +99,6 @@ set backspace=indent,eol,start
 " | Begin Plugin Settings |
 " |-----------------------|
 
-" Needed in Linux Shell to send <Alt+j/k> for the `vim-move` plugin
-if !has('win32')
-    execute "set <M-j>=\ej"
-    execute "set <M-k>=\ek"
-    execute "set <M-h>=\eh"
-    execute "set <M-l>=\el"
-endif
-
 if (executable('fzf'))
     " Remap CtrlP mappings to FZF
     nnoremap <c-p> :Files<Cr>
