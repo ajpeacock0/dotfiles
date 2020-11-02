@@ -37,6 +37,13 @@ sudo apt-get install vim-gnome
 # Download a diff tool for git
 git clone https://github.com/so-fancy/diff-so-fancy.git ~/.diff-so-fancy
 
+# Install font
+echo "Download font: https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/FiraCode.zip"
+wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/FiraCode.zip
+mkdir -p ~/.fonts
+unzip FiraCode.zip -d ~/.fonts
+fc-cache -fv
+
 # Install zsh
 sudo apt-get install -y zsh
 
