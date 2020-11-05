@@ -386,6 +386,20 @@ nmap <leader>vn :vnew<cr>
 " Shortcut to open empty horizontal buffer
 nmap <leader>sn :new<cr>
 
+" Mappings for opening the native terminal
+if has('win32')
+    nnoremap <C-s><C-n> :tabnew term://pwsh<cr>
+    nnoremap <C-s><C-s> :split term://pwsh<cr>
+    nnoremap <C-s><C-v> :vsplit term://pwsh<cr>
+else
+    nnoremap <C-s><C-n> :tabnew term://zsh<cr>
+    nnoremap <C-s><C-s> :split term://zsh<cr>
+    nnoremap <C-s><C-v> :vsplit term://zsh<cr>
+endif
+
+" Custom map to exit terminal-mode
+tnoremap <C-s><C-c> <C-\><C-n>
+
 " |------------------|
 " | End Tab Mappings |
 " |------------------|
