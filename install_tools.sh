@@ -65,4 +65,10 @@ chsh -s $(which zsh)
 sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
 
 # Downloaded ZSH theme
-sudo git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k
+-sudo git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k
++if [ -z "$ZSH_CUSTOM" ]
++then
++    echo "\$ZSH_CUSTOM is NULL. Powerlevel10k theme will NOT be downloaded"
++else
++    sudo git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k
++fi
