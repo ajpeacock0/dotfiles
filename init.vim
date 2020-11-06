@@ -24,6 +24,9 @@ Plug 'junegunn/fzf.vim'
 " Commenting
 Plug 'scrooloose/nerdcommenter'
 
+" Bookmarks
+Plug 'MattesGroeger/vim-bookmarks'
+
 " NERDtree
 Plug 'preservim/nerdtree'
 
@@ -162,6 +165,15 @@ let g:netrw_browse_split = 3
 nnoremap <C-t> :NERDTreeToggle<CR>
 " Close vim if the only window left open is a NERDTree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+" Automatically close bookmarks split when jumping to a bookmark
+let g:bookmark_auto_close = 1
+
+" Disable warning when clearing all bookmarks
+let g:bookmark_show_warning = 0
+
+" Disables warning when toggling to clear a bookmark with annotation
+let g:bookmark_show_toggle_warning = 0
 
 " |---------------------|
 " | End Plugin Settings |
@@ -565,8 +577,6 @@ function! MarkdownBookmark()
     :s/.*/\L&/g
     :s/\ /-/g
 endfunction
-
-nmap <leader>mb :call MarkdownBookmark()<Cr>
 
 " Convert camal case to Java constant style
 function! JavaUpperCase()
