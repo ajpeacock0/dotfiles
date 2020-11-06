@@ -27,6 +27,9 @@ Plug 'scrooloose/nerdcommenter'
 " Bookmarks
 Plug 'MattesGroeger/vim-bookmarks'
 
+" Color Table Display
+Plug 'guns/xterm-color-table.vim'
+
 " NERDtree
 Plug 'preservim/nerdtree'
 
@@ -174,6 +177,8 @@ let g:bookmark_show_warning = 0
 
 " Disables warning when toggling to clear a bookmark with annotation
 let g:bookmark_show_toggle_warning = 0
+
+let g:bookmark_highlight_lines = 1
 
 " |---------------------|
 " | End Plugin Settings |
@@ -400,10 +405,12 @@ nmap <leader>sn :new<cr>
 
 " Mappings for opening the native terminal
 if has('win32')
+    nnoremap <C-s><C-e> :edit term://pwsh<cr>
     nnoremap <C-s><C-n> :tabnew term://pwsh<cr>
     nnoremap <C-s><C-s> :split term://pwsh<cr>
     nnoremap <C-s><C-v> :vsplit term://pwsh<cr>
 else
+    nnoremap <C-s><C-e> :edit term://zsh<cr>
     nnoremap <C-s><C-n> :tabnew term://zsh<cr>
     nnoremap <C-s><C-s> :split term://zsh<cr>
     nnoremap <C-s><C-v> :vsplit term://zsh<cr>
