@@ -178,7 +178,13 @@ let g:bookmark_show_warning = 0
 " Disables warning when toggling to clear a bookmark with annotation
 let g:bookmark_show_toggle_warning = 0
 
+" Center when jumping to bookmark
+let g:bookmark_center = 1
+
+" Highlight the line when bookmarked
 let g:bookmark_highlight_lines = 1
+
+let g:bookmark_annotation_sign = '♠'
 
 " |---------------------|
 " | End Plugin Settings |
@@ -229,6 +235,11 @@ if &t_Co == 256
         set termguicolors
     endif
 endif
+
+highlight BookmarkSign guibg=#303030 guifg=#870000
+highlight BookmarkAnnotationSign guibg=#303030 guifg=#5fdf00
+highlight BookmarkLine guibg=#262626 guifg=None
+highlight BookmarkAnnotationLine guibg=#303030 guifg=None
 
 if executable('tmux') && filereadable(expand('~/.zshrc')) && $TMUX !=# ''
   let g:tmuxline_preset = 'tmux'
