@@ -3,7 +3,7 @@
     name = Andrew Peacock
 
 [core]
-    editor = vim 
+    editor = nvim 
     whitespace = trailing-space,space-before-tab
 
 [credential]
