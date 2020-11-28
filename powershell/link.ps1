@@ -1,9 +1,27 @@
-# Include Powershell functions, needed for the `ln` alias
+# Include Powershell functions, needed for the link function
 . .\.powershell\functions.ps1
 
-# Link the .powershell config files to home. TODO: Change assumed "git_repos\dotfiles" path to use scriptDirectory
-ln "${Env:UserProfile}\git_repos\dotfiles\powershell\.powershell" "${Env:UserProfile}\.powershell"
+# TODO: Change assumed "git_repos\dotfiles" path to use scriptDirectory
+$Script:DotfilesPowerShell = "${Env:UserProfile}\git_repos\dotfiles\powershell"
 
-# Link the profile to it's Windows location. TODO: Change assumed "git_repos\dotfiles" path to use scriptDirectory
-mkdir "${Env:UserProfile}\Documents\Powershell" # ensure the Powershell directory exists
-ln "${Env:UserProfile}\git_repos\dotfiles\powershell\profile.ps1" "${Env:UserProfile}\Documents\Powershell\Microsoft.PowerShell_profile.ps1"
+# Create PowerShell directory if it doesn't already exist
+$Script:WindowsPowerShellHome = "${Env:UserProfile}\Documents\WindowsPowerShell"
+if (-not (Test-Path $Script:WindowsPowerShellHome)) {
+    New-Item -Path $Script:WindowsPowerShellHome -ItemType 'Directory'
+}
+
+# Use the same directory for Windows PowerShell and PowerShell Core
+$Script:PowerShellCoreHome = "${Env:UserProfile}\Documents\PowerShell"
+New-Link -TargetPath $Script:WindowsPowerShellHome -LinkPath $Script:PowerShellCoreHome -LinkType 'Junction'
+
+# If the user's documents directory is not at '~/Documents', link the PowerShell directories into place there too.
+# This will be the case if 'Documents' is being backed up to OneDrive.
+$Script:MyDocumentsPath = [Environment]::GetFolderPath("MyDocuments")
+if ($Script:MyDocumentsPath -ne "${Env:UserProfile}\Documents") {
+    New-Link -TargetPath $Script:WindowsPowerShellHome -LinkPath "${Script:MyDocumentsPath}\WindowsPowerShell" -LinkType 'Junction'
+    New-Link -TargetPath $Script:PowerShellCoreHome -LinkPath "${Script:MyDocumentsPath}\PowerShell" -LinkType 'Junction'
+}
+
+# Link PowerShell profile into place
+$Script:PowerShellProfile = "${Script:WindowsPowerShellHome}\Microsoft.PowerShell_profile.ps1"
+New-Link -TargetPath "${Script:DotfilesPowerShell}\profile.ps1" -LinkPath $Script:PowerShellProfile -LinkType 'SymbolicLink'
