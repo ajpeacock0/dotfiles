@@ -14,29 +14,37 @@ sudo scoop install FiraCode-NF
 scoop bucket add extras
 scoop install vcxsrv extras/vcredist2015
 
-# Install Vim-Plug for Vim
-md ~\vimfiles\autoload
-$uri = 'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-(New-Object Net.WebClient).DownloadFile(
-  $uri,
-  $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath(
-    "~\vimfiles\autoload\plug.vim"
-  )
-)
-
 # Include Powershell functions, needed for the `touch` alias
 . powershell\.powershell\functions.ps1
 
-# Create config file for NeoVim
-md ~\AppData\Local\nvim
-touch ~\AppData\Local\nvim\init.vim
+# Create config file for NeoVim if it doesn't already exist
+$Script:NeoVimHome = "~\AppData\Local\nvim"
+if (-not (Test-Path $Script:NeoVimHome)) {
+    md $Script:NeoVimHome
+}
+touch "${Script:NeoVimHome}\init.vim"
 
 # Install Vim-Plug for NeoVim
-md ~\AppData\Local\nvim\autoload
-$uri = 'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+if (-not (Test-Path "${Script:NeoVimHome}\autoload")) {
+    md "${Script:NeoVimHome}\autoload"
+}
+$Script:uri = 'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 (New-Object Net.WebClient).DownloadFile(
-  $uri,
+  $Script:uri,
   $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath(
-    "~\AppData\Local\nvim\autoload\plug.vim"
+    "${Script:NeoVimHome}\autoload\plug.vim"
   )
 )
+
+# Install Vim-Plug for Vim
+$Script:VimHome = "~\vimfiles"
+if (-not (Test-Path "${Script:VimHome}\autoload")) {
+    md "${Script:VimHome}\autoload"
+}
+(New-Object Net.WebClient).DownloadFile(
+  $Script:uri,
+  $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath(
+    "${Script:VimHome}\autoload\plug.vim"
+  )
+)
+
