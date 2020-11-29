@@ -22,6 +22,11 @@ if ($Script:MyDocumentsPath -ne "${Env:UserProfile}\Documents") {
     New-Link -TargetPath $Script:PowerShellCoreHome -LinkPath "${Script:MyDocumentsPath}\PowerShell" -LinkType 'Junction'
 }
 
+# Use the same Module directory for Windows PowerShell and PowerShell Core
+$Script:PowerShellCoreModules = "${Env:ProgramFiles}\PowerShell\Modules"
+$Script:WindowsPowerShellModules = "${Env:ProgramFiles}\WindowsPowerShell\Modules"
+New-Link -TargetPath $Script:WindowsPowerShellModules -LinkPath $Script:PowerShellCoreModules -LinkType 'Junction'
+
 # Link PowerShell profile into place
 $Script:PowerShellProfile = "${Script:WindowsPowerShellHome}\Microsoft.PowerShell_profile.ps1"
 New-Link -TargetPath "${Script:DotfilesPowerShell}\profile.ps1" -LinkPath $Script:PowerShellProfile -LinkType 'SymbolicLink'
