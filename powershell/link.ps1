@@ -1,3 +1,5 @@
+#Requires -RunAsAdministrator
+
 # Include Powershell functions, needed for the link function
 . .\.powershell\functions.ps1
 

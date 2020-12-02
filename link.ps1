@@ -1,3 +1,5 @@
+#Requires -RunAsAdministrator
+
 # Powershell Link Script
 
 # Include Powershell functions, needed for the `ln` alias
