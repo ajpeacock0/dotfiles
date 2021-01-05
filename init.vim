@@ -288,6 +288,9 @@ nnoremap <leader>e :e!<Cr>
 " Alias for :A (switching source/header with a.vim)
 nnoremap <leader>a :A<Cr>
 
+" Alias for deleting the current file
+nnoremap <leader>rm :call delete(expand('%')) \| bdelete!<CR>
+
 " Add Ctrl+j/k for when popup menu is showing
 inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
 inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-k>"
