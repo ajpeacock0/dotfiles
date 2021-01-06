@@ -45,6 +45,8 @@ Downloads and installs tools I can't have a Powershell shell without, as well as
 
 ### `powershell/install_modules.ps1`
 
+**This must be done with admin permissions.**
+
 Installs the Powershell Modules referenced by my PowerShell profile.
 
 ### `powershell/link.ps1`
