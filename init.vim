@@ -106,6 +106,29 @@ set backspace=indent,eol,start
 " |-----------------------|
 
 if (executable('fzf'))
+    let g:fzf_layout = { 'down': '~40%' }
+
+    " Override `Files` with different fzf options
+    command! -bang -nargs=? -complete=dir Files
+        \ call fzf#vim#files(<q-args>, {'options': ['--info=inline', '--preview', 'cat {}']},
+        \ <bang>0)
+
+    command! -bang -nargs=? -complete=dir GFiles
+        \ call fzf#vim#gitfiles(<q-args>, {'options': ['--info=inline', '--preview', 'cat {}']},
+        \ <bang>0)
+
+    " Override `Rg` with no preview window
+    command! -bang -nargs=? -complete=dir Rg
+        \ call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case --no-hidden --ignore -- ".shellescape(<q-args>),
+        \ 1,
+        \ <bang>0)
+
+    " Create `RG` to search hidden and git ignored files
+    command! -bang -nargs=? -complete=dir RG
+        \ call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case --hidden --no-ignore -- ".shellescape(<q-args>),
+        \ 1,
+        \ <bang>0)
+
     " Remap CtrlP mappings to FZF
     nnoremap <c-p> :Files<Cr>
     " Run Fzf and open buffer in new tab
