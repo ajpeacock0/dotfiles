@@ -110,11 +110,11 @@ if (executable('fzf'))
 
     " Override `Files` with different fzf options
     command! -bang -nargs=? -complete=dir Files
-        \ call fzf#vim#files(<q-args>, {'options': ['--info=inline', '--preview', 'cat {}']},
+        \ call fzf#vim#files(<q-args>, {'options': ['--info=inline']},
         \ <bang>0)
 
     command! -bang -nargs=? -complete=dir GFiles
-        \ call fzf#vim#gitfiles(<q-args>, {'options': ['--info=inline', '--preview', 'cat {}']},
+        \ call fzf#vim#gitfiles(<q-args>, {'options': ['--info=inline']},
         \ <bang>0)
 
     " Override `Rg` with no preview window
@@ -131,8 +131,7 @@ if (executable('fzf'))
 
     " Remap CtrlP mappings to FZF
     nnoremap <c-p> :Files<Cr>
-    " Run Fzf and open buffer in new tab
-    nnoremap <c-o> :call fzf#run({'sink': 'tabedit', 'options': '--multi --no-mouse', 'down': '40%'})<Cr>
+    nnoremap <c-o> :call fzf#run({'sink': 'e', 'options': '--multi --no-mouse', 'down': '40%'})<Cr>
     " Run Fzf using git ls-files (useful for finding hidden, but not ignored, files)
     nnoremap <c-i> :GFiles<Cr>
     nnoremap <Leader>ct :Tags<Cr>
