@@ -44,6 +44,8 @@ Set-Alias ~ cusorprofile -Option AllScope
 function moveup1 { cd .. }
 Set-Alias .. moveup1 -Option AllScope
 
+Set-Alias ba bat
+
 #### Encoding ####
 
 $OutputEncoding = [Text.Encoding]::UTF8
