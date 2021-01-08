@@ -233,6 +233,13 @@ set splitbelow splitright
 
 " Visual
 set background=dark
+
+" A bunch of colorschemes, including jellybeans, are failing to set the colors
+" of the current version of fzf.vim (0.23.0-0.25.0) and so displaying default,
+" mismatching colors. However some colorschemes are setting fzf colors, and
+" since gruvbox somewhat matches jellybeans, I am assigning the colorscheme
+" first to gruvbox, then to jellybeans.
+colorscheme gruvbox
 colorscheme jellybeans
 
 " Relative line number
