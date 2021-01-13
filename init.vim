@@ -441,6 +441,10 @@ nnoremap <c-f><c-k> :tabc!<cr>
 nmap <C-w>< <C-w><S-H>
 nmap <C-w>> <C-w><S-L>
 
+" Mapping for window vertical resize
+nnoremap <C-w><C-x> :vertical resize +5<cr>
+nnoremap <C-w><C-z> :vertical resize -5<cr>
+
 " Shortcut to open empty vertical buffer
 nmap <leader>vn :vnew<cr>
 " Shortcut to open empty horizontal buffer
