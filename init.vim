@@ -30,8 +30,8 @@ Plug 'MattesGroeger/vim-bookmarks'
 " Color Table Display
 Plug 'guns/xterm-color-table.vim'
 
-" NERDtree
-Plug 'preservim/nerdtree'
+" Better NERDtree alternative
+Plug 'ms-jpq/chadtree', {'branch': 'chad', 'do': ':UpdateRemotePlugins'}
 
 " Theme Plugin
 Plug 'nanotech/jellybeans.vim'
@@ -187,7 +187,8 @@ let g:netrw_banner = 0
 let g:netrw_browse_split = 3
 
 " nerdTree Toggle
-nnoremap <C-t> :NERDTreeToggle<CR>
+nnoremap <C-t> :CHADopen<CR>
+
 " Close vim if the only window left open is a NERDTree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
