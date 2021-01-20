@@ -186,8 +186,11 @@ let g:netrw_banner = 0
 " open files in a new tab
 let g:netrw_browse_split = 3
 
-" nerdTree Toggle
+" CHADtree Toggle
 nnoremap <C-t> :CHADopen<CR>
+
+" CHADtree change selection
+let g:chadtree_settings={"keymap":{"select":["<space>"], "clear_selection": ["<C-space>"]}}
 
 " Close vim if the only window left open is a NERDTree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
