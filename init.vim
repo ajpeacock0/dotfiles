@@ -190,7 +190,7 @@ let g:netrw_browse_split = 3
 nnoremap <C-t> :CHADopen<CR>
 
 " CHADtree change selection
-let g:chadtree_settings={"keymap":{"select":["<space>"], "clear_selection": ["<C-space>"]}}
+let g:chadtree_settings={"keymap":{"select":["<space>"], "clear_selection": ["<C-space>"], "new": ["n"], "rename": ["m"]}}
 
 " Close vim if the only window left open is a NERDTree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
