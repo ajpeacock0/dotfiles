@@ -398,6 +398,19 @@ vnoremap <c-j> <S-j>
 " Strip Whitespace
 nmap <leader>sw :StripWhitespace<cr>
 
+" Fix conversion errors
+function! FixConversion()
+    :%s//'/ge
+    :%s//-/ge
+    :%s//"/ge
+    :%s//"/ge
+    :%s// - /ge
+    :%s/“/"/ge
+    :%s/”/"/ge
+    :%s/’/'/ge
+endfunction
+nmap <leader>fix :call FixConversion()<Cr>
+
 " Change all the existing tab characters to match the current tab settings
 nmap <leader>tab :set et<cr> :ret!<cr>
 
