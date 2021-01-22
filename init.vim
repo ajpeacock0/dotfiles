@@ -555,14 +555,15 @@ endif
 " Yank the Name of the current file
 nmap <leader>yn :let @+ = expand("%")<cr>
 
-" Keybinding for substitute word with yanked register
-nmap <leader>pe ve"0p
-" Keybinding for paste yanked register
-nmap <leader>p "0p
-" Keybinding for paste yanked register behind
-nmap <leader>P "0P
-" Keybinding for paste yanked register when in visual mode
-vmap <leader>p "0p
+" Alt-e Keybinding for substitute word with yanked register
+nmap <M-e> ve"0p
+
+" Alt-p Keybinding for paste yanked register
+nmap <M-p> "0p
+nmap <M-P> "0P
+
+" Alt-p Keybinding for paste yanked register when in visual mode
+vmap <M-p> "0p
 
 " Yank from the cursor to the end of the line, to be consistent with C and D.
 nnoremap Y y$
