@@ -417,6 +417,9 @@ nmap <leader>tab :set et<cr> :ret!<cr>
 " From the current line to EOF, insert new line for each match of the cursor WORD
 nnoremap <leader>nn :.,$g/<C-r>=expand("<cWORD>")<CR>/normal o
 
+" Delete every line which contains the current word
+nnoremap <leader>dd :.,$g/<C-r>=expand("<cWORD>")<CR>/d
+
 " Gheto custom autoclose mappings
 inoremap ( ()<left>
 inoremap [ []<left>
