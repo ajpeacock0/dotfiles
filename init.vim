@@ -31,7 +31,7 @@ Plug 'MattesGroeger/vim-bookmarks'
 Plug 'guns/xterm-color-table.vim'
 
 " Better NERDtree alternative
-Plug 'ms-jpq/chadtree', {'branch': 'legacy', 'do': ':UpdateRemotePlugins'}
+Plug 'ms-jpq/chadtree', {'branch': 'chad', 'do': 'python3 -m chadtree deps'}
 
 " Theme Plugin
 Plug 'nanotech/jellybeans.vim'
