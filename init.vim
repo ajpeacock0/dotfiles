@@ -407,7 +407,9 @@ function! FixConversion()
     :%s// - /ge
     :%s/“/"/ge
     :%s/”/"/ge
+    :%s/‘/'/ge
     :%s/’/'/ge
+    :%s/–/-/ge
 endfunction
 nmap <leader>fix :call FixConversion()<Cr>
 
