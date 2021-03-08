@@ -44,10 +44,14 @@
 
     // Add any keybinding overrides to this array.
     // To unbind a default keybinding, set the command to "unbound"
-    "keybindings": [
+    "keybindings":
+    [
         // To learn more about panes, visit https://aka.ms/terminal-panes
         { "command": { "action": "splitPane", "split": "vertical" }, "keys": "alt+shift+v" },
         { "command": { "action": "splitPane", "split": "horizontal" }, "keys": "alt+shift+s" },
+
+        { "command": { "action": "moveTab", "direction": "backward" }, "keys": "alt+shift+left" },
+        { "command": { "action": "moveTab", "direction": "forward" }, "keys": "alt+shift+right" },
 
         // To learn more about selection, visit https://aka.ms/terminal-selection
         { "command": "find", "keys": "ctrl+shift+f" } // Press Ctrl+Shift+F to open the search box
