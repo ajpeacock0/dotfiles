@@ -3,7 +3,7 @@
     name = Andrew Peacock
 
 [core]
-    editor = nvim 
+    editor = nvim
     whitespace = trailing-space,space-before-tab
 
 [credential]
@@ -47,6 +47,8 @@
   ss = stash show -p
   # stash file
   sf = stash push
+  # Abort a stash apply
+  saa = reset --merge
 
   #### Rebase Shortcuts ####
   rb = rebase
@@ -119,11 +121,11 @@
   # Checkout to another branch (SWitch)
   sw = checkout
   # Rename a branch
-  mvbr = branch -m 
+  mvbr = branch -m
   # Forces a deletion on the branch
   rmbr = branch -D
   # Delete a remote branch
-  rmbr-remote = push origin --delete 
+  rmbr-remote = push origin --delete
   # Create new branch based off origin/master and checkout into the given name
   cdbr = !"f() { git checkout -b \"$@\" remotes/origin/master; }; f"
   # Print the name of the current branch
@@ -155,7 +157,7 @@
 
   # Shortcut and improvement for log on a file (beyond file renames)
   lgf = !"f() { git log --follow \"$@\"; }; f"
-  # view commit log with changes of given file 
+  # view commit log with changes of given file
   logf = !"f() { git log --follow -p --full-history -- \"$@\"; }; f"
   # view commit log with changes of given file in sublime
   logfsubl = !"f() { git log --follow -p \"$@\" > \"$@\".log && "$SUBL_FUNC" \"$@\".log && rm \"$@\".log; }; f"
@@ -175,7 +177,7 @@
   # view reflog with time info
   reflog = reflog --date=iso
   # view the file changed list in the given commit ID
-  cinfo = diff-tree --no-commit-id --name-status -r 
+  cinfo = diff-tree --no-commit-id --name-status -r
   # View a list of all deleted files
   deleted = log --diff-filter=D --summary | grep delete
   # List all existing files being tracked by the current branch
