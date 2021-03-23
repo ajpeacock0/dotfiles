@@ -192,6 +192,8 @@ nnoremap <C-t> :CHADopen<CR>
 " CHADtree change selection
 let g:chadtree_settings={"keymap":{
                             \"select":["<space>"],
+                            \"trash":[],
+                            \"tertiary":["t"],
                             \"clear_selection": ["<C-space>"],
                             \"new": ["n"],
                             \"rename": ["m"],
@@ -405,6 +407,7 @@ function! FixConversion()
     :%s//"/ge
     :%s//"/ge
     :%s// - /ge
+    :%s/​//ge
     :%s/“/"/ge
     :%s/”/"/ge
     :%s/‘/'/ge
