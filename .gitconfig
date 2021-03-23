@@ -6,6 +6,15 @@
     editor = nvim
     whitespace = trailing-space,space-before-tab
 
+[diff]
+    tool = nvimdiff
+
+[difftool]
+    tool = nvimdiff
+
+[difftool "nvimdiff"]
+    cmd = "nvim -d \"$LOCAL\" \"$REMOTE\""
+
 [credential]
     helper = store
 
@@ -168,6 +177,8 @@
 
   # Shortcut for `git diff`
   df = diff
+  # Shortcut for `git difftool` with no prompt
+  dt = difftool -y
   # View the changes made in the last commit - df = diff last
   dl = diff HEAD^ HEAD
   # View the changes made in the commit N from the current - Diff Last with Number
