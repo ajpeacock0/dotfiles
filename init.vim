@@ -199,7 +199,9 @@ let g:chadtree_settings={"keymap":{
                             \"rename": ["m"],
                             \"copy": ["c"],
                             \"change_focus": ["p"],
-                            \"change_focus_up": ["P"]
+                            \"change_focus_up": ["P"],
+                            \"v_split": ["v"],
+                            \"h_split": ["V"]
                         \}}
 
 " Close vim if the only window left open is a NERDTree
