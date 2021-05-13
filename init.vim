@@ -75,6 +75,9 @@ Plug 'airblade/vim-gitgutter'
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
 
+" Markdown Renderer
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+
 " EOL whitespace removal
 Plug 'ntpeters/vim-better-whitespace'
 
@@ -224,6 +227,9 @@ let g:bookmark_highlight_lines = 1
 
 let g:bookmark_annotation_sign = '♠'
 
+" MawkdDown preview Toggle
+nmap <leader>md :MarkdownPreviewToggle<CR>
+
 " |---------------------|
 " | End Plugin Settings |
 " |---------------------|
@@ -359,6 +365,9 @@ nnoremap <leader>pn :set nopaste<Cr>
 " Shortcut for Yes/No for enabling diff mode
 nnoremap <leader>dy :windo diffthis<Cr>
 nnoremap <leader>dn :windo diffoff<Cr>
+
+" Toggle Word Wrap
+nmap <leader>lw :set wrap!<cr>
 
 " |----------------------|
 " | End General Mappings |
