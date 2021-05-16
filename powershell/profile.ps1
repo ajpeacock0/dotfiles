@@ -1,11 +1,10 @@
 #### Version Statement ####
 
-echo "Powershell-Core profile (Updated 10.13.20)"
+echo "Powershell-Core profile (Updated 05.16.21)"
 
 #### Theme ####
 
 # Change the default the prompt to a oh-my-posh theme
-# Note this must be before ZLocation import, due to it's importing of oh-my-posh
 Set-Theme Paradox
 
 #### Module Imports ####
@@ -27,8 +26,12 @@ Remove-PSReadlineKeyHandler 'Ctrl+r'
 # Powershell wrapper for FZF
 Import-Module PSFzf -SkipEditionCheck
 
-# Ensure zlocation is loaded
-Import-Module ZLocation
+#### Initialize zoxide ####
+
+Invoke-Expression (& {
+    $hook = if ($PSVersionTable.PSVersion.Major -lt 6) { 'prompt' } else { 'pwd' }
+    (zoxide init --hook $hook powershell) -join "`n"
+})
 
 #### Aliases ####
 

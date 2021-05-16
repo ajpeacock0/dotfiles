@@ -14,6 +14,3 @@ Install-Module oh-my-posh
 
 # Powershell wrapper for fzf
 Install-Module PSFzf
-
-# Command for directory navigation
-Install-Module ZLocation
