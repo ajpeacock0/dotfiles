@@ -448,6 +448,9 @@ inoremap {;<CR> {<CR>};<ESC>O
 nnoremap <C-z> <C-x>
 nnoremap <C-x> <C-a>
 
+" Format JSON in butter using `jq` tool
+nmap <leader>jq :%!jq .<cr>
+
 " |--------------------------------|
 " | End Line Modification Mappings |
 " |--------------------------------|
