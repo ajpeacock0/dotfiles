@@ -5,7 +5,7 @@ echo "Powershell-Core profile (Updated 05.16.21)"
 #### Theme ####
 
 # Change the default the prompt to a oh-my-posh theme
-Set-Theme Paradox
+Set-PoshPrompt slimfat
 
 #### Module Imports ####
 
