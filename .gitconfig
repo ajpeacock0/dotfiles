@@ -23,12 +23,10 @@
 
   # Regular git log
   lg = log --name-status
+  # Short/Summary git log for large repo log
+  ll = log --pretty=format:"%C(yellow)%h\\ %C(green)%ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short --graph
   # Shortcut + verbose
   fe = fetch -v
-  # Shortcut + enable Perl regex grep
-  g = grep --perl-regexp --line-number
-  # Shortcut + enable Perl regex grep with match whole word only
-  gw = grep --perl-regexp --line-number --word-regexp
   # Display the files (uniq) which the string matches
   gu = !"f() { git grep -P \"$@\" | awk -F: {print \"$@\"} | uniq; }; f"
   # Shortcut for status
@@ -45,6 +43,15 @@
   ls = ls-files -v
   # List ignored files
   ls-ignored = ls-files . --ignored --exclude-standard --others
+
+  #### Grep / Search ####
+
+  # grep shortcut + enable Perl regex
+  g = grep --perl-regexp --line-number
+  # grep shortcut + enable Perl regex with match whole word only
+  gw = grep --perl-regexp --line-number --word-regexp
+  # grep including the history of the files
+  gh = !"f() { git rev-list --all | xargs git grep \"$@\"; }; f"
 
   #### Stash Shortcuts ####
   s = stash
@@ -114,8 +121,6 @@
 
   # list all conflicted files
   conf-ls = diff --name-only --diff-filter=U
-  # open conflicted files in sublime
-  conf-subl = !"git conf-ls && git conf-ls | xargs "$SUBL_FUNC""
   # add the conflicted files after you fix them
   conf-add = !"git conf-ls | xargs git add"
   # Resolve conflict by discarding local changes
@@ -171,7 +176,7 @@
   # view commit log with changes of given file
   logf = !"f() { git log --follow -p --full-history -- \"$@\"; }; f"
   # view commit log with changes of given file in sublime
-  logfsubl = !"f() { git log --follow -p \"$@\" > \"$@\".log && "$SUBL_FUNC" \"$@\".log && rm \"$@\".log; }; f"
+  logfsubl = !"f() { git log --follow -p \"$@\" > \"$@\".log && $SUBL_FUNC \"$@\".log && rm \"$@\".log; }; f"
   # view reflog log of given file
   reflogf = rev-list --all
 
@@ -195,16 +200,12 @@
   deleted = log --diff-filter=D --summary | grep delete
   # List all existing files being tracked by the current branch
   tracked = !"f() { git ls-tree -r $(git currbr) --name-only; }; f"
-  # Open all tracked files
-  open-tracked = !"f() { $(git tracked) | xargs "$SUBL_FUNC"; }; f"
   # view the file changes in the given commit ID
   cdiff = !"f() { git diff \"$@\"^ \"$@\"; }; f"
   # view all files given author has touched
   touched = !"f() { git log --no-merges --stat --author=\"$@\" --name-only --pretty=format:"" | sort -u; }; f"
   # View all the commits I have merged
   commits = !"f() { git log --name-status --author="\"$@\""; }; f"
-  # Perform a "git grep" including the history of the files
-  greph = !"f() { git rev-list --all | xargs git grep \"$@\"; }; f"
   # Print the unstaged files
   unstaged-files = !"f() { git diff --name-only; }; f"
   # Print the staged files
