@@ -14,3 +14,6 @@ Install-Module oh-my-posh
 
 # Powershell wrapper for fzf
 Install-Module PSFzf
+
+# Support for text-based clipboard operations
+Install-Module -Name ClipboardText

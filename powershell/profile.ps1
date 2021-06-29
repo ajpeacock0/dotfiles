@@ -26,6 +26,9 @@ Remove-PSReadlineKeyHandler 'Ctrl+r'
 # Powershell wrapper for FZF
 Import-Module PSFzf -SkipEditionCheck
 
+# Clipboard copy function
+Import-Module ClipboardText
+
 #### Initialize zoxide ####
 
 Invoke-Expression (& {
@@ -48,6 +51,8 @@ function moveup1 { cd .. }
 Set-Alias .. moveup1 -Option AllScope
 
 Set-Alias ba bat
+
+Set-Alias xclip Set-ClipboardText
 
 #### Encoding ####
 
