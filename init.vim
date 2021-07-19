@@ -81,6 +81,9 @@ Plug 'ntpeters/vim-better-whitespace'
 " Formatting Markdown tables
 Plug 'dhruvasagar/vim-table-mode'
 
+" Auto table of contents for Markdown files
+Plug 'liuchengxu/vista.vim'
+
 " Omni-completion TypeScript (Disabled since it creates files which cannot be
 " deleted when run in Windows repos)
 Plug 'quramy/tsuquyomi'
@@ -226,6 +229,13 @@ let g:bookmark_annotation_sign = '♠'
 
 " MawkdDown preview Toggle
 nmap <leader>md :MarkdownPreviewToggle<CR>
+
+let g:vista_sidebar_position = 'vertical topleft'
+let g:vista_sidebar_width = '35'
+let g:vista_icon_indent = ["╰▸ ", "├▸ "]
+
+" Vista Toggle
+nnoremap <C-v> :Vista!!<CR>
 
 " |---------------------|
 " | End Plugin Settings |
