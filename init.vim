@@ -44,9 +44,6 @@ Plug 'jeetsukumaran/vim-buffergator'
 " Improve the `.` command to include macros, plugin maps, etc.
 Plug 'tpope/vim-repeat'
 
-" Switch between source and header
-Plug 'vim-scripts/a.vim'
-
 " Moving lines up+down
 Plug 'matze/vim-move'
 
@@ -335,9 +332,6 @@ nnoremap <leader>b :Buffers<Cr>
 
 " Alias for :e! (force reload buffer)
 nnoremap <leader>e :e!<Cr>
-
-" Alias for :A (switching source/header with a.vim)
-nnoremap <leader>a :A<Cr>
 
 " Alias for deleting the current file
 nnoremap <leader>rm :call delete(expand('%')) \| bdelete!<CR>
