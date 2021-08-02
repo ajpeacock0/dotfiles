@@ -37,6 +37,7 @@ Plug 'ms-jpq/chadtree', {'branch': 'chad', 'do': 'python3 -m chadtree deps'}
 Plug 'nanotech/jellybeans.vim'
 Plug 'w0ng/vim-hybrid'
 Plug 'morhetz/gruvbox'
+Plug 'mhartington/oceanic-next'
 
 " Side windows displaying buffers
 Plug 'jeetsukumaran/vim-buffergator'
@@ -235,7 +236,7 @@ let g:vista_sidebar_width = '35'
 let g:vista_icon_indent = ["╰▸ ", "├▸ "]
 
 " Vista Toggle
-nnoremap <C-v> :Vista!!<CR>
+nnoremap <leader>vt :Vista!!<CR>
 
 " |---------------------|
 " | End Plugin Settings |
@@ -269,7 +270,7 @@ set background=dark
 " since gruvbox somewhat matches jellybeans, I am assigning the colorscheme
 " first to gruvbox, then to jellybeans.
 colorscheme gruvbox
-colorscheme jellybeans
+colorscheme OceanicNext
 
 " Relative line number
 set number                     " Show current line number
