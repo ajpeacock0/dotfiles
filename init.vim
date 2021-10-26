@@ -272,6 +272,10 @@ set background=dark
 colorscheme gruvbox
 colorscheme OceanicNext
 
+" Set the SpellBad highlighting
+hi clear SpellBad
+hi SpellBad cterm=underline ctermbg=9 gui=underline guibg=#902020 guisp=Red
+
 " Relative line number
 set number                     " Show current line number
 set relativenumber             " Show relative line numbers
