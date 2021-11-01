@@ -154,6 +154,8 @@
   rbor-ours = !"git fetch origin && git rebase -Xours origin/master --stat"
   # Fetches upsteam and rebases ontop on master
   rbor-upstream = !"git fetch upstream && git rebase upstream/master --stat"
+  # Fetches upsteam and rebases ontop on master
+  rbbr-upstream = !"git fetch upstream && git rebase upstream/$(git currbr) --stat"
   # This will now checkout to the middle commit between now and the last known good commit. If the build succeeds, use `git bisect good`. If it fails, use ``git bisect bad`
   bi = !"f() { git bisect start && git bisect bad && git bisect good \"$@\"; }; f"
   # Resets the current branch to the latest branch while ignoring local changes
