@@ -49,6 +49,9 @@ Downloads and installs tools I can't have a Powershell shell without, as well as
 
 Installs the Powershell Modules referenced by my PowerShell profile.
 
+> Note: For an unknown reason this fails to install the modules and must be run again after the both link.ps1
+> scripts
+
 ### `powershell/link.ps1`
 
 **This must be done with admin permissions.** 
