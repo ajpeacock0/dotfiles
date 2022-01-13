@@ -629,14 +629,16 @@ nnoremap <leader><space> :noh<cr>
 " Prepare RipGrep with an empty argument without execution
 nnoremap <leader>re :Rg
 
+" Prepare RipGrep with an empty argument but matching whole word
+nnoremap <leader>rw :Rg \b\b
+nnoremap <leader>ww :/\<\>
+
 " RipGrep with the word under the cursor
 nnoremap <leader>rg :execute 'Rg ' . expand('<cword>')<Cr>
 
-" Pull word under cursor into LHS of a substitute (find and replace)
-nnoremap <leader>rr :%s#\<<C-r>=expand("<cword>")<CR>\>#
-" Same thing, but global within the line and don't match whole word
-nnoremap <leader>rw :%s/<C-r>=expand("<cword>")<CR>//g
-" RePlace word
+" RePlace whole word
+nnoremap <leader>rr :%s/\<<C-r>=expand("<cword>")<CR>\>//g
+" RePlace word, and fill in substitution (RHS) with current word
 nnoremap <leader>rp :%s/<C-r>=expand("<cword>")<CR>/<C-r>=expand("<cword>")<CR>/g
 
 " Pull word under cursor into LHS of a substitute (find and replace) in all tabs
