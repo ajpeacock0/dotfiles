@@ -6,7 +6,7 @@ set nocompatible
 
 call plug#begin('~/AppData/Local/nvim/plugged')
 
-" Autocompletion Plugin and depencencies
+" Autocompletion Plugin and dependencies
 Plug 'ncm2/ncm2'
 Plug 'roxma/nvim-yarp'
 Plug 'roxma/vim-hug-neovim-rpc'
@@ -629,9 +629,10 @@ nnoremap <leader><space> :noh<cr>
 " Prepare RipGrep with an empty argument without execution
 nnoremap <leader>re :Rg
 
-" Prepare RipGrep with an empty argument but matching whole word
+" Prepare Ripgrep with an empty argument but matching whole Word
 nnoremap <leader>rw :Rg \b\b
-nnoremap <leader>ww :/\<\>
+" Prepare search with an empty argument but matching whole word
+nnoremap <leader>rs :/\<\>
 
 " RipGrep with the word under the cursor
 nnoremap <leader>rg :execute 'Rg ' . expand('<cword>')<Cr>
