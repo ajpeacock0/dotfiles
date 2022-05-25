@@ -630,7 +630,7 @@ nnoremap <leader><space> :noh<cr>
 nnoremap <leader>re :Rg
 
 " Prepare Ripgrep with an empty argument but matching whole Word
-nnoremap <leader>rw :Rg \b\b
+nnoremap <leader>rw :Rg \b<C-r>=expand("<cword>")<CR>\b
 " Prepare search with an empty argument but matching whole word
 nnoremap <leader>rs :/\<\>
 
