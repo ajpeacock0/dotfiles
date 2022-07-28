@@ -65,6 +65,7 @@
   sf = stash push
   # Abort a stash apply
   saa = reset --merge
+  stash-continue = !"git restore --staged . && git stash drop"
 
   #### Rebase Shortcuts ####
   rb = rebase
