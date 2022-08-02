@@ -198,7 +198,6 @@ let g:chadtree_settings={"keymap":{
                             \"select":["<space>"],
                             \"trash":[],
                             \"tertiary":["t"],
-                            \"clear_selection": ["<C-space>"],
                             \"new": ["n"],
                             \"rename": ["m"],
                             \"copy": ["c"],
