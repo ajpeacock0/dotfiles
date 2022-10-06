@@ -48,3 +48,8 @@ if (-not (Test-Path "${Script:VimHome}\autoload")) {
   )
 )
 
+# Install On-My-Posh (previously a Powershell Module)
+scoop install https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/oh-my-posh.json
+
+# Install the prefered Font
+scoop install FiraCode-NF

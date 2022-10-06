@@ -5,7 +5,7 @@ echo "Powershell-Core profile (Updated 05.16.21)"
 #### Theme ####
 
 # Change the default the prompt to a oh-my-posh theme
-Set-PoshPrompt slimfat
+oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\\slimfat.omp.json" | Invoke-Expression
 
 #### Module Imports ####
 
@@ -19,7 +19,7 @@ Import-Module PSReadLine
 Import-Module posh-git
 
 # A theme engine for Powershell
-Import-Module oh-my-posh
+#Import-Module oh-my-posh
 
 # Disable the default ReverseHistorySearch
 Remove-PSReadlineKeyHandler 'Ctrl+r'
