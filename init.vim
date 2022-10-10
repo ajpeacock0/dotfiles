@@ -313,6 +313,9 @@ set guicursor=
 " Check if any buffers were changed outside of Vim when changing focus
 au FocusGained,BufEnter * :checktime
 
+" Disable mouse
+set mouse=
+
 " |------------------|
 " | End GUI Settings |
 " |------------------|
