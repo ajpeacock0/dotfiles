@@ -92,6 +92,10 @@ Plug 'quramy/tsuquyomi'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'deoplete-plugins/deoplete-jedi'
 
+" JSON Path Syntax
+" Plug 'nvim-treesitter/nvim-treesitter'
+" Plug 'phelipetls/jsonpath.nvim'
+
 " Initialize plugin system
 call plug#end()
 
@@ -236,6 +240,11 @@ let g:vista_icon_indent = ["╰▸ ", "├▸ "]
 
 " Vista Toggle
 nnoremap <leader>vt :Vista!!<CR>
+
+" show json path in the winbar
+"if exists('+winbar')
+"  setlocal winbar=%{luaeval('require\"jsonpath\".get()')}
+"endif
 
 " |---------------------|
 " | End Plugin Settings |
@@ -640,7 +649,7 @@ nnoremap <leader>rs :/\<\>
 nnoremap <leader>rg :execute 'Rg ' . expand('<cword>')<Cr>
 
 " RePlace whole word
-nnoremap <leader>rr :%s/\<<C-r>=expand("<cword>")<CR>\>//g
+nnoremap <leader>rr :%s/\<<C-r>=expand("<cword>")<CR>\>/<C-r>=expand("<cword>")<CR>/g
 " RePlace word, and fill in substitution (RHS) with current word
 nnoremap <leader>rp :%s/<C-r>=expand("<cword>")<CR>/<C-r>=expand("<cword>")<CR>/g
 
