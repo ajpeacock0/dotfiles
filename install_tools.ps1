@@ -10,7 +10,6 @@ param(
     [switch] $Defender = $false
 )
 
-
 function Install-BasicTools {
     [CmdletBinding(SupportsShouldProcess)]
     param ()
@@ -98,8 +97,12 @@ function Add-DefenderExclusions {
 
     $Script:OneDrivePath = "~\OneDrive"
     sudo Add-MpPreference -ExclusionPath $OneDrivePath
+
+    $Script:MsBuildProcessName = "msbuild.exe"
+    sudo Add-MpPreference -ExclusionProcess $MsBuildProcessName
 }
 
+# If no parameters were set, execute all functions
 $All = $PSCmdlet.ParameterSetName -eq 'None'
 
 if ($BasicTools -or $All) {
