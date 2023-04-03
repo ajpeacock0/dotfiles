@@ -92,6 +92,8 @@ Plug 'quramy/tsuquyomi'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'deoplete-plugins/deoplete-jedi'
 
+Plug 'github/copilot.vim'
+
 " JSON Path Syntax
 " Plug 'nvim-treesitter/nvim-treesitter'
 " Plug 'phelipetls/jsonpath.nvim'
@@ -245,6 +247,8 @@ nnoremap <leader>vt :Vista!!<CR>
 "if exists('+winbar')
 "  setlocal winbar=%{luaeval('require\"jsonpath\".get()')}
 "endif
+
+let g:copilot_filetypes = { 'xml': v:false }
 
 " |---------------------|
 " | End Plugin Settings |
