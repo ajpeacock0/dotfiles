@@ -111,6 +111,71 @@ set backspace=indent,eol,start
 " | End Plugin List |
 " |-----------------|
 
+" |------------------------|
+" | Begin General Mappings |
+" |------------------------|
+
+" Remap leader from '\' to ','
+let mapleader = ","
+
+" Use Ctrl-c as the escape
+nmap <c-c> <esc>
+imap <c-c> <esc>
+vmap <c-c> <esc>
+omap <c-c> <esc>
+
+" Map [leader-f] leader-q to [force] quit
+nnoremap <leader>q :q<cr>
+nnoremap <leader>fq :q!<cr>
+
+" Map Leader w to write
+nnoremap <leader>w :w<Cr>
+
+" Change virtualedit mode
+nmap <leader>vd :set virtualedit=""<cr>
+nmap <leader>va :set virtualedit=all<cr>
+
+" Alias for :Buffers
+nnoremap <leader>b :Buffers<Cr>
+
+" Alias for :e! (force reload buffer)
+nnoremap <leader>e :e!<Cr>
+
+" Alias for deleting the current file
+nnoremap <leader>rm :call delete(expand('%')) \| bdelete!<CR>
+
+" Add Ctrl+j/k for when popup menu is showing
+inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
+inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-k>"
+
+" Add Tab and Shift-Tab for when popup menu is showing
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+" Edit vimr configuration file
+nnoremap <leader>ve :e $MYVIMRC<CR>
+" Reload vimr configuration file
+nnoremap <leader>vr :source $MYVIMRC<CR>
+
+" Shortcut for Vertical Explore
+nnoremap <leader>vx :Vex<CR>
+
+" Shortcut for Yes/No for enabling paste mode
+nnoremap <leader>py :set paste<Cr>
+nnoremap <leader>pn :set nopaste<Cr>
+
+" Shortcut for Yes/No for enabling diff mode
+nnoremap <leader>dy :windo diffthis<Cr>
+nnoremap <leader>dn :windo diffoff<Cr>
+
+" Toggle Word Wrap
+nmap <leader>lw :set wrap!<cr>
+
+" |----------------------|
+" | End General Mappings |
+" |----------------------|
+
+
 " |-----------------------|
 " | Begin Plugin Settings |
 " |-----------------------|
@@ -332,70 +397,6 @@ set mouse=
 " |------------------|
 " | End GUI Settings |
 " |------------------|
-
-" |------------------------|
-" | Begin General Mappings |
-" |------------------------|
-
-" Remap leader from '\' to ','
-let mapleader = ","
-
-" Use Ctrl-c as the escape
-nmap <c-c> <esc>
-imap <c-c> <esc>
-vmap <c-c> <esc>
-omap <c-c> <esc>
-
-" Map [leader-f] leader-q to [force] quit
-nnoremap <leader>q :q<cr>
-nnoremap <leader>fq :q!<cr>
-
-" Map Leader w to write
-nnoremap <leader>w :w<Cr>
-
-" Change virtualedit mode
-nmap <leader>vd :set virtualedit=""<cr>
-nmap <leader>va :set virtualedit=all<cr>
-
-" Alias for :Buffers
-nnoremap <leader>b :Buffers<Cr>
-
-" Alias for :e! (force reload buffer)
-nnoremap <leader>e :e!<Cr>
-
-" Alias for deleting the current file
-nnoremap <leader>rm :call delete(expand('%')) \| bdelete!<CR>
-
-" Add Ctrl+j/k for when popup menu is showing
-inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
-inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-k>"
-
-" Add Tab and Shift-Tab for when popup menu is showing
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-
-" Edit vimr configuration file
-nnoremap <leader>ve :e $MYVIMRC<CR>
-" Reload vimr configuration file
-nnoremap <leader>vr :source $MYVIMRC<CR>
-
-" Shortcut for Vertical Explore
-nnoremap <leader>vx :Vex<CR>
-
-" Shortcut for Yes/No for enabling paste mode
-nnoremap <leader>py :set paste<Cr>
-nnoremap <leader>pn :set nopaste<Cr>
-
-" Shortcut for Yes/No for enabling diff mode
-nnoremap <leader>dy :windo diffthis<Cr>
-nnoremap <leader>dn :windo diffoff<Cr>
-
-" Toggle Word Wrap
-nmap <leader>lw :set wrap!<cr>
-
-" |----------------------|
-" | End General Mappings |
-" |----------------------|
 
 " |----------------------------------|
 " | Begin Line Modification Settings |
