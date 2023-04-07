@@ -18,9 +18,6 @@ Import-Module PSReadLine
 # Ensure posh-git is loaded
 Import-Module posh-git
 
-# A theme engine for Powershell
-#Import-Module oh-my-posh
-
 # Disable the default ReverseHistorySearch
 Remove-PSReadlineKeyHandler 'Ctrl+r'
 # Powershell wrapper for FZF
