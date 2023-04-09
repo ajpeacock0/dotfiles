@@ -66,24 +66,18 @@ Plug 'luochen1990/rainbow'
 " Git features
 Plug 'tpope/vim-fugitive'
 
-" Show information about files in a git repo
+" Displays line signs for changes when in a git repo
 Plug 'airblade/vim-gitgutter'
 
 " Markdown syntax highlighting
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
 
-" Markdown Renderer
-Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
-
 " EOL whitespace removal
 Plug 'ntpeters/vim-better-whitespace'
 
 " Formatting Markdown tables
 Plug 'dhruvasagar/vim-table-mode'
-
-" Auto table of contents for Markdown files
-Plug 'liuchengxu/vista.vim'
 
 " Omni-completion TypeScript (Disabled since it creates files which cannot be
 " deleted when run in Windows repos)
