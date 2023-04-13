@@ -98,6 +98,8 @@ Plug 'jackMort/ChatGPT.nvim'
 " Plug 'nvim-treesitter/nvim-treesitter'
 " Plug 'phelipetls/jsonpath.nvim'
 
+Plug 'chrisbra/vim-xml-runtime'
+
 " Initialize plugin system
 call plug#end()
 
@@ -502,6 +504,9 @@ nnoremap <C-x> <C-a>
 
 " Format JSON in butter using `jq` tool
 nmap <leader>jq :%!jq .<cr>
+
+" Set XML formatting for buffer
+nmap <leader>xq :set formatexpr=xmlformat#Format()<cr>
 
 " |--------------------------------|
 " | End Line Modification Mappings |
