@@ -315,7 +315,10 @@ nnoremap <leader>vt :Vista!!<CR>
 "  setlocal winbar=%{luaeval('require\"jsonpath\".get()')}
 "endif
 
-let g:copilot_filetypes = { 'xml': v:false }
+let g:copilot_filetypes = {
+      \ 'xml': v:false,
+      \ 'markdown': v:true,
+      \ }
 
 " Shortcut to open ChatGPT
 nnoremap <leader>ai :ChatGPT<Cr>
