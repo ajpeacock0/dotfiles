@@ -88,12 +88,6 @@ Plug 'deoplete-plugins/deoplete-jedi'
 
 Plug 'github/copilot.vim'
 
-" ChatGPT
-Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-telescope/telescope.nvim'
-Plug 'MunifTanjim/nui.nvim'
-Plug 'jackMort/ChatGPT.nvim'
-
 " JSON Path Syntax
 " Plug 'nvim-treesitter/nvim-treesitter'
 " Plug 'phelipetls/jsonpath.nvim'
@@ -319,30 +313,6 @@ let g:copilot_filetypes = {
       \ 'xml': v:false,
       \ 'markdown': v:true,
       \ }
-
-" Shortcut to open ChatGPT
-nnoremap <leader>ai :ChatGPT<Cr>
-
-lua <<EOF
--- chat gpt
-require("chatgpt").setup({
-        question_sign = "$",
-        keymaps = {
-          close = { "<C-q>" },
-          submit = "<C-a>",
-          yank_last = "<C-y>",
-          scroll_up = "<C-k>",
-          scroll_down = "<C-j>",
-          toggle_settings = "<C-t>",
-          new_session = "<C-n>",
-          cycle_windows = "<C-c>",
-          -- in the Sessions pane
-          select_session = "<S-s>",
-          rename_session = "<S-r>",
-          delete_session = "<S-d>",
-        }
-      })
-EOF
 
 " |---------------------|
 " | End Plugin Settings |
