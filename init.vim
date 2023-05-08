@@ -9,7 +9,6 @@ call plug#begin('~/AppData/Local/nvim/plugged')
 " Autocompletion Plugin and dependencies
 Plug 'ncm2/ncm2'
 Plug 'roxma/nvim-yarp'
-Plug 'roxma/vim-hug-neovim-rpc'
 
 " Completion Sources
 Plug 'ncm2/ncm2-bufword'
