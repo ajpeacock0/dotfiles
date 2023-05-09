@@ -78,10 +78,7 @@ Plug 'ntpeters/vim-better-whitespace'
 " Formatting Markdown tables
 Plug 'dhruvasagar/vim-table-mode'
 
-" Omni-completion TypeScript (Disabled since it creates files which cannot be
-" deleted when run in Windows repos)
-Plug 'quramy/tsuquyomi'
-
+" Completion: TODO find out how I use this
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'deoplete-plugins/deoplete-jedi'
 
@@ -91,6 +88,7 @@ Plug 'github/copilot.vim'
 " Plug 'nvim-treesitter/nvim-treesitter'
 " Plug 'phelipetls/jsonpath.nvim'
 
+" XML formatter
 Plug 'chrisbra/vim-xml-runtime'
 
 " Initialize plugin system
