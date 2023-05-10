@@ -2,6 +2,8 @@
 -- | Begin GUI Settings |
 -- |--------------------|
 
+print("Loading settings.lua")
+
 -- Show a real status line
 vim.opt.laststatus = 2
 
@@ -26,18 +28,12 @@ vim.opt.background = 'dark'
 -- mismatching colors. However some colorschemes are setting fzf colors, and
 -- since gruvbox somewhat matches jellybeans, I am assigning the colorscheme
 -- first to gruvbox, then to jellybeans.
---vim.cmd('colorscheme gruvbox')
---vim.cmd('colorscheme OceanicNext')
-
---require('OceanicNext').setup({
-    --disable_background = true
---})
-
+vim.cmd('colorscheme gruvbox')
+vim.cmd('colorscheme OceanicNext')
 
 -- TODO: Figure out what this does
 --vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
 --vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
-
 
 -- Set the SpellBad highlighting
 vim.cmd('highlight clear SpellBad')
@@ -54,6 +50,10 @@ vim.o.guifont = 'FuraCode_NF:h11,Fira_Code:h11,Consolas:h11'
 -- For flag explanation, read http://vimdoc.sourceforge.net/htmldoc/options.html#'guioptions'
 -- Disable menus and preserve window sizing
 vim.o.guioptions = 'Mk'
+
+if vim.fn.has('termguicolors') == 1 then
+    vim.o.termguicolors = true
+end
 
 -- Set the highlight colors for bookmarking
 vim.cmd('highlight BookmarkSign guibg=#303030 guifg=#870000')

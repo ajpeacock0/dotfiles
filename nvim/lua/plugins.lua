@@ -1,5 +1,7 @@
 -- This file can be loaded by calling `lua require('plugins')` from your init.vim
 
+print("Loading plugins...")
+
 -- Only required if you have packer configured as `opt`
 vim.cmd [[packadd packer.nvim]]
 
@@ -16,11 +18,11 @@ return require('packer').startup(function(use)
 
   -- Theme
   use {
-      'mhartington/oceanic-next',
-      config = function()
-          vim.cmd('colorscheme OceanicNext')
-      end
+      'morhetz/gruvbox',
+      'mhartington/oceanic-next'
   }
+
+  use({ 'rose-pine/neovim', as = 'rose-pine' })
 
   use {
       'VonHeikemen/lsp-zero.nvim',
@@ -90,4 +92,10 @@ return require('packer').startup(function(use)
   use { 'dhruvasagar/vim-table-mode' }
 
   use { 'github/copilot.vim' }
+
+  -- Display the mappings
+  use { "folke/which-key.nvim" }
+
+  -- Alligning lines
+  use { 'Vonr/align.nvim' }
 end)

@@ -16,6 +16,9 @@ if vim.fn.executable('fzf') then
     -- Create `RG` to search hidden and git ignored files
     vim.cmd([[command! -bang -nargs=? -complete=dir RG call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case --hidden --no-ignore -- " .shellescape(<q-args>), 1, <bang>0)]])
 
+    -- Override `Buffers` with no preview window
+    vim.cmd([[command! -bang -nargs=? -complete=dir Buffers call fzf#vim#buffers(<q-args>, {'options': ''}, <bang>0)]])
+
     -- Remap CtrlP mappings to FZF
     vim.api.nvim_set_keymap('n', '<C-p>', ':Files<CR>', { noremap = true })
     vim.api.nvim_set_keymap('n', '<C-o>', ':call fzf#run({\'sink\': \'e\', \'options\': \'--multi --no-mouse\', \'down\': \'40%\'})<CR>', { noremap = true })
@@ -125,7 +128,27 @@ vim.api.nvim_set_keymap('n', '<leader>vt', ':Vista!!<CR>', {})
 -- Enable/Disable copilot filetypes
 vim.g.copilot_filetypes = {
     ['xml'] = false,
-    ['markdown'] = true,
+    ['markdown'] = false,
+}
+
+-- Determines timout for which-key to appear
+vim.o.timeout = true
+vim.o.timeoutlen = 800
+
+require("which-key").setup {
+-- your configuration comes here
+-- or leave it empty to use the default settings
+-- refer to the configuration section below
+    popup_mappings = {
+        scroll_down = "<c-j>", -- binding to scroll down inside the popup
+        scroll_up = "<c-k>", -- binding to scroll up inside the popup
+    },
+    layout = {
+        height = { min = 4, max = 25 }, -- min and max height of the columns
+        width = { min = 20, max = 80 }, -- min and max width of the columns
+        spacing = 3, -- spacing between columns
+        align = "left", -- align columns left, center or right
+    },
 }
 
 -- LSP Config

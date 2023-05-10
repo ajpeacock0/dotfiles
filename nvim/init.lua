@@ -1,2 +1,1 @@
 require("mappings")
-require("settings")
