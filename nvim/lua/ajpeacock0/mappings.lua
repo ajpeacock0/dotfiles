@@ -2,8 +2,6 @@
 -- | General Mappings |
 -- |------------------|
 
-print("Loading mappings.lua...")
-
 -- Use which-key for mappings to gain descriptions
 local wk = require("which-key")
 
@@ -16,17 +14,17 @@ wk.register({
 })
 
 wk.register({
-    ['<leader>q']   = {':q<cr>'                   , 'Shortcut to quit'                      },
-    ['<leader>fq']  = {':bdelete!<cr>'            , 'Shortcut to force delete buffer'       },
-    ['<leader>w']   = {':w<cr>'                   , 'Map Leader w to write'                 },
-    ['<leader>va']  = {':set virtualedit=all<cr>' , 'Change virtualedit mode to all'        },
-    ['<leader>vd']  = {':set virtualedit=""<cr>'  , 'Change virtualedit mode to default'    },
-    ['<leader>b']   = {':Buffers<cr>'             , 'Alias for :Buffers'                    },
-    ['<leader>e']   = {':e!<cr>'                  , 'Alias for :e! (force reload buffer)'   },
+    ['<leader>q']   = {':q<cr>'                  , 'Shortcut to quit'                      },
+    ['<leader>fq']  = {':bdelete!<cr>'           , 'Shortcut to force delete buffer'       },
+    ['<leader>w']   = {':w<cr>'                  , 'Map Leader w to write'                 },
+    ['<leader>va']  = {':set virtualedit=all<cr>', 'Change virtualedit mode to all'        },
+    ['<leader>vd']  = {':set virtualedit=""<cr>' , 'Change virtualedit mode to default'    },
+    ['<leader>b']   = {':Buffers<cr>'            , 'Alias for :Buffers'                    },
+    ['<leader>e']   = {':e!<cr>'                 , 'Alias for :e! (force reload buffer)'   },
     ['<leader>rm']  = { function()
         vim.cmd("call delete(expand('%'))")
         vim.cmd("bdelete!")
-    end, "Alias for deleting the current file"                                              },
+    end, "Alias for deleting the current file"                                             },
 })
 
 -- Add Ctrl+j/k for when popup menu is showing
@@ -38,15 +36,16 @@ vim.api.nvim_set_keymap('i', '<Tab>', 'pumvisible() ? "<C-n>" : "<Tab>"', { expr
 vim.api.nvim_set_keymap('i', '<S-Tab>', 'pumvisible() ? "<C-p>" : "<S-Tab>"', { expr = true })
 
 wk.register({
-    ['<leader>ve']      = {':e $MYVIMRC<CR>',      'Edit the MYVIMRC configuration file'        },
+    ['<leader>ve']      = {':e $MYVIMRC<CR>'     , 'Edit the MYVIMRC configuration file'        },
     ['<leader>vr']      = {':source $MYVIMRC<CR>', 'Reload MYVIMRC configuration file'          },
-    ['<leader>vx']      = {':Vex<CR>',             'Shortcut for Vertical Explore'              },
-    ['<leader>py']      = {':set paste<Cr>',       'Shortcut for enabling paste mode'           },
-    ['<leader>pn']      = {':set nopaste<CR>',     'Shortcut for disabling paste mode'          },
-    ['<leader>dy']      = {':windo diffthis<CR>',  'Shortcut for enabling diff mode'            },
-    ['<leader>dn']      = {':windo diffoff<CR>',   'Shortcut for disabling diff mode'           },
-    ['<leader>lw']      = {':set wrap!<CR>',       'Toggle Word Wrap'                           },
-    ['<leader><space>'] = {':noh<CR>',             'Unhighlight search terms with leader+space' },
+    ['<leader>vx']      = {':Vex<CR>'            , 'Shortcut for Vertical Explore'              },
+    ['<leader>py']      = {':set paste<Cr>'      , 'Shortcut for enabling paste mode'           },
+    ['<leader>pn']      = {':set nopaste<CR>'    , 'Shortcut for disabling paste mode'          },
+    ['<leader>dy']      = {':windo diffthis<CR>' , 'Shortcut for enabling diff mode'            },
+    ['<leader>dn']      = {':windo diffoff<CR>'  , 'Shortcut for disabling diff mode'           },
+    ['<leader>lw']      = {':set wrap!<CR>'      , 'Toggle Word Wrap'                           },
+    ['<leader><space>'] = {':noh<CR>'            , 'Unhighlight search terms with leader+space' },
+    ['<C-t>']           = {':CHADopen<CR>'       , 'CHADtree Toggle'                            },
 })
 
 -- |----------------------------------|
@@ -54,21 +53,21 @@ wk.register({
 -- |----------------------------------|
 
 wk.register({
-    ['<C-z>']       = {'<C-x>'                                  , "Decrement number"                                         },
-    ['<C-x>']       = {'<C-a>'                                  , "Increment number"                                         },
-    ['<C-j>']       = {':j<cr>'                                 , "Line join command"                                        },
-    ['<leader>sw']  = {':StripWhitespace<cr>'                   , "Strip Whitespace"                                         },
-    ['<leader>tab'] = {':set et<cr> :ret!<cr>'                  , "Change all existing tab characters to match tab settings" },
-    ['<leader>jq']  = {':%!jq .<cr>'                            , 'Format JSON in butter using `jq` tool'                    },
-    ['<leader>xq']  = {':set formatexpr=xmlformat#Format()<cr>' , 'Set XML formatting for buffer'                            },
+    ['<C-z>']       = {'<C-x>'                                 , "Decrement number"                                         },
+    ['<C-x>']       = {'<C-a>'                                 , "Increment number"                                         },
+    ['<C-j>']       = {':j<cr>'                                , "Line join command"                                        },
+    ['<leader>sw']  = {':StripWhitespace<cr>'                  , "Strip Whitespace"                                         },
+    ['<leader>tab'] = {':set et<cr> :ret!<cr>'                 , "Change all existing tab characters to match tab settings" },
+    ['<leader>jq']  = {':%!jq .<cr>'                           , 'Format JSON in butter using `jq` tool'                    },
+    ['<leader>xq']  = {':set formatexpr=xmlformat#Format()<cr>', 'Set XML formatting for buffer'                            },
 
     ['<leader>nn']  = { function()
         vim.cmd(".,$g/"..vim.fn.expand("<cWORD>").."/normal o")
-    end, "From the current line to EOF, insert new line for each match of the cursor WORD"                                   },
+    end, "From the current line to EOF, insert new line for each match of the cursor WORD"                                  },
 
     ['<leader>dd']  = { function()
         vim.cmd(".,%g/"..vim.fn.expand("<cWORD>").."/d")
-    end, "Delete every line which contains the current word"                                                                 },
+    end, "Delete every line which contains the current word"                                                                },
 
     ['<leader>fix'] = { function()
         vim.cmd([[%s//'/ge]])
@@ -91,12 +90,12 @@ wk.register({
 
 wk.register({
     -- Gheto custom autoclose mappings
-    ['(']      = {'()<left>'      , "Custom autoclose mapping" },
-    ['[']      = {'[]<left>'      , "Custom autoclose mapping" },
-    ['{']      = {'{}<left>'      , "Custom autoclose mapping" },
-    ['<']      = {'<><left>'      , "Custom autoclose mapping" },
-    ['{<cr>']  = {'{<cr>}<ESC>O'  , "Custom autoclose mapping" },
-    ['{;<cr>'] = {'{<cr>};<ESC>O' , "Custom autoclose mapping" },
+    ['(']      = {'()<left>'     , "Custom autoclose mapping" },
+    ['[']      = {'[]<left>'     , "Custom autoclose mapping" },
+    ['{']      = {'{}<left>'     , "Custom autoclose mapping" },
+    ['<']      = {'<><left>'     , "Custom autoclose mapping" },
+    ['{<cr>']  = {'{<cr>}<ESC>O' , "Custom autoclose mapping" },
+    ['{;<cr>'] = {'{<cr>};<ESC>O', "Custom autoclose mapping" },
 },{
     mode = "i", -- INSERT mode
 })
