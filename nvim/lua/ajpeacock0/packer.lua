@@ -85,7 +85,7 @@ return require('packer').startup(function(use)
     -- Formatting Markdown tables
     use { 'dhruvasagar/vim-table-mode' }
 
-    -- Suggestions
+    -- Copilot Suggestions
     use { 'github/copilot.vim' }
 
     -- Display the mappings
