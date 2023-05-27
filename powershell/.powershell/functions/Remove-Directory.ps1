@@ -15,4 +15,4 @@ Function Remove-Directory {
     Remove-Item -Recurse -Force $Directory
 }
 
-Set-Alias rm Remove-Directory
+Set-Alias rm Remove-Directory -Option AllScope

@@ -21,4 +21,4 @@ Function Touch-File {
     }
 }
 
-Set-Alias touch Touch-File
+Set-Alias touch Touch-File -Option AllScope

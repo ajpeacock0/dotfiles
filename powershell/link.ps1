@@ -1,5 +1,11 @@
 #Requires -RunAsAdministrator
 
+# Ensure this is running on Powershell core
+if ($PSVersionTable.PSEdition -ne "Core") {
+    Write-Warning "This script is intended to run on PowerShell Core. Please run it using PowerShell Core."
+    return
+}
+
 # Include Powershell functions, needed for the link function
 . .\.powershell\functions.ps1
 

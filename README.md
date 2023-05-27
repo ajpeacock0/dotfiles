@@ -23,6 +23,8 @@ Creates symlinks for all linux dotfiles and tool configurations.
 
 ## Powershell scripts
 
+### Step 1: Install scoop
+
 You will first need to install `scoop`:
 
 ```
@@ -31,38 +33,75 @@ $ iwr -useb get.scoop.sh | iex
 ```
 
 These setup scripts were written for Powershell-Core, and so may not run successfully on standard Powershell.
-I recommend installing Powershell-Core and switching to it before running the install scripts.
+
+### Step 2: Install Powershell-Core and Git
 
 ```
-$ scoop install pwsh
+$ scoop install pwsh git
 ```
 
-From here you can install `git` using `scoop` and clone this repo.
+You can now clone this repo:
 
-### `install_tools.ps1`
+```
+$ git clone https://github.com/ajpeacock0/dotfiles.git
+```
 
-Downloads and installs tools I can't have a Powershell shell without, as well as Vim plugin managers.
+### Step 3: Run the `install_tools.ps1` script
 
-### `powershell/install_modules.ps1`
+This downloads and installs tools I can't have a Powershell shell without, as well as Vim plugin managers.
+
+```
+$ .\install_tools.ps1
+```
+
+Once this completed, close the shell and open an Admin Powershell-Core shell.
+
+### Step 4: Run the `install_modules.ps1`
 
 **This must be done with admin permissions.**
 
 Installs the Powershell Modules referenced by my PowerShell profile.
 
-> Note: For an unknown reason this fails to install the modules and must be run again after the both link.ps1
-> scripts
+```
+$ cd powershell
+$ .\install_modules.ps1
+```
 
-### `powershell/link.ps1`
+> Note: This script has been written in such a way calling it outside of the `/powershell` directory will cause failures during installation.
+
+> For an unknown reason this fails to install the modules and must be run again after the both link.ps1 scripts
+
+### Step 5: Run the `powershell/link.ps1` script
 
 **This must be done with admin permissions.** 
 
-Create symlinks for Windows powershell config and profile.
+Create symlinks for Powershell-Core config and profile.
 
-### `link.ps1`
+```
+$ .\link.ps1
+```
+
+### Step 6: Run the `link.ps1` script
 
 **This must be done with admin permissions.** 
+
+```
+$ cd ..
+$ .\link.ps1
+```
 
 Create symlinks for any Powershell dotfiles in the home directory.
+
+### Step 7: Restart your terminal
+
+Due to a bug in my scripts, you will get a series of `Import-Module` errors:
+```
+The specified module '<module_name>' was not loaded because no valid module file was found in any module directory.
+```
+
+The Powershell modules aren't found, and so you need to run the `install_modules.ps1` script again.
+
+##
 
 For the Windows Terminal `profiles.json`, there are 2 options to run PowerShellCore
 - `"source": "Windows.Terminal.PowershellCore"`

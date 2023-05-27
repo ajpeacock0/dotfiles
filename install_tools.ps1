@@ -10,9 +10,43 @@ param(
     [switch] $Defender = $false
 )
 
+function Write-FramedString {
+    param(
+        [Parameter(Mandatory=$true, Position=0)]
+        [string]$InputString
+    )
+
+    $frameLineLength = ([string]$InputString).Length + 12  # Adjust the frame length
+    $frameLine = "-" * $frameLineLength
+    $output = "$frameLine`n-$(' ' * 5)$InputString$(' ' * 5)-`n$frameLine"
+
+    Write-Host $output
+}
+
+function Search-InstalledFonts {
+    param (
+        [Parameter(Mandatory = $true)]
+        [string]$FontName
+    )
+
+    $fonts = Get-ChildItem -Path 'C:\Windows\Fonts' -Filter '*.ttf' -Recurse
+
+    $foundFonts = $fonts | Where-Object { $_.Name -like "*$FontName*" }
+
+    if ($foundFonts.Count -eq 0) {
+        Write-Warning "No fonts found on this machine containing '$FontName'."
+    } else {
+        foreach ($font in $foundFonts) {
+            Write-Output "The font is installed on this machine: $font.Name"
+        }
+    }
+}
+
 function Install-BasicTools {
     [CmdletBinding(SupportsShouldProcess)]
     param ()
+
+    Write-FramedString "Installing Basic Tools and Font"
 
     # Install the latest vim from scoop
     # Along with the tools fd and fzf for
@@ -23,28 +57,37 @@ function Install-BasicTools {
     scoop bucket add nerd-fonts
     scoop install FiraCode-NF
 
-    # Install XLaunch from extras vcxsrv
-    scoop bucket add extras
-    scoop install vcxsrv extras/vcredist2015
-
-    # Install On-My-Posh (previously a Powershell Module)
-    scoop install https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/oh-my-posh.json
+    # Check that FiraCode is available on this machine
+    Search-InstalledFonts FiraCode
 }
 
-function Include-PowershellFunctions {
+function Install-OhMyPosh {
     [CmdletBinding(SupportsShouldProcess)]
     param ()
 
-    # Include Powershell functions
-    . powershell\.powershell\functions.ps1
+    Write-FramedString "Installing On-My-Posh"
+
+    # Install On-My-Posh (previously a Powershell Module)
+    scoop install https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/oh-my-posh.json
 }
 
 function Setup-Vim {
     [CmdletBinding(SupportsShouldProcess)]
     param ()
 
-    # Needed for the `touch` alias
-    Include-PowershellFunctions
+    Write-FramedString "Installing Vim dependencies and creating configuration files"
+
+    # Needed for the `touch` alias. Note that cannot be moved to a function, as items that have the AllScope
+    # property become part of any child scopes that you create, although they aren't retroactively inherite
+    # by parent scopes.
+    $functionsFilePath = "powershell\.powershell\functions.ps1"
+
+    if (Test-Path $functionsFilePath) {
+        . $functionsFilePath
+    }
+    else {
+        Write-Warning "PowerShell functions file not found at $functionsFilePath"
+    }
 
     # pynvim is needed for Vim to use Python
     python3 -m pip install --user --upgrade pynvim
@@ -85,11 +128,18 @@ function Add-DefenderExclusions {
     [CmdletBinding(SupportsShouldProcess)]
     param ()
 
+    Write-FramedString "Adding Windows Defender Exclusions"
+
     # Stop windows Defener from Scanning Visual Studio
-    $VsWhereCommand = "${Env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe"
-    $VsInstances = & $VsWhereCommand -prerelease -all -format json | ConvertFrom-Json
-    foreach ($VsInstance in $VsInstances) {
-        sudo Add-MpPreference -ExclusionPath $VsInstance.installationPath
+    $VsWherePath = "${Env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe"
+    if (Test-Path $VsWherePath) {
+        $VsInstances = & $VsWherePath -prerelease -all -format json | ConvertFrom-Json
+
+        foreach ($VsInstance in $VsInstances) {
+            sudo Add-MpPreference -ExclusionPath $VsInstance.installationPath
+        }
+    } else {
+        Write-Host "vswhere.exe not found. Visual Studio instances could not be retrieved."
     }
 
     $Script:GitReposPath = "~\git_repos"
@@ -106,16 +156,13 @@ function Add-DefenderExclusions {
 $All = $PSCmdlet.ParameterSetName -eq 'None'
 
 if ($BasicTools -or $All) {
-    Write-Output "Installing basic scoop packages..."
     Install-BasicTools
 }
 
 if ($Vim -or $All) {
-    Write-Output "Setting up Vim..."
     Setup-Vim
 }
 
 if ($Defender -or $All) {
-    Write-Output "Adding Windows Defender Exclusions..."
     Add-DefenderExclusions
 }
