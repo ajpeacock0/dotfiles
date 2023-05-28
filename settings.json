@@ -18,7 +18,7 @@
             "cursorColor": "#FFFFFF",
             "cursorShape": "vintage",
             "startingDirectory" : "%USERPROFILE%",
-            "fontFace": "FiraCode NF",
+            "fontFace": "FiraCode Nerd Font",
             "fontSize": 11,
             "hidden": false
         },

@@ -29,15 +29,27 @@ function Search-InstalledFonts {
         [string]$FontName
     )
 
-    $fonts = Get-ChildItem -Path 'C:\Windows\Fonts' -Filter '*.ttf' -Recurse
+    $systemFonts = Get-ChildItem -Path 'C:\Windows\Fonts' -Filter '*.ttf' -Recurse
+    $currentUserFonts = Get-ChildItem -Path "$env:LOCALAPPDATA\Microsoft\Windows\Fonts" -Filter '*.ttf' -Recurse
 
-    $foundFonts = $fonts | Where-Object { $_.Name -like "*$FontName*" }
+    $foundFonts = @()
+
+    $systemMatchedFonts = $systemFonts | Where-Object { $_.Name -like "*$FontName*" }
+    if ($systemMatchedFonts.Count -gt 0) {
+        $foundFonts += $systemMatchedFonts
+    }
+
+    $currentUserMatchedFonts = $currentUserFonts | Where-Object { $_.Name -like "*$FontName*" }
+    if ($currentUserMatchedFonts.Count -gt 0) {
+        $foundFonts += $currentUserMatchedFonts
+    }
 
     if ($foundFonts.Count -eq 0) {
-        Write-Warning "No fonts found on this machine containing '$FontName'."
-    } else {
+        Write-Output "No fonts found matching '$FontName'."
+    }
+    else {
         foreach ($font in $foundFonts) {
-            Write-Output "The font is installed on this machine: $font.Name"
+            Write-Output "$font.Name"
         }
     }
 }
@@ -53,7 +65,7 @@ function Install-BasicTools {
     # file searching
     scoop install vim neovim fd fzf ripgrep git sudo python bat zoxide jq sd
 
-    # Install FiraCode from NerdFont
+    # Install FiraCode from NerdFont to the local user
     scoop bucket add nerd-fonts
     scoop install FiraCode-NF
 
