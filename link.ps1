@@ -67,8 +67,6 @@ ln "${Env:UserProfile}\git_repos\dotfiles\.gvimrc" "${Env:UserProfile}\.gvimrc" 
 ln "${Env:UserProfile}\vimfiles" "${Env:UserProfile}\.vim"
 
 # Link the init.vim to nvim AppData. TODO: Change assumed "git_repos\dotfiles" path to use scriptDirectory
-ln "${Env:UserProfile}\git_repos\dotfiles\init.vim" "${Env:UserProfile}\AppData\Local\nvim\init.vim"
-
 ln "${Env:UserProfile}\git_repos\dotfiles\nvim\init.lua" "${Env:UserProfile}\AppData\Local\nvim\init.lua"
 ln "${Env:UserProfile}\git_repos\dotfiles\nvim\lua" "${Env:UserProfile}\AppData\Local\nvim\lua"
 ln "${Env:UserProfile}\git_repos\dotfiles\nvim\after" "${Env:UserProfile}\AppData\Local\nvim\after"

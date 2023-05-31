@@ -60,10 +60,9 @@ function Install-BasicTools {
 
     Write-FramedString "Installing Basic Tools and Font"
 
-    # Install the latest vim from scoop
-    # Along with the tools fd and fzf for
-    # file searching
-    scoop install vim neovim fd fzf ripgrep git sudo python bat zoxide jq sd
+    # Install the latest vim from scoop along with the tools fd and fzf for
+    # file searching. Also install mingw for treesitter in NeoVim
+    scoop install vim neovim fd fzf ripgrep git sudo python bat zoxide jq sd mingw
 
     # Install FiraCode from NerdFont to the local user
     scoop bucket add nerd-fonts
@@ -111,29 +110,8 @@ function Setup-Vim {
     }
     touch "${Script:NeoVimHome}\init.vim"
 
-    # Install Vim-Plug for NeoVim
-    if (-not (Test-Path "${Script:NeoVimHome}\autoload")) {
-        md "${Script:NeoVimHome}\autoload"
-    }
-    $Script:uri = 'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-    (New-Object Net.WebClient).DownloadFile(
-      $Script:uri,
-      $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath(
-        "${Script:NeoVimHome}\autoload\plug.vim"
-      )
-    )
-
-    # Install Vim-Plug for Vim
-    $Script:VimHome = "~\vimfiles"
-    if (-not (Test-Path "${Script:VimHome}\autoload")) {
-        md "${Script:VimHome}\autoload"
-    }
-    (New-Object Net.WebClient).DownloadFile(
-      $Script:uri,
-      $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath(
-        "${Script:VimHome}\autoload\plug.vim"
-      )
-    )
+    # Install Packer for NeoVim plugin management
+    git clone https://github.com/wbthomason/packer.nvim "$env:LOCALAPPDATA\nvim-data\site\pack\packer\start\packer.nvim"
 }
 
 function Add-DefenderExclusions {
