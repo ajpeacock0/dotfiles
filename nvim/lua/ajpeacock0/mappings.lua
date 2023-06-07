@@ -15,7 +15,7 @@ wk.register({
 
 wk.register({
     ['<leader>q']   = {':q<cr>'                  , 'Shortcut to quit'                      },
-    ['<leader>fq']  = {':bdelete!<cr>'           , 'Shortcut to force delete buffer'       },
+    ['<leader>fq']  = {':q!<cr>'                 , 'Shortcut to force delete buffer'       },
     ['<leader>w']   = {':w<cr>'                  , 'Map Leader w to write'                 },
     ['<leader>va']  = {':set virtualedit=all<cr>', 'Change virtualedit mode to all'        },
     ['<leader>vd']  = {':set virtualedit=""<cr>' , 'Change virtualedit mode to default'    },
