@@ -62,7 +62,7 @@ function Install-BasicTools {
 
     # Install the latest vim from scoop along with the tools fd and fzf for
     # file searching. Also install mingw for treesitter in NeoVim
-    scoop install vim neovim fd fzf ripgrep git sudo python bat zoxide jq sd mingw
+    scoop install vim neovim fd fzf ripgrep git sudo python bat zoxide jq sd mingw delta
 
     # Install FiraCode from NerdFont to the local user
     scoop bucket add nerd-fonts
