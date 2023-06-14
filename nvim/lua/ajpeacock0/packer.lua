@@ -73,6 +73,9 @@ return require('packer').startup(function(use)
     -- Git features
     use { 'tpope/vim-fugitive' }
 
+    -- Plant UML syntax highlighting
+    use { 'aklt/plantuml-syntax' }
+
     -- Displays line signs for changes when in a git repo
     use { 'airblade/vim-gitgutter' }
 
