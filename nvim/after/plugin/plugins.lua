@@ -47,3 +47,7 @@ vim.g.bookmark_center = 1
 vim.g.bookmark_highlight_lines = 1
 
 vim.g.bookmark_annotation_sign = '♠'
+
+-- Have PlantUML show errors
+vim.g["plantuml_previewer#debug_mode"] = 1
+

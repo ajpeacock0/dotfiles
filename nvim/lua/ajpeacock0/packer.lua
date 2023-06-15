@@ -76,6 +76,12 @@ return require('packer').startup(function(use)
     -- Plant UML syntax highlighting
     use { 'aklt/plantuml-syntax' }
 
+    -- Hooks for opeing browser
+    use { 'tyru/open-browser.vim' }
+
+    -- Plant UML Previewer
+    use { 'weirongxu/plantuml-previewer.vim' }
+
     -- Displays line signs for changes when in a git repo
     use { 'airblade/vim-gitgutter' }
 
