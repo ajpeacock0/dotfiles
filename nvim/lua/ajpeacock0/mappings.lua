@@ -119,19 +119,19 @@ wk.register({
 -- |--------------------|
 
 wk.register({
-    ['<C-l>']      = { function() vim.cmd(':tabnext') end            , "Go to next tab", mode={'n','i','v'}                      },
-    ['<C-h>']      = { function() vim.cmd(':tabprevious') end        , "Go to previous tab", mode={'n','i','v'}                  },
-    ['<M-l>']      = { function() vim.cmd('silent! :tabmove +1') end , "Move this tab to the right", mode={'n','i','v'}          },
-    ['<M-h>']      = { function() vim.cmd('silent! :tabmove -1') end , "Move this tab to the left", mode={'n','i','v'}           },
-    ['<C-n>']      = { function() vim.cmd(':tabnew') end             , "Create a new blank tab", mode={'n','i','v'}              },
-    ['<C-w>,']     = {'<C-w><S-H>'                                   , 'Move window split to left'      , mode={'n','v'}         },
-    ['<C-w>.']     = {'<C-w><S-L>'                                   , 'Move window split to right', mode={'n','v'}              },
-    ['<C-w><C-l>'] = {':vertical resize +10<CR>'                     , 'Mapping for window vertical resize', mode={'n','v'}      },
-    ['<C-w><C-h>'] = {':vertical resize -10<CR>'                     , 'Mapping for window vertical resize', mode={'n','v'}      },
-    ['<C-w><C-j>'] = {':horizontal resize +7<CR>'                    , 'Mapping for window vertical resize', mode={'n','v'}      },
-    ['<C-w><C-k>'] = {':horizontal resize -7<CR>'                    , 'Mapping for window vertical resize', mode={'n','v'}      },
-    ['<leader>vn'] = {':vnew<CR>'                                    , 'Shortcut to open empty vertical buffer', mode={'n','v'}  },
-    ['<leader>vs'] = {':new<CR>'                                     , 'Shortcut to open empty horizontal buffer', mode={'n','v'}},
+    ['<C-l>']      = { function() vim.cmd(':tabnext') end            , "Go to next tab", mode={'n','i','v'}             },
+    ['<C-h>']      = { function() vim.cmd(':tabprevious') end        , "Go to previous tab", mode={'n','i','v'}         },
+    ['<M-l>']      = { function() vim.cmd('silent! :tabmove +1') end , "Move this tab to the right", mode={'n','i','v'} },
+    ['<M-h>']      = { function() vim.cmd('silent! :tabmove -1') end , "Move this tab to the left", mode={'n','i','v'}  },
+    ['<C-n>']      = { function() vim.cmd(':tabnew') end             , "Create a new blank tab", mode={'n','i','v'}     },
+    ['<C-w>,']     = {'<C-w><S-H>'                                   , 'Move window split to left', mode={'n','v'}      },
+    ['<C-w>.']     = {'<C-w><S-L>'                                   , 'Move window split to right', mode={'n','v'}     },
+    ['<C-w><C-l>'] = {':vertical resize +10<CR>'                     , 'Window vertical resize+', mode={'n','v'}        },
+    ['<C-w><C-h>'] = {':vertical resize -10<CR>'                     , 'Window vertical resize-', mode={'n','v'}        },
+    ['<C-w><C-j>'] = {':horizontal resize +7<CR>'                    , 'Window horizontal resize+', mode={'n','v'}      },
+    ['<C-w><C-k>'] = {':horizontal resize -7<CR>'                    , 'Window horizontal resize-', mode={'n','v'}      },
+    ['<leader>vn'] = {':vnew<CR>'                                    , 'Open empty vertical buffer', mode={'n','v'}     },
+    ['<leader>vs'] = {':new<CR>'                                     , 'Open empty horizontal buffer', mode={'n','v'}   },
 })
 
 -- Mappings for opening the native terminal
