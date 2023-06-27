@@ -1,15 +1,3 @@
-[CmdletBinding(DefaultParameterSetName = 'None', SupportsShouldProcess)]
-param(
-    [Parameter(Mandatory = $true, ParameterSetName = "Scoop")]
-    [switch] $Scoop = $false,
-
-    [Parameter(Mandatory = $true, ParameterSetName = "Vim")]
-    [switch] $Vim = $false,
-
-    [Parameter(Mandatory = $true, ParameterSetName = "Defender")]
-    [switch] $Defender = $false
-)
-
 function Write-FramedString {
     param(
         [Parameter(Mandatory=$true, Position=0)]
@@ -142,17 +130,7 @@ function Add-DefenderExclusions {
     sudo Add-MpPreference -ExclusionProcess $MsBuildProcessName
 }
 
-# If no parameters were set, execute all functions
-$All = $PSCmdlet.ParameterSetName -eq 'None'
-
-if ($BasicTools -or $All) {
-    Install-BasicTools
-}
-
-if ($Vim -or $All) {
-    Setup-Vim
-}
-
-if ($Defender -or $All) {
-    Add-DefenderExclusions
-}
+Install-BasicTools
+Setup-Vim
+Install-OhMyPosh
+Add-DefenderExclusions
