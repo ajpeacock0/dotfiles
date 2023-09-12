@@ -188,6 +188,12 @@ wk.register({
     ['Y']          = {'y$'                       , 'Yank from the cursor to the end of the line, to be consistent with C and D.' },
 })
 
+-- Clear register A then Yank lines matching the current Word to register A
+vim.api.nvim_set_keymap('n', '<leader>yw', ':let @a=\'\'<CR>:g/<C-r>=expand("<cword>")<CR>/y A', { noremap = true })
+
+-- Paste register A
+vim.api.nvim_set_keymap('n', '<leader>ap', '"ap', { noremap = true })
+
 -- |--------------------------------|
 -- | End Clipboard/Yanking Mappings |
 -- |--------------------------------|
@@ -225,6 +231,9 @@ vim.api.nvim_set_keymap('n', '<leader>trw', ':tabdo %s/<C-r>=expand("<cword>")<C
 
 -- RePlace word in all tabs
 vim.api.nvim_set_keymap('n', '<leader>trp', ':tabdo %s/<C-r>=expand("<cword>")<CR>/<C-r>=expand("<cword>")<CR>/g', { noremap = true })
+
+-- Replace Last character with a new string
+vim.api.nvim_set_keymap('x', '<leader>rl', ':s/$/', { noremap = true })
 
 -- |---------------------------------|
 -- | End Search and Replace Mappings |
