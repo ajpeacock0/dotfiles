@@ -89,6 +89,8 @@
   # Abort a stash apply
   saa = reset --merge
   stash-continue = !"git restore --staged . && git stash drop"
+  # Apply the stash of the index
+  san = !"f() { git stash apply stash@{$1}; }; f"
 
   #### Rebase Shortcuts ####
   rb = rebase
