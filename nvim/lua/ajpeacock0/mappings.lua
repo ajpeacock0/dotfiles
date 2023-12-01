@@ -53,8 +53,11 @@ wk.register({
 -- |----------------------------------|
 
 wk.register({
-    ['<C-z>']       = {'<C-x>'                                 , "Decrement number"                                         },
-    ['<C-x>']       = {'<C-a>'                                 , "Increment number"                                         },
+
+    ['<C-z>']       = {'<C-x>'                                 , "Decrement number", mode={'n','v'}                         },
+    ['<C-x>']       = {'<C-a>'                                 , "Increment number", mode={'n','v'}                         },
+    ['g<C-z>']      = {'g<C-x>'                                , "Decrement numbers for each line away", mode={'v'}         },
+    ['g<C-x>']      = {'g<C-a>'                                , "Increment numbers for each line away", mode={'v'}         },
     ['<C-j>']       = {':j<cr>'                                , "Line join command"                                        },
     ['<leader>sw']  = {':StripWhitespace<cr>'                  , "Strip Whitespace"                                         },
     ['<leader>tab'] = {':set et<cr> :ret!<cr>'                 , "Change all existing tab characters to match tab settings" },
