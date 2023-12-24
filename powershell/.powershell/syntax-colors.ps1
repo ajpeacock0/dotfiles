@@ -9,5 +9,4 @@ Set-PSReadLineOption -Colors @{"Type" = [ConsoleColor]::Green}
 Set-PSReadLineOption -Colors @{"String" = [ConsoleColor]::Cyan}
 Set-PSReadLineOption -Colors @{"Parameter" = [ConsoleColor]::Red}
 Set-PSReadLineOption -Colors @{"Keyword" = [ConsoleColor]::Yellow}
-
 Set-PSReadLineOption -Colors @{"Command" = [ConsoleColor]::White}

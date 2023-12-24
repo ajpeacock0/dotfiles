@@ -1,6 +1,6 @@
 #### Version Statement ####
 
-echo "Powershell-Core profile (Updated 05.16.21)"
+echo "Powershell-Core profile (Updated 12.23.23)"
 
 #### Theme ####
 
@@ -20,6 +20,7 @@ Import-Module posh-git
 
 # Disable the default ReverseHistorySearch
 Remove-PSReadlineKeyHandler 'Ctrl+r'
+
 # Powershell wrapper for FZF
 Import-Module PSFzf -SkipEditionCheck
 
@@ -43,9 +44,15 @@ Set-Alias ls Get-ChildItemColorFormatWide -Option AllScope
 function cusorprofile { Set-Location ~ }
 Set-Alias ~ cusorprofile -Option AllScope
 
-# Set '..' location to the User Profile directory
+# Shortcut for moving to parent directory
 function moveup1 { cd .. }
 Set-Alias .. moveup1 -Option AllScope
+
+function moveup2 { cd .. && cd .. }
+Set-Alias ... moveup2 -Option AllScope
+
+function moveup3 { cd .. && cd .. && cd .. }
+Set-Alias .... moveup3 -Option AllScope
 
 Set-Alias ba bat
 
@@ -132,17 +139,6 @@ Set-PSReadlineKeyHandler -Key DownArrow -Function HistorySearchForward
 
 #### Functions ####
 
-function gfix
-{
-    $result = git conf-ls
-    if ($result)
-    {
-        vim +/HEAD
-    } else {
-        echo "No conflicts to resolve"
-    }
-}
-
 # Display the given Unicode value as a character. Used to test font support.
 function U
 {
@@ -163,9 +159,6 @@ function U
 
     throw "Invalid character code $Code"
 }
-
-# Concatenates all files in the current directory into a joined file
-function Join-Files { Get-ChildItem -File | % { echo $_.Name; cat $_.Name >> joined_files } }
 
 #### Include local variables ####
 

@@ -1,8 +1,3 @@
-function Invoke-XLaunch {
-}
-
-Set-Alias startx Invoke-XLaunch
-
 Function Kill-Process {
     <#
     .SYNOPSIS

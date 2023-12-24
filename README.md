@@ -101,7 +101,9 @@ The specified module '<module_name>' was not loaded because no valid module file
 
 The Powershell modules aren't found, and so you need to run the `install_modules.ps1` script again.
 
-##
+## Notes
+
+### Windows Terminal
 
 For the Windows Terminal `profiles.json`, there are 2 options to run PowerShellCore
 - `"source": "Windows.Terminal.PowershellCore"`
@@ -111,3 +113,14 @@ This is after you run `export` to your `pwsh.exe` path, e.g.
 export PWSH %ProgramFiles%\PowerShell\6\pwsh.exe
 ```
 For increased flexibility across multiple machines, I use the "commandline" argument. 
+
+### Archived Files
+
+Across my career I have used and I developed significant dotfiles for many tools and systems, only to switch off them later. These files are inside the archived directory and include files for:
+- unix
+- tmux
+- vimscript
+- zsh
+
+These files may work, or they may need updates after being unmaintained for years. Consider them untested, as
+they've likely become outdated.

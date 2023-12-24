@@ -48,7 +48,7 @@ if (Test-Path -Path $WindowsTerminalDirectory) {
 
 Write-FramedString "Linking Vim Config"
 
-# Remove existing Vim config files
+# Remove any existing Vim config files
 deleteitem "${Env:UserProfile}\scoop\apps\vim\current\_gvimrc"
 deleteitem "${Env:UserProfile}\scoop\apps\vim\current\_vimrc"
 deleteitem "${Env:UserProfile}\.gvimrc"

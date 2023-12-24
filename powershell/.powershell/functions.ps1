@@ -14,3 +14,4 @@ $scriptDirectory = (Split-Path -parent $MyInvocation.MyCommand.Definition)
 . $scriptDirectory\functions\Touch-File.ps1
 . $scriptDirectory\functions\Remove-Directory.ps1
 . $scriptDirectory\functions\Kill-Process.ps1
+. $scriptDirectory\functions\Join-Files.ps1
