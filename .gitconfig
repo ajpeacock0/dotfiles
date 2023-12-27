@@ -251,3 +251,5 @@
   # clear_merged_br () { git branch --merged | egrep -v "(^\*|master|dev)" | xargs git branch -d; }
   # Check if the given branch has not been altered in over 4 weeks
   # br-la = log -1 --after='4 weeks ago' -s
+[safe]
+	directory = C:/Users/anpea/git_repos/dotfiles
