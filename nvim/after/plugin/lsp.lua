@@ -36,3 +36,16 @@ lsp.setup_nvim_cmp({
 })
 
 lsp.setup()
+
+local nvim_lsp = require("lspconfig")
+
+nvim_lsp.java_language_server.setup {
+  settings = {
+    java = {
+      externalDependencies = {
+         "com.azure:azure-core:jar:1.46.0:compile",
+         "com.azure:azure-json:jar:1.1.0:compile",
+       },
+    }
+  }
+}
