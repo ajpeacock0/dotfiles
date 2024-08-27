@@ -19,6 +19,8 @@
 [credential]
     helper = store
 
+	azreposCredentialType = oauth
+	msauthUseBroker = true
 [delta]
     side-by-side = false
     ;plus-style = "syntax #012800"
@@ -253,3 +255,7 @@
   # br-la = log -1 --after='4 weeks ago' -s
 [safe]
 	directory = C:/Users/anpea/git_repos/dotfiles
+[credential "azrepos:org/skype"]
+	username = anpea@microsoft.com
+[credential "azrepos:org/o365exchange"]
+	username = anpea@microsoft.com
