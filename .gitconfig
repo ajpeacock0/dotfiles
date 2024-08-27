@@ -16,8 +16,18 @@
 
 [difftool "nvimdiff"]
     cmd = "nvim -d \"$LOCAL\" \"$REMOTE\""
+
+[credential "azrepos:org/skype"]
+    username = anpea@microsoft.com
+[credential "azrepos:org/o365exchange"]
+    username = anpea@microsoft.com
+[credential "azrepos:org/msazure"]
+    username = anpea@microsoft.com
 [credential]
     helper = store
+
+    azreposCredentialType = oauth
+    msauthUseBroker = true
 [delta]
     side-by-side = false
     ;plus-style = "syntax #012800"
