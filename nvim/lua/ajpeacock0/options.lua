@@ -24,7 +24,7 @@ vim.o.guifont = 'FuraCode_NF:h11,Fira_Code:h11,Consolas:h11'
 -- Must be set before GUI is loaded, don't move to gvimrc.
 -- For flag explanation, read http://vimdoc.sourceforge.net/htmldoc/options.html#'guioptions'
 -- Disable menus and preserve window sizing
-vim.o.guioptions = 'Mk'
+-- vim.o.guioptions = 'Mk' -- DISABLED when updated to neovim 0.10.1
 
 if vim.fn.has('termguicolors') == 1 then
     vim.o.termguicolors = true
