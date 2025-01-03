@@ -104,5 +104,5 @@ return require('packer').startup(function(use)
     use { 'Vonr/align.nvim' }
 
     -- Syntax Highlighting
-    use { "nvim-treesitter/nvim-treesitter" }
+    --use { "nvim-treesitter/nvim-treesitter" }
 end)
