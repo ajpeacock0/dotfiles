@@ -67,7 +67,7 @@ function Install-OhMyPosh {
     Write-FramedString "Installing On-My-Posh"
 
     # Install On-My-Posh (previously a Powershell Module)
-    scoop install https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/oh-my-posh.json
+    scoop install oh-my-posh
 }
 
 function Setup-Vim {

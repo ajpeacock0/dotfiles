@@ -10,7 +10,7 @@ if ($PSVersionTable.PSEdition -ne "Core") {
 . .\.powershell\functions.ps1
 
 # TODO: Change assumed "git_repos\dotfiles" path to use scriptDirectory
-$Script:DotfilesPowerShell = "${Env:UserProfile}\git_repos\dotfiles\powershell"
+$Script:DotfilesPowerShell = "D:\git_repos\dotfiles\powershell"
 
 # Link the .powershell functions and unique configuration files to home
 ln "${Script:DotfilesPowerShell}\.powershell" "${Env:UserProfile}\.powershell"

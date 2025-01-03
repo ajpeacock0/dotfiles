@@ -22,13 +22,16 @@ function Write-FramedString {
 # Include Powershell functions, needed for the `ln` alias
 . powershell\.powershell\functions.ps1
 
+# TODO: Change assumed "git_repos\dotfiles" path to use scriptDirectory
+$Script:Dotfiles = "D:\git_repos\dotfiles"
+
 ## Git Section
 
 Write-FramedString "Linking Git Config"
 
 # Link the .gitconfig to home. TODO: Change assumed "git_repos\dotfiles" path to use scriptDirectory
 deleteitem "${Env:UserProfile}\.gitconfig"
-ln "${Env:UserProfile}\git_repos\dotfiles\.gitconfig" "${Env:UserProfile}\.gitconfig"
+ln "${Script:Dotfiles}\.gitconfig" "${Env:UserProfile}\.gitconfig"
 
 ## Windows Terminal Section
 
@@ -39,7 +42,7 @@ Write-FramedString "Linking Windows Terminal Settings"
 # not linked. The `settings.json` in this repo is only meant to be a starting point
 $WindowsTerminalDirectory = "$Env:LocalAppData\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState"
 if (Test-Path -Path $WindowsTerminalDirectory) {
-    cp "${Env:UserProfile}\git_repos\dotfiles\settings.json" $WindowsTerminalDirectory
+    cp "${Script:Dotfiles}\settings.json" $WindowsTerminalDirectory
 } else {
     Write-Warning "Cannot find the Windows Terminal settings at $WindowsTerminalDirectory"
 }
@@ -56,18 +59,17 @@ deleteitem "${Env:UserProfile}\.vimrc"
 deleteitem "${Env:UserProfile}\.vim"
 deleteitem "${Env:UserProfile}\AppData\Local\nvim\init.vim"
 
-# Link the .gitconfig to home. TODO: Change assumed "git_repos\dotfiles" path to use scriptDirectory
-ln "${Env:UserProfile}\git_repos\dotfiles\.vimrc" "${Env:UserProfile}\.vimrc"
+ln "${Script:Dotfiles}\.vimrc" "${Env:UserProfile}\.vimrc"
 
 # Link the gvimrc
-ln "${Env:UserProfile}\git_repos\dotfiles\.gvimrc" "${Env:UserProfile}\.gvimrc" # Put the gvimrc next to the vimrc
-# ln "${Env:UserProfile}\git_repos\dotfiles\.gvimrc" "${Env:UserProfile}\scoop\apps\vim\current\_gvimrc"
+ln "${Script:Dotfiles}\.gvimrc" "${Env:UserProfile}\.gvimrc" # Put the gvimrc next to the vimrc
+# ln "${Script:Dotfiles}\.gvimrc" "${Env:UserProfile}\scoop\apps\vim\current\_gvimrc"
 
 # Link the Windows vimfiles to Unix style location
 ln "${Env:UserProfile}\vimfiles" "${Env:UserProfile}\.vim"
 
 # Link the init.vim to nvim AppData. TODO: Change assumed "git_repos\dotfiles" path to use scriptDirectory
-ln "${Env:UserProfile}\git_repos\dotfiles\nvim\init.lua" "${Env:UserProfile}\AppData\Local\nvim\init.lua"
-ln "${Env:UserProfile}\git_repos\dotfiles\nvim\lua" "${Env:UserProfile}\AppData\Local\nvim\lua"
-ln "${Env:UserProfile}\git_repos\dotfiles\nvim\after" "${Env:UserProfile}\AppData\Local\nvim\after"
+ln "${Script:Dotfiles}\nvim\init.lua" "${Env:UserProfile}\AppData\Local\nvim\init.lua"
+ln "${Script:Dotfiles}\nvim\lua" "${Env:UserProfile}\AppData\Local\nvim\lua"
+ln "${Script:Dotfiles}\nvim\after" "${Env:UserProfile}\AppData\Local\nvim\after"
 
