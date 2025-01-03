@@ -9,8 +9,13 @@ if ($PSVersionTable.PSEdition -ne "Core") {
 # Include Powershell functions, needed for the link function
 . .\.powershell\functions.ps1
 
-# TODO: Change assumed "git_repos\dotfiles" path to use scriptDirectory
-$Script:DotfilesPowerShell = "D:\git_repos\dotfiles\powershell"
+# Check if $Script:DotfilesPowerShell is not set, assigning if not
+if (-not $Script:DotfilesPowerShell) {
+    $Script:DotfilesPowerShell = (Get-Location).Path
+    Write-Host "Assigned DotfilesPowerShell path to the current directory: ${Script:DotfilesPowerShell}" -ForegroundColor Yellow
+} else {
+    Write-Host "DotfilesPowerShell path is already set to: ${Script:DotfilesPowerShell}" -ForegroundColor Green
+}
 
 # Link the .powershell functions and unique configuration files to home
 ln "${Script:DotfilesPowerShell}\.powershell" "${Env:UserProfile}\.powershell"

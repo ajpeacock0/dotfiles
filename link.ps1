@@ -22,8 +22,13 @@ function Write-FramedString {
 # Include Powershell functions, needed for the `ln` alias
 . powershell\.powershell\functions.ps1
 
-# TODO: Change assumed "git_repos\dotfiles" path to use scriptDirectory
-$Script:Dotfiles = "D:\git_repos\dotfiles"
+# Check if $Script:Dotfiles is not set, assigning if not
+if (-not $Script:Dotfiles) {
+    $Script:Dotfiles = (Get-Location).Path
+    Write-Host "Assigned Dotfiles path to the current directory: ${Script:Dotfiles}" -ForegroundColor Yellow
+} else {
+    Write-Host "Dotfiles path is already set to: ${Script:Dotfiles}" -ForegroundColor Green
+}
 
 ## Git Section
 

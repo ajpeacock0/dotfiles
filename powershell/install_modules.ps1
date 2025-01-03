@@ -6,6 +6,16 @@ if ($PSVersionTable.PSEdition -ne "Core") {
     return
 }
 
+# Check if the script is being run from the same directory as its location
+$ScriptDirectory = Split-Path -Path $MyInvocation.MyCommand.Definition -Parent
+$CurrentDirectory = (Get-Location).Path
+if ($ScriptDirectory -ne $CurrentDirectory) {
+    Write-Warning "Error: The script is not being run from its own directory." -ForegroundColor Red
+    Write-Warning "Script directory: $ScriptDirectory" -ForegroundColor Yellow
+    Write-Warning "Current directory: $CurrentDirectory" -ForegroundColor Yellow
+    return
+}
+
 # Set the InstallationPolicy of the PowerShell Gallery repository to Untrusted
 Set-PSRepository -Name PSGallery -InstallationPolicy Trusted
 
