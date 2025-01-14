@@ -36,16 +36,17 @@ vim.api.nvim_set_keymap('i', '<Tab>', 'pumvisible() ? "<C-n>" : "<Tab>"', { expr
 vim.api.nvim_set_keymap('i', '<S-Tab>', 'pumvisible() ? "<C-p>" : "<S-Tab>"', { expr = true })
 
 wk.register({
-    ['<leader>ve']      = {':e $MYVIMRC<CR>'     , 'Edit the MYVIMRC configuration file'        },
-    ['<leader>vr']      = {':source $MYVIMRC<CR>', 'Reload MYVIMRC configuration file'          },
-    ['<leader>vx']      = {':Vex<CR>'            , 'Shortcut for Vertical Explore'              },
-    ['<leader>py']      = {':set paste<Cr>'      , 'Shortcut for enabling paste mode'           },
-    ['<leader>pn']      = {':set nopaste<CR>'    , 'Shortcut for disabling paste mode'          },
-    ['<leader>dy']      = {':windo diffthis<CR>' , 'Shortcut for enabling diff mode'            },
-    ['<leader>dn']      = {':windo diffoff<CR>'  , 'Shortcut for disabling diff mode'           },
-    ['<leader>lw']      = {':set wrap!<CR>'      , 'Toggle Word Wrap'                           },
-    ['<leader><space>'] = {':noh<CR>'            , 'Unhighlight search terms with leader+space' },
-    ['<C-t>']           = {':CHADopen<CR>'       , 'CHADtree Toggle'                            },
+    ['<leader>ve']      = {':e $MYVIMRC<CR>'                     , 'Edit the MYVIMRC configuration file'            },
+    ['<leader>vr']      = {':source $MYVIMRC<CR>'                , 'Reload MYVIMRC configuration file'              },
+    ['<leader>vx']      = {':Vex<CR>'                            , 'Shortcut for Vertical Explore'                  },
+    ['<leader>py']      = {':set paste<Cr>'                      , 'Shortcut for enabling paste mode'               },
+    ['<leader>pn']      = {':set nopaste<CR>'                    , 'Shortcut for disabling paste mode'              },
+    ['<leader>dy']      = {':windo diffthis<CR>'                 , 'Shortcut for enabling diff mode'                },
+    ['<leader>dn']      = {':windo diffoff<CR>'                  , 'Shortcut for disabling diff mode'               },
+    ['<leader>lw']      = {':set wrap!<CR>'                      , 'Toggle Word Wrap'                               },
+    ['<leader><space>'] = {':noh<CR>'                            , 'Unhighlight search terms with leader+space'     },
+    ['<C-t>']           = {':CHADopen<CR>'                       , 'CHADtree Toggle'                                },
+    ['<C-o>']           = {':lua vim.diagnostic.open_float()<CR>', 'Open empty horizontal buffer', mode={'n','v'}   },
 })
 
 -- |----------------------------------|
