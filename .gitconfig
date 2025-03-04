@@ -24,9 +24,9 @@
 [credential "azrepos:org/msazure"]
     username = anpea@microsoft.com
 [credential]
-    helper = store
+    helper = manager
 
-    azreposCredentialType = oauth
+    ;azreposCredentialType = oauth
     msauthUseBroker = true
 [delta]
     side-by-side = false
