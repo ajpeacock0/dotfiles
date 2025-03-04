@@ -3,9 +3,9 @@ vim.o.timeout = true
 vim.o.timeoutlen = 800
 
 require("which-key").setup {
-    popup_mappings = {
-        scroll_down = "<c-j>", -- binding to scroll down inside the popup
-        scroll_up = "<c-k>", -- binding to scroll up inside the popup
+    keys = {
+      scroll_down = "<c-j>", -- binding to scroll down inside the popup
+      scroll_up = "<c-k>",   -- binding to scroll up inside the popup
     },
     layout = {
         height = { min = 4, max = 25 }, -- min and max height of the columns

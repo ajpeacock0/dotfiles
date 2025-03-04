@@ -9,22 +9,22 @@ local wk = require("which-key")
 vim.g.mapleader = ","
 
 -- Use Ctrl-c as the escape
-wk.register({
-    ['<c-c>']  = {'<esc>', 'Use Ctrl-c as the escape', mode={'n','i','v','o'}},
+wk.add({
+    {'<c-c>', '<esc>', desc='Use Ctrl-c as the escape', mode={'n','i','v','o'}},
 })
 
-wk.register({
-    ['<leader>q']   = {':q<cr>'                  , 'Shortcut to quit'                      },
-    ['<leader>fq']  = {':q!<cr>'                 , 'Shortcut to force delete buffer'       },
-    ['<leader>w']   = {':w<cr>'                  , 'Map Leader w to write'                 },
-    ['<leader>va']  = {':set virtualedit=all<cr>', 'Change virtualedit mode to all'        },
-    ['<leader>vd']  = {':set virtualedit=""<cr>' , 'Change virtualedit mode to default'    },
-    ['<leader>b']   = {':Buffers<cr>'            , 'Alias for :Buffers'                    },
-    ['<leader>e']   = {':e!<cr>'                 , 'Alias for :e! (force reload buffer)'   },
-    ['<leader>rm']  = { function()
+wk.add({
+    {'<leader>q'   , ':q<cr>'                  , desc='Shortcut to quit'                      },
+    {'<leader>fq'  , ':q!<cr>'                 , desc='Shortcut to force delete buffer'       },
+    {'<leader>w'   , ':w<cr>'                  , desc='Map Leader w to write'                 },
+    {'<leader>va'  , ':set virtualedit=all<cr>', desc='Change virtualedit mode to all'        },
+    {'<leader>vd'  , ':set virtualedit=""<cr>' , desc='Change virtualedit mode to default'    },
+    {'<leader>b'   , ':Buffers<cr>'            , desc='Alias for :Buffers'                    },
+    {'<leader>e'   , ':e!<cr>'                 , desc='Alias for :e! (force reload buffer)'   },
+    {'<leader>rm'  ,  function()
         vim.cmd("call delete(expand('%'))")
         vim.cmd("bdelete!")
-    end, "Alias for deleting the current file"                                             },
+    end, desc="Alias for deleting the current file"                                             },
 })
 
 -- Add Ctrl+j/k for when popup menu is showing
@@ -35,45 +35,45 @@ vim.api.nvim_set_keymap('i', '<C-k>', 'pumvisible() ? "<C-p>" : "<C-k>"', { expr
 vim.api.nvim_set_keymap('i', '<Tab>', 'pumvisible() ? "<C-n>" : "<Tab>"', { expr = true })
 vim.api.nvim_set_keymap('i', '<S-Tab>', 'pumvisible() ? "<C-p>" : "<S-Tab>"', { expr = true })
 
-wk.register({
-    ['<leader>ve']      = {':e $MYVIMRC<CR>'                     , 'Edit the MYVIMRC configuration file'            },
-    ['<leader>vr']      = {':source $MYVIMRC<CR>'                , 'Reload MYVIMRC configuration file'              },
-    ['<leader>vx']      = {':Vex<CR>'                            , 'Shortcut for Vertical Explore'                  },
-    ['<leader>py']      = {':set paste<Cr>'                      , 'Shortcut for enabling paste mode'               },
-    ['<leader>pn']      = {':set nopaste<CR>'                    , 'Shortcut for disabling paste mode'              },
-    ['<leader>dy']      = {':windo diffthis<CR>'                 , 'Shortcut for enabling diff mode'                },
-    ['<leader>dn']      = {':windo diffoff<CR>'                  , 'Shortcut for disabling diff mode'               },
-    ['<leader>lw']      = {':set wrap!<CR>'                      , 'Toggle Word Wrap'                               },
-    ['<leader><space>'] = {':noh<CR>'                            , 'Unhighlight search terms with leader+space'     },
-    ['<C-t>']           = {':CHADopen<CR>'                       , 'CHADtree Toggle'                                },
-    ['<C-o>']           = {':lua vim.diagnostic.open_float()<CR>', 'Open empty horizontal buffer', mode={'n','v'}   },
+wk.add({
+    {'<leader>ve'      , ':e $MYVIMRC<CR>'                     , desc='Edit the MYVIMRC configuration file'            },
+    {'<leader>vr'      , ':source $MYVIMRC<CR>'                , desc='Reload MYVIMRC configuration file'              },
+    {'<leader>vx'      , ':Vex<CR>'                            , desc='Shortcut for Vertical Explore'                  },
+    {'<leader>py'      , ':set paste<Cr>'                      , desc='Shortcut for enabling paste mode'               },
+    {'<leader>pn'      , ':set nopaste<CR>'                    , desc='Shortcut for disabling paste mode'              },
+    {'<leader>dy'      , ':windo diffthis<CR>'                 , desc='Shortcut for enabling diff mode'                },
+    {'<leader>dn'      , ':windo diffoff<CR>'                  , desc='Shortcut for disabling diff mode'               },
+    {'<leader>lw'      , ':set wrap!<CR>'                      , desc='Toggle Word Wrap'                               },
+    {'<leader><space>' , ':noh<CR>'                            , desc='Unhighlight search terms with leader+space'     },
+    {'<C-t>'           , ':lua MiniFiles.open()<CR>'           , desc='Open Mini.files'                                },
+    {'<C-o>'           , ':lua vim.diagnostic.open_float()<CR>', desc='Open empty horizontal buffer', mode={'n','v'}   },
 })
 
 -- |----------------------------------|
 -- | Begin Line Modification Mappings |
 -- |----------------------------------|
 
-wk.register({
+wk.add({
 
-    ['<C-z>']       = {'<C-x>'                                 , "Decrement number", mode={'n','v'}                         },
-    ['<C-x>']       = {'<C-a>'                                 , "Increment number", mode={'n','v'}                         },
-    ['g<C-z>']      = {'g<C-x>'                                , "Decrement numbers for each line away", mode={'v'}         },
-    ['g<C-x>']      = {'g<C-a>'                                , "Increment numbers for each line away", mode={'v'}         },
-    ['<C-j>']       = {':j<cr>'                                , "Line join command"                                        },
-    ['<leader>sw']  = {':StripWhitespace<cr>'                  , "Strip Whitespace"                                         },
-    ['<leader>tab'] = {':set et<cr> :ret!<cr>'                 , "Change all existing tab characters to match tab settings" },
-    ['<leader>jq']  = {':%!jq .<cr>'                           , 'Format JSON in butter using `jq` tool'                    },
-    ['<leader>xq']  = {':set formatexpr=xmlformat#Format()<cr>', 'Set XML formatting for buffer'                            },
+    {'<C-z>'       , '<C-x>'                                 , desc="Decrement number", mode={'n','v'}                         },
+    {'<C-x>'       , '<C-a>'                                 , desc="Increment number", mode={'n','v'}                         },
+    {'g<C-z>'      , 'g<C-x>'                                , desc="Decrement numbers for each line away", mode={'v'}         },
+    {'g<C-x>'      , 'g<C-a>'                                , desc="Increment numbers for each line away", mode={'v'}         },
+    {'<C-j>'       , ':j<cr>'                                , desc="Line join command"                                        },
+    {'<leader>sw'  , ':StripWhitespace<cr>'                  , desc="Strip Whitespace"                                         },
+    {'<leader>tab' , ':set et<cr> :ret!<cr>'                 , desc="Change all existing tab characters to match tab settings" },
+    {'<leader>jq'  , ':%!jq .<cr>'                           , desc='Format JSON in butter using `jq` tool'                    },
+    {'<leader>xq'  , ':set formatexpr=xmlformat#Format()<cr>', desc='Set XML formatting for buffer'                            },
 
-    ['<leader>nn']  = { function()
+    {'<leader>nn',  function()
         vim.cmd(".,$g/"..vim.fn.expand("<cWORD>").."/normal o")
-    end, "From the current line to EOF, insert new line for each match of the cursor WORD"                                  },
+    end, desc="From the current line to EOF, insert new line for each match of the cursor WORD"                                },
 
-    ['<leader>dd']  = { function()
+    {'<leader>dd',  function()
         vim.cmd(".,%g/"..vim.fn.expand("<cWORD>").."/d")
-    end, "Delete every line which contains the current word"                                                                },
+    end, desc="Delete every line which contains the current word"                                                              },
 
-    ['<leader>fix'] = { function()
+    {'<leader>fix', function()
         vim.cmd([[%s//'/ge]])
         vim.cmd([[%s//-/ge]])
         vim.cmd([[%s//"/ge]])
@@ -88,28 +88,28 @@ wk.register({
         vim.cmd([[%s/’/'/ge]])
         vim.cmd([[%s/–/-/ge]])
         vim.cmd([[%s/¿/'/ge]])
-    end, "Fix conversion errors"                                                                                             },
+    end, desc="Fix conversion errors"                                                                                          },
 
 })
 
-wk.register({
+wk.add({
     -- Gheto custom autoclose mappings
-    ['(']      = {'()<left>'     , "Custom autoclose mapping" },
-    ['[']      = {'[]<left>'     , "Custom autoclose mapping" },
-    ['{']      = {'{}<left>'     , "Custom autoclose mapping" },
-    ['<']      = {'<><left>'     , "Custom autoclose mapping" },
-    ['{<cr>']  = {'{<cr>}<ESC>O' , "Custom autoclose mapping" },
-    ['{;<cr>'] = {'{<cr>};<ESC>O', "Custom autoclose mapping" },
+    {'('      , '()<left>'     , desc="Custom autoclose mapping" },
+    {'['      , '[]<left>'     , desc="Custom autoclose mapping" },
+    {'{'      , '{}<left>'     , desc="Custom autoclose mapping" },
+    {'<'      , '<><left>'     , desc="Custom autoclose mapping" },
+    {'{<cr>'  , '{<cr>}<ESC>O' , desc="Custom autoclose mapping" },
+    {'{;<cr>' , '{<cr>};<ESC>O', desc="Custom autoclose mapping" },
 },{
     mode = "i", -- INSERT mode
 })
 
 -- Align Plugin Mappings
-wk.register({
-    ['<leader>aa'] = { function() require'align'.align_to_char(1, true)             end, "Aligns to 1 character, looking left"                     },
-    ['<leader>as'] = { function() require'align'.align_to_char(2, true, true)       end, "Aligns to 2 characters, looking left and with previews"  },
-    ['<leader>aw'] = { function() require'align'.align_to_string(false, true, true) end, "Aligns to a string, looking left and with previews"      },
-    ['<leader>ar'] = { function() require'align'.align_to_string(true, true, true)  end, "Aligns to a Lua pattern, looking left and with previews" },
+wk.add({
+    {'<leader>aa' , function() require'align'.align_to_char(1, true)             end, desc="Aligns to 1 character, looking left"                     },
+    {'<leader>as' , function() require'align'.align_to_char(2, true, true)       end, desc="Aligns to 2 characters, looking left and with previews"  },
+    {'<leader>aw' , function() require'align'.align_to_string(false, true, true) end, desc="Aligns to a string, looking left and with previews"      },
+    {'<leader>ar' , function() require'align'.align_to_string(true, true, true)  end, desc="Aligns to a Lua pattern, looking left and with previews" },
 },{
     mode = "x", -- Visual mode
 })
@@ -122,20 +122,20 @@ wk.register({
 -- | Begin Tab Mappings |
 -- |--------------------|
 
-wk.register({
-    ['<C-l>']      = { function() vim.cmd(':tabnext') end            , "Go to next tab", mode={'n','i','v'}             },
-    ['<C-h>']      = { function() vim.cmd(':tabprevious') end        , "Go to previous tab", mode={'n','i','v'}         },
-    ['<M-l>']      = { function() vim.cmd('silent! :tabmove +1') end , "Move this tab to the right", mode={'n','i','v'} },
-    ['<M-h>']      = { function() vim.cmd('silent! :tabmove -1') end , "Move this tab to the left", mode={'n','i','v'}  },
-    ['<C-n>']      = { function() vim.cmd(':tabnew') end             , "Create a new blank tab", mode={'n','i','v'}     },
-    ['<C-w>,']     = {'<C-w><S-H>'                                   , 'Move window split to left', mode={'n','v'}      },
-    ['<C-w>.']     = {'<C-w><S-L>'                                   , 'Move window split to right', mode={'n','v'}     },
-    ['<C-w><C-l>'] = {':vertical resize +10<CR>'                     , 'Window vertical resize+', mode={'n','v'}        },
-    ['<C-w><C-h>'] = {':vertical resize -10<CR>'                     , 'Window vertical resize-', mode={'n','v'}        },
-    ['<C-w><C-j>'] = {':horizontal resize +7<CR>'                    , 'Window horizontal resize+', mode={'n','v'}      },
-    ['<C-w><C-k>'] = {':horizontal resize -7<CR>'                    , 'Window horizontal resize-', mode={'n','v'}      },
-    ['<leader>vn'] = {':vnew<CR>'                                    , 'Open empty vertical buffer', mode={'n','v'}     },
-    ['<leader>vs'] = {':new<CR>'                                     , 'Open empty horizontal buffer', mode={'n','v'}   },
+wk.add({
+    {'<C-l>'      ,  function() vim.cmd(':tabnext') end            , desc="Go to next tab", mode={'n','i','v'}             },
+    {'<C-h>'      ,  function() vim.cmd(':tabprevious') end        , desc="Go to previous tab", mode={'n','i','v'}         },
+    {'<M-l>'      ,  function() vim.cmd('silent! :tabmove +1') end , desc="Move this tab to the right", mode={'n','i','v'} },
+    {'<M-h>'      ,  function() vim.cmd('silent! :tabmove -1') end , desc="Move this tab to the left", mode={'n','i','v'}  },
+    {'<C-n>'      ,  function() vim.cmd(':tabnew') end             , desc="Create a new blank tab", mode={'n','i','v'}     },
+    {'<C-w>,'     , '<C-w><S-H>'                                   , desc='Move window split to left', mode={'n','v'}      },
+    {'<C-w>.'     , '<C-w><S-L>'                                   , desc='Move window split to right', mode={'n','v'}     },
+    {'<C-w><C-l>' , ':vertical resize +10<CR>'                     , desc='Window vertical resize+', mode={'n','v'}        },
+    {'<C-w><C-h>' , ':vertical resize -10<CR>'                     , desc='Window vertical resize-', mode={'n','v'}        },
+    {'<C-w><C-j>' , ':horizontal resize +7<CR>'                    , desc='Window horizontal resize+', mode={'n','v'}      },
+    {'<C-w><C-k>' , ':horizontal resize -7<CR>'                    , desc='Window horizontal resize-', mode={'n','v'}      },
+    {'<leader>vn' , ':vnew<CR>'                                    , desc='Open empty vertical buffer', mode={'n','v'}     },
+    {'<leader>vs' , ':new<CR>'                                     , desc='Open empty horizontal buffer', mode={'n','v'}   },
 })
 
 -- Mappings for opening the native terminal
@@ -162,18 +162,18 @@ vim.api.nvim_set_keymap('t', '<C-s><C-c>', '<C-\\><C-n>', { noremap = true })
 -- | Begin Navigation Mappings |
 -- |---------------------------|
 
-wk.register({
-    ['<S-k>']      = {'{'     , 'Shift+dir to jump paragraphs', mode={'n','v'}                                              },
-    ['<S-j>']      = {'}'     , 'Shift+dir to jump paragraphs', mode={'n','v'}                                              },
-    ['<S-h>']      = {'^'     , 'Shift+dir to jump to begin/end of line', mode={'n','v'}                                    },
-    ['<S-l>']      = {'$'     , 'Shift+dir to jump to begin/end of line', mode={'n','v'}                                    },
-    ['n']          = {'nzz'   , 'Center screen after a Next'                                                                },
-    ['N']          = {'Nzz'   , 'Center screen after a Next'                                                                },
-    ['<C-d>']      = {'5<C-e>', 'Faster scrolling'                                                                          },
-    ['<C-u>']      = {'5<C-y>', 'Faster scrolling'                                                                          },
-    ['<leader>mm'] = {'`.'    , 'Shortcut to the position where the last change was made.'                                  },
-    ['<leader>my'] = {'`['    , 'Shortcut to the first character of the previously changed or YANKED text'                  },
-    ['<leader>mi'] = {'`^'    , 'Shortcut to the position where the cursor was the last time when INSERT mode was stopped.' },
+wk.add({
+    {'<S-k>'      , '{'     , desc='Shift+dir to jump paragraphs', mode={'n','v'}                                              },
+    {'<S-j>'      , '}'     , desc='Shift+dir to jump paragraphs', mode={'n','v'}                                              },
+    {'<S-h>'      , '^'     , desc='Shift+dir to jump to begin/end of line', mode={'n','v'}                                    },
+    {'<S-l>'      , '$'     , desc='Shift+dir to jump to begin/end of line', mode={'n','v'}                                    },
+    {'n'          , 'nzz'   , desc='Center screen after a Next'                                                                },
+    {'N'          , 'Nzz'   , desc='Center screen after a Next'                                                                },
+    {'<C-d>'      , '5<C-e>', desc='Faster scrolling'                                                                          },
+    {'<C-u>'      , '5<C-y>', desc='Faster scrolling'                                                                          },
+    {'<leader>mm' , '`.'    , desc='Shortcut to the position where the last change was made.'                                  },
+    {'<leader>my' , '`['    , desc='Shortcut to the first character of the previously changed or YANKED text'                  },
+    {'<leader>mi' , '`^'    , desc='Shortcut to the position where the cursor was the last time when INSERT mode was stopped.' },
 })
 
 -- |-------------------------|
@@ -184,12 +184,12 @@ wk.register({
 -- | Begin Clipboard/Yanking Mappings |
 -- |----------------------------------|
 
-wk.register({
-    ['<leader>yn'] = {':let @+ = expand("%")<CR>', 'Yank the Name of the current file'                                           },
-    ['<M-e>']      = {'ve"0p'                    , 'Keybinding for substitute word with yanked register'                         },
-    ['<M-p>']      = {'"0p'                      , 'Keybinding for paste yanked register', mode={'n','v'}                        },
-    ['<M-P>']      = {'"0P'                      , 'Keybinding for paste yanked register', mode={'n','v'}                        },
-    ['Y']          = {'y$'                       , 'Yank from the cursor to the end of the line, to be consistent with C and D.' },
+wk.add({
+    {'<leader>yn' , ':let @+ = expand("%")<CR>', desc='Yank the Name of the current file'                                           },
+    {'<M-e>'      , 've"0p'                    , desc='Keybinding for substitute word with yanked register'                         },
+    {'<M-p>'      , '"0p'                      , desc='Keybinding for paste yanked register', mode={'n','v'}                        },
+    {'<M-P>'      , '"0P'                      , desc='Keybinding for paste yanked register', mode={'n','v'}                        },
+    {'Y'          , 'y$'                       , desc='Yank from the cursor to the end of the line, to be consistent with C and D.' },
 })
 
 -- Clear register A then Yank lines matching the current Word to register A
@@ -247,13 +247,12 @@ vim.api.nvim_set_keymap('x', '<leader>rl', ':s/$/', { noremap = true })
 -- | Begin Spelling Mappings |
 -- |-------------------------|
 
-wk.register({
-    ['<leader>sp'] = {':setlocal spell! spelllang=en_us<cr>', 'Toggle SPell checker'                            },
-    ['<leader>sc'] = {'1z='                                 , 'Spell Complete using the most likely suggestion' },
-    ['<leader>sa'] = {'[s'                                  , 'Go to previous incorrect spelling'               },
-    ['<leader>sd'] = {']s'                                  , 'Go to next incorrect spelling'                   },
-
-    ['<leader>ss'] = { function()
+wk.add({
+    {'<leader>sp' ,':setlocal spell! spelllang=en_us<cr>', desc='Toggle SPell checker'                            },
+    {'<leader>sc' ,'1z='                                 , desc='Spell Complete using the most likely suggestion' },
+    {'<leader>sa' ,'[s'                                  , desc='Go to previous incorrect spelling'               },
+    {'<leader>sd' ,']s'                                  , desc='Go to next incorrect spelling'                   },
+    {'<leader>ss' , function()
         local suggestions = vim.fn.spellsuggest(vim.fn.expand("<cword>"))
         vim.fn['fzf#run']({
             source = suggestions,
@@ -261,7 +260,7 @@ wk.register({
                 vim.api.nvim_command('normal! ciw' .. word)
             end,
             down = 10 })
-    end, "Spell Suggest using fzf", noremap = true, silent = true                                               },
+    end, desc="Spell Suggest using fzf", noremap = true, silent = true                                               },
 })
 
 -- |-----------------------|

@@ -46,8 +46,14 @@ return require('packer').startup(function(use)
     -- Color Table Display
     use { 'guns/xterm-color-table.vim' }
 
-    -- Better NERDtree alternative
-    use {'ms-jpq/chadtree', branch = 'chad', run = 'python3 -m chadtree deps' }
+    -- File Explorer
+    use {
+        "echasnovski/mini.files",
+        branch = "stable",
+        requires = {
+          'nvim-tree/nvim-web-devicons', -- optional
+        },
+    }
 
     -- Side windows displaying buffers
     use { 'jeetsukumaran/vim-buffergator' }
