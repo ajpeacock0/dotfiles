@@ -1,5 +1,13 @@
 require('mini.files').setup()
 
+require('mini.files').setup({
+  mappings = {
+     -- Unmap 'h' and `l` from navigating + opening files
+    go_in = '<CR>',
+    go_out = '-',
+  }
+})
+
 local map_split = function(buf_id, lhs, direction)
     local rhs = function()
         -- Make new window and set it as target
@@ -40,8 +48,8 @@ vim.api.nvim_create_autocmd('User', {
     callback = function(args)
         local buf_id = args.data.buf_id
 
-        map_split(buf_id, '<C-x>', 'belowright horizontal')
-        map_split(buf_id, '<C-v>', 'belowright vertical')
+        map_split(buf_id, '<S-x>', 'belowright horizontal')
+        map_split(buf_id, '<S-v>', 'belowright vertical')
         map_new_tab(buf_id, 't')
     end,
 })
