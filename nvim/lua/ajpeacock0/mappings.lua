@@ -45,7 +45,7 @@ wk.add({
     {'<leader>dn'      , ':windo diffoff<CR>'                  , desc='Shortcut for disabling diff mode'               },
     {'<leader>lw'      , ':set wrap!<CR>'                      , desc='Toggle Word Wrap'                               },
     {'<leader><space>' , ':noh<CR>'                            , desc='Unhighlight search terms with leader+space'     },
-    {'<C-t>'           , ':lua MiniFiles.open()<CR>'           , desc='Open Mini.files'                                },
+    {'<C-t>'           , ":lua require('mini.files').open(vim.fn.expand('%:p:h'))<CR>", desc='Open Mini.files at current file'         },
     {'<C-o>'           , ':lua vim.diagnostic.open_float()<CR>', desc='Open empty horizontal buffer', mode={'n','v'}   },
 })
 
