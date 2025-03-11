@@ -94,24 +94,20 @@ wk.add({
 
 wk.add({
     -- Gheto custom autoclose mappings
-    {'('      , '()<left>'     , desc="Custom autoclose mapping" },
-    {'['      , '[]<left>'     , desc="Custom autoclose mapping" },
-    {'{'      , '{}<left>'     , desc="Custom autoclose mapping" },
-    {'<'      , '<><left>'     , desc="Custom autoclose mapping" },
-    {'{<cr>'  , '{<cr>}<ESC>O' , desc="Custom autoclose mapping" },
-    {'{;<cr>' , '{<cr>};<ESC>O', desc="Custom autoclose mapping" },
-},{
-    mode = "i", -- INSERT mode
+    {'('      , '()<left>'     , desc="Custom autoclose mapping", mode="i"},
+    {'['      , '[]<left>'     , desc="Custom autoclose mapping", mode="i"},
+    {'{'      , '{}<left>'     , desc="Custom autoclose mapping", mode="i"},
+    {'<'      , '<><left>'     , desc="Custom autoclose mapping", mode="i"},
+    {'{<cr>'  , '{<cr>}<ESC>O' , desc="Custom autoclose mapping", mode="i"},
+    {'{;<cr>' , '{<cr>};<ESC>O', desc="Custom autoclose mapping", mode="i"},
 })
 
 -- Align Plugin Mappings
 wk.add({
-    {'<leader>aa' , function() require'align'.align_to_char(1, true)             end, desc="Aligns to 1 character, looking left"                     },
-    {'<leader>as' , function() require'align'.align_to_char(2, true, true)       end, desc="Aligns to 2 characters, looking left and with previews"  },
-    {'<leader>aw' , function() require'align'.align_to_string(false, true, true) end, desc="Aligns to a string, looking left and with previews"      },
-    {'<leader>ar' , function() require'align'.align_to_string(true, true, true)  end, desc="Aligns to a Lua pattern, looking left and with previews" },
-},{
-    mode = "x", -- Visual mode
+    {'<leader>aa' , function() require'align'.align_to_char(1, true)             end, desc="Aligns to 1 character, looking left"                    , mode="x"},
+    {'<leader>as' , function() require'align'.align_to_char(2, true, true)       end, desc="Aligns to 2 characters, looking left and with previews" , mode="x"},
+    {'<leader>aw' , function() require'align'.align_to_string(false, true, true) end, desc="Aligns to a string, looking left and with previews"     , mode="x"},
+    {'<leader>ar' , function() require'align'.align_to_string(true, true, true)  end, desc="Aligns to a Lua pattern, looking left and with previews", mode="x"},
 })
 
 -- |--------------------------------|
