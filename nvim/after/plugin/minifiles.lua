@@ -35,6 +35,7 @@ local map_new_tab = function(buf_id, lhs)
         local entry = MiniFiles.get_fs_entry()
         if entry and entry.fs_type == 'file' then
             vim.cmd('tabnew ' .. vim.fn.fnameescape(entry.path))
+            vim.cmd('set conceallevel=0')
         end
     end
 
