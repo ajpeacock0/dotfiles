@@ -61,6 +61,9 @@ return require('packer').startup(function(use)
     -- Improve the `.` command to include macros, plugin maps, etc.
     use { 'tpope/vim-repeat' }
 
+    -- Useful substitution
+    use { 'tpope/vim-abolish' }
+
     -- Moving lines up+down
     use { 'matze/vim-move' }
 
