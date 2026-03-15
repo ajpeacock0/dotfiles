@@ -1,7 +1,7 @@
 local configs = require("nvim-treesitter.configs")
 configs.setup {
-    ensure_installed = "lua", "vim", "vimdoc", "query",
-    sync_install = false,
+    ensure_installed = { "lua", "vim", "vimdoc", "query" },
+    sync_install = true,
     -- List of parsers to ignore installing
     ignore_install = {
         "markdown"

@@ -27,14 +27,6 @@ wk.add({
     end, desc="Alias for deleting the current file"                                             },
 })
 
--- Add Ctrl+j/k for when popup menu is showing
-vim.api.nvim_set_keymap('i', '<C-j>', 'pumvisible() ? "<C-n>" : "<C-j>"', { expr = true })
-vim.api.nvim_set_keymap('i', '<C-k>', 'pumvisible() ? "<C-p>" : "<C-k>"', { expr = true })
-
--- Add Tab and Shift-Tab for when popup menu is showing
-vim.api.nvim_set_keymap('i', '<Tab>', 'pumvisible() ? "<C-n>" : "<Tab>"', { expr = true })
-vim.api.nvim_set_keymap('i', '<S-Tab>', 'pumvisible() ? "<C-p>" : "<S-Tab>"', { expr = true })
-
 wk.add({
     {'<leader>ve'      , ':e $MYVIMRC<CR>'                     , desc='Edit the MYVIMRC configuration file'            },
     {'<leader>vr'      , ':source $MYVIMRC<CR>'                , desc='Reload MYVIMRC configuration file'              },
@@ -272,12 +264,6 @@ function MarkdownBookmark()
     vim.cmd(":s/\\ /-/g")
 end
 
--- Convert camel case to Java constant style
-function JavaUpperCase()
-    vim.cmd(":s/\\(\\u\\)/_\\1/g")
-    vim.cmd(":s/.*/\\U&/g")
-end
-
 -- Add argument (can be negative, default 1) to global variable i.
 -- Return value of i before the change.
 function Inc(arg)
@@ -288,16 +274,6 @@ end
 
 -- Pull word under cursor into LHS of a increasing number addition
 vim.api.nvim_set_keymap('n', '<leader>inc', [[:let i = 1<CR>:%s/\V<C-r><C-w>/\=submatch(0) .. Inc()/g<CR>]], { noremap = true })
-
--- Convert Java constant style to camel case
-function JavaLowerCase()
-    vim.cmd(":s/.*/\\L&/g")
-    vim.cmd(":s/_\\(\\l\\)/\\U\\1/g")
-end
-
--- Map java constant case functions to keys
-vim.api.nvim_set_keymap('n', '<leader>ju', [[:call JavaUpperCase()<CR>]], { noremap = true })
-vim.api.nvim_set_keymap('n', '<leader>jl', [[:call JavaLowerCase()<CR>]], { noremap = true })
 
 -- |----------------------|
 -- | End Custom Functions |

@@ -26,10 +26,6 @@ vim.g.netrw_banner = 0
 -- open files in a new tab
 vim.g.netrw_browse_split = 3
 
--- Close vim if the only window left open is a NERDTree
-vim.api.nvim_command([[
-  autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-]])
 
 -- Automatically close bookmarks split when jumping to a bookmark
 vim.g.bookmark_auto_close = 1
