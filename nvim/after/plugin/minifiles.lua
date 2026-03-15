@@ -1,5 +1,3 @@
-require('mini.files').setup()
-
 require('mini.files').setup({
   mappings = {
      -- Unmap 'h' and `l` from navigating + opening files

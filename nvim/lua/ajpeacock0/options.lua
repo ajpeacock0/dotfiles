@@ -26,9 +26,7 @@ vim.o.guifont = 'FuraCode_NF:h11,Fira_Code:h11,Consolas:h11'
 -- Disable menus and preserve window sizing
 -- vim.o.guioptions = 'Mk' -- DISABLED when updated to neovim 0.10.1
 
-if vim.fn.has('termguicolors') == 1 then
-    vim.o.termguicolors = true
-end
+vim.opt.termguicolors = true
 
 -- Disable automatic setting of the cursor
 vim.o.guicursor = ''

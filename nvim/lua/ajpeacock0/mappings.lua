@@ -37,8 +37,8 @@ wk.add({
     {'<leader>dn'      , ':windo diffoff<CR>'                  , desc='Shortcut for disabling diff mode'               },
     {'<leader>lw'      , ':set wrap!<CR>'                      , desc='Toggle Word Wrap'                               },
     {'<leader><space>' , ':noh<CR>'                            , desc='Unhighlight search terms with leader+space'     },
-    {'<C-t>'           , ":lua require('mini.files').open(vim.fn.expand('%:p:h'))<CR>", desc='Open Mini.files at current file'         },
-    {'<C-o>'           , ':lua vim.diagnostic.open_float()<CR>', desc='Open empty horizontal buffer', mode={'n','v'}   },
+    {'<C-t>'           , function() require('mini.files').open(vim.fn.expand('%:p:h')) end, desc='Open Mini.files at current file'              },
+    {'<C-o>'           , vim.diagnostic.open_float                                        , desc='Open diagnostic float'  , mode={'n','v'}   },
 })
 
 -- |----------------------------------|
@@ -258,11 +258,6 @@ wk.add({
 -- |------------------------|
 -- | Begin Custom Functions |
 -- |------------------------|
-
-function MarkdownBookmark()
-    vim.cmd(":s/.*/\\L&/g")
-    vim.cmd(":s/\\ /-/g")
-end
 
 -- Add argument (can be negative, default 1) to global variable i.
 -- Return value of i before the change.
